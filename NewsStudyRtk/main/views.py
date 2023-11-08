@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 def index(request):
     context = {'title': 'test page',
-               'Header1': 'Заголовок 1'}
+               'Header1': 'Заголовок 1VCS'}
     return render(request, 'main/index.html', context)
 def about(request):
     return HttpResponse('<h1 style="color: blue" > О нас </h1>')
