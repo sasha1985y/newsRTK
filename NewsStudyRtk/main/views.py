@@ -3,7 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    context = {'title': 'test page',
+    context = {'title': 'test',
                'Header1': 'Заголовок страницы'}
     return render(request, 'main/index.html', context)
 def about(request):
