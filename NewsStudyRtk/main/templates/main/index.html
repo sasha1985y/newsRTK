@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ title }}</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <script src="https://kit.fontawesome.com/a97047fead.js" crossorigin="anonymous"></script>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    {% include 'main/sidebar.html' %}
+    <div class="content">
+        <h1>{{ Header1 }} </h1>
+        <p> value = {{ value|default:"Нет данных"}}</p>
+        {% if value > 0 %}
+            <h3> Переменная больше нуля</h3>
+        {% else %}
+            <h3> Переменная не больше нуля</h3>
+        {% endif %}
+        <li>
+        {% for n in numbers %}
+            <ul>{{ n.title|lower }}, {{ n.date }}</ul>
+        {% endfor %}
+        </li>
+        <a href="about/"> Ссылка</a>
+
+    <!--    dictionary имя словаря-->
+        <ul>
+            {% for key,value in dictionary.items %}
+                <li> {{ key }} - {{ value }}</li>
+            {% endfor %}
+        </ul>
+
+    <!--    <table border="1">-->
+    <!--        <th> Ячейка заголовка</th>-->
+    <!--        <tr>-->
+    <!--           <td> Текст ячейки 1</td>-->
+    <!--        </tr>-->
+    <!--    </table>-->
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-5">
+                 <h1>контейнер 1</h1>
+                      <h2> Новость 2 </h2>
+                      <p> Текст новости</p>
+                </div>
+                <div class="col col-sm-5">
+                 <h1>контейнер 2</h1>
+                      <h2> Новость 2 </h2>
+                      <p> Текст новости</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+body{
+    background-color:#FFFFFF;
+}
+aside{  /* стиль боковой панели навигации */
+    float: left; /* позиция - слева */
+    background: #212529;/* цвет фона*/
+    width: 25%; /*ширина в % от экрана, можно указать в px */
+    padding: 1%; /*отступы */
+    height: 100vh; /* высота боковой панели - 100% от видимой высоты экрана*/
+    color: white; /* цвет текста */
+    border-right: 5px solid #000000; /* стиль границы панели */
+}
+a{
+    text-decoration:none;
+    color:white;
+}
+/*a:link - просто ссылка
+a:visited - посещенная
+a:hover - наведённая
+a:active - нажатая
+*/
+
+aside img{
+    width: auto;
+    height: 30px;
+    float: left;
+    border-radius:5%;
+}
+
+span.logo{
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    position:relative;
+    top: -5px;
+}
+
+aside ul li:hover, aside ul li a:hover{
+    color: #35A745;
+    background-color: #0D6EFD;
+    border-radius:3px;
+    transform: scale(0.975);
+    transition: 0.15s;
+}
+
+body .content{
+    float: left;
+    color: black;
+    margin-top: 25px;
+    text-align: center;
+    width: 75%;
+}
+
+.alert-info{
+    float:left;
+    clear:both;
+    width:500px;
+    margin: 10px 26%;
+    text-align:center;
+}
+
+
+// подробнее про hover-эффекты: https://www.w3schools.com/cssref/sel_hover.php

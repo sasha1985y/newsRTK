@@ -1,0 +1,77 @@
+{% load bootstrap5 %}
+{% load static %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+<script src="https://kit.fontawesome.com/a97047fead.js" crossorigin="anonymous"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<!--скрипты ниже для работы выпадающего меню пользователя-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+
+<!--Сделано на основе примеров боковых меню с этой страницы: https://getbootstrap.com/docs/5.0/examples/sidebars/#-->
+<aside>
+<!--    <div class="col-3">  &lt;!&ndash;ширина 3 столбца из 12. высота указана в следующей строке: 100% высоты экрана &ndash;&gt;-->
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+        <!--    Подробнее про flex-классы: https://bootstrap-4.ru/docs/4.0/utilities/flex/-->
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+              <img class="bi me-2" src="{% static 'main' %}/img/News_icon.png" width="40" height="50">
+              <span class="fs-4">Новости нашего города</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+        <!--          активная страница-->
+                <a href="/" class="nav-link active" aria-current="page">
+                    <i class="fa fa-house"></i>  Главная
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                    <i class="fa fa-bars"></i>   Все новости
+                </a>
+              </li>
+            <li>
+                <a href="home/" class="nav-link text-white">
+                    <i class="fa fa-backward"></i>   Адаптированный шаблон магазина
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                    <i class="fa fa-magnifying-glass"></i>    Поиск
+
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                    <i class="fa fa-pen-nib"></i>   Мои статьи
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <i class="fa fa-handshake"></i>   О сайте
+                </a>
+              </li>
+            </ul>
+            <hr>
+            <div class="dropdown" >
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
+                <img src="{% static 'main' %}/img/default.jpg" alt="" width="25" height="25" class="rounded-circle me-2">
+                <strong>Демо-пользователь</strong>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#"> Создать статью</a></li>
+                <li><a class="dropdown-item" href="#"> Мой аккаунт</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#"> Выход</a></li>
+              </ul>
+            </div>
+
+
+      </div>
+
+
+</aside>
