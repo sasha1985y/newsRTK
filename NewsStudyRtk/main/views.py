@@ -29,3 +29,9 @@ def contacts(request):
 
 def sidebar(request):
     return render(request,'main/sidebar.html')
+
+def header(request):
+    return render(request,'main/header.html')
+
+def foot(request):
+    return render(request,'main/foot.html')
