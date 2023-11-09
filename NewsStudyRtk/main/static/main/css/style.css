@@ -8,11 +8,11 @@ header {
   background-color: #46344E;
 }
 
-.applogo {
+.app__logo {
   transition: all 1.5s;
 }
 
-.applogo:hover {
+.app__logo:hover {
   transition: all 2s;
   -webkit-transform: scale(1.5) rotate(1440deg);
   -ms-transform: scale(1.5) rotate(1440deg);
