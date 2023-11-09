@@ -5,7 +5,4 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contact'),
-    path('sidebar/', views.sidebar),
-    path('header/', views.header),
-    path('foot/', views.foot),
 ]
