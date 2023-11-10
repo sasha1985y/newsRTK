@@ -24,7 +24,7 @@ def about(request):
 
 
 def contacts(request):
-    return HttpResponse('<h1> контакты </h1>')
+    return render(request,'main/contacts.html')
 
 
 def index(request):

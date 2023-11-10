@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html lang="en">
+    <head>
+        <script src="https://kit.fontawesome.com/a97047fead.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+        <meta charset="UTF-8">
+        <title>{% block title %}Главная страница{% endblock %}</title>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+            {% include 'main/header.html' %}<!--header-->
+            <main class="row">
+                <div class="col-md-2 side_menu">
+                    {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+                </div>
+                <div class="col-md-6">
+                   {% block slider %} {% include 'main/slider.html' %} {% endblock %}
+                </div>
+                <p class="col">
+                    Добро пожаловать на наш сайт! <br>
+                    Мы - команда профессионалов,<br>
+                    которая занимается созданием<br>
+                    сайтов и приложений любой сложности.<br>
+                    Мы готовы предложить Вам полный<br>
+                    спектр услуг: от разработки дизайна<br>
+                    до запуска проекта в интернете.<br>
+                    Наша цель - создать для Вас уникальный<br>
+                    продукт, который будет соответствовать<br>
+                    всем Вашим требованиям и пожеланиям.<br>
+                    Мы используем самые современные технологии<br>
+                    и инструменты, чтобы достичь максимального<br>
+                    качества и эффективности. Наш опыт и<br>
+                    профессионализм позволяют нам создавать<br>
+                    сайты и приложения, которые привлекают<br>
+                    внимание и удобны в использовании.<br>
+                    Мы готовы воплотить в жизнь Ваши идеи и<br>
+                    помочь Вам достичь успеха в интернете.<br>
+                    Свяжитесь с нами, чтобы начать работу<br>
+                    над Вашим проектом уже сегодня!
+                </p>
+            </main>
+            {% block foot %}{% include 'main/footer.html' %} {% endblock %}
+        </div>
+    </body>
+</html>
