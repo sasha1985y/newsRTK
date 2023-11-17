@@ -1,0 +1,43 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% block title %} О нас {% endblock %}
+{% block header %}
+                {% include 'main/header-about.html' %}<!--header-->
+{% endblock %}
+{% block main %}
+    <main class="row">
+        <div class="row">
+            <div class="col-md-2 side_menu" style="background: linear-gradient(164deg, #2F649E 30%,#aef9ce00 70%) center fixed, url({% static 'main/img/stars.gif' %});">
+                <h1>Меню</h1>
+                {% block sidebar %}
+                    {% block home %} <i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a> {% endblock %}
+                {% endblock %}
+            </div>
+            <div class="col">
+                <h1>С коллегами регаемся на openapi.com</h1>
+                <a href="https://i.gifer.com/origin/7e/7e4abc8a38403620fdb573948aa5c9b1.gif">источник звёздной гифки</a>
+                {% block slider %} {% include 'main/devs.html' %} {% endblock %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2" style="padding: 5%;">
+                <img src="https://i.pravatar.cc/128" alt="коллега" width="63" height="63" />
+            </div>
+            <div class="col-md-2" style="padding: 5%;">
+                <img src="https://i.pravatar.cc/127" alt="коллега" width="63" height="63" />
+            </div>
+            <div class="col-md-2" style="padding: 5%;">
+                <img src="https://i.pravatar.cc/126" alt="коллега" width="63" height="63" />
+            </div>
+            <div class="col-md-2" style="padding: 5%;">
+                <img src="https://i.pravatar.cc/125" alt="коллега" width="63" height="63" />
+            </div>
+            <div class="col-md-2" style="padding: 5%;">
+                <img src="https://i.pravatar.cc/124" alt="коллега" width="63" height="63" />
+            </div>
+            <div class="col" style="padding: 5%;">
+                <img src="https://i.pravatar.cc/123" alt="коллега" width="63" height="63" />
+            </div>
+        </div>
+    </main>
+{% endblock %}

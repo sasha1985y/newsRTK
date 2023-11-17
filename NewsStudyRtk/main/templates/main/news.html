@@ -1,6 +1,6 @@
 {% extends 'main/homebase.html' %}
 {% load static %}
-{% block title %} Контакты {% endblock %}
+{% block title %} Новости {% endblock %}
 {% block main %}
     <main class="row">
         <div class="col-md-2 side_menu">
@@ -9,10 +9,10 @@
                 {% block home %} <i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a> {% endblock %}
             {% endblock %}
         </div>
-        <div class="col-md-6">
-            {% block slider %}
-                {% include 'main/hero.html' %}
-            {% endblock %}
+        <div class="col">
+            <h1>А мы тут, знаете ли, плюшками балуемся XD</h1>
+            {% block slider %} {% include 'main/team.html' %} {% endblock %}
+            <a href="https://commons.wikimedia.org/w/index.php?curid=63377057">Авторство цифрового дождя: Jahobr. Собственная работа, CC0</a>
         </div>
     </main>
 {% endblock %}

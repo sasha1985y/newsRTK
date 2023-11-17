@@ -20,12 +20,13 @@ from django.http import HttpResponse
 
 
 def about(request):
-    return HttpResponse('<h1> о нас </h1>')
+    return render(request,'main/about.html')
 
+def index(request):
+    return render(request,'main/index.html')
 
 def contacts(request):
     return render(request,'main/contacts.html')
 
-
-def index(request):
-    return render(request,'main/index.html')
+def news(request):
+    return render(request,'main/news.html')
