@@ -56,7 +56,7 @@ ROOT_URLCONF = 'NewsStudyRtk.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'all_apps/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
