@@ -6,12 +6,12 @@
         <div class="col-md-2 side_menu">
             <h1>Меню</h1>
             {% block sidebar %}
-                {% block home %}<li><i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                {% block news %}<li><i class="fa-solid fa-radio"></i><a href="/news/" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
-                {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="/account/" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
+            {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="{% url 'user' %}" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
                 {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
                 {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
-                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="/about/" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
             {% endblock %}
         </div>
         <div class="col-md-6">

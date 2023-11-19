@@ -17,7 +17,7 @@ from django.http import HttpResponse
                'dictionary': d
                }
     context['пример']= 'Example'
-    return render(request,'main/index.html', context)'''
+    return render(request,'main/news.html', context)'''
 
 # def sidebar(request):
 #     home = Link('<li><i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>')

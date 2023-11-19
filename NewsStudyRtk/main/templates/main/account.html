@@ -15,18 +15,16 @@
             {% block sidebar %}
                 <h1>Меню</h1>
                 <ul>
-                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="/news/" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
-                    {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="/account/" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
-                    {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
-                    {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
-                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="/contacts/" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
-                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="/about/" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    {% block exit %}<li><i class="fa-solid fa-door-open"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВыход</a></li>{% endblock %}
                 </ul>
             {% endblock %}
         </div>
         <ul class="col">
-            <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.5;">
+            <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.8;">
                 <img src="https://i.pravatar.cc/125" id="user-ava" alt="коллега" style="background: cover;" />
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
