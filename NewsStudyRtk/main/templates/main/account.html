@@ -1,0 +1,80 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% block title %} Страница пользователя {% endblock %}
+{% block header %}
+    <header class="row" style="background: linear-gradient(87deg, #9D8D8E 30%,#9D5F13 70%) center fixed">
+        <img class="col-md-4 app__logo" src="{% static 'main/img/logo.svg' %}" width="100" height="100" alt="логотип">
+        <div class="col-md-6">
+            <h1>D E P L O Y 53</h1>
+        </div>
+    </header>
+{% endblock %}
+{% block main %}
+    <main class="row" style="background: url({% static 'main/img/evening.gif' %}) no-repeat;  background-size: cover">
+        <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #F8D093 70%) center fixed">
+            {% block sidebar %}
+                <h1>Меню</h1>
+                <ul>
+                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="/news/" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                    {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="/account/" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
+                    {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
+                    {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
+                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="/contacts/" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="/about/" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                </ul>
+            {% endblock %}
+        </div>
+        <ul class="col">
+            <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.5;">
+                <img src="https://i.pravatar.cc/125" id="user-ava" alt="коллега" style="background: cover;" />
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>День рождения</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Город</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Место работы</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Сайт</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Дата регистрации</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;"></li>
+        </ul>
+        <ul class="col-md-5">
+            <li class="col-md-12" style="background: #9D8D8E; padding: 50% 0 0 50%; margin: 1%; opacity: 0;"></li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>USER DATA</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>USER DATA</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>USER DATA</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>USER DATA</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>USER DATA</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>USER DATA</p>
+            </li>
+        </ul>
+        <ul class="row">
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.7;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.6;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.5;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.4;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.3;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.2;"></li>
+        </ul>
+        <a href="https://99px.ru/sstorage/86/2017/06/image_860306172119167238077.gif">источник гифки</a>
+    </main>
+{% endblock %}

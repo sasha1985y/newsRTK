@@ -10,7 +10,12 @@
             <div class="col-md-2 side_menu" style="background: linear-gradient(164deg, #2F649E 30%,#aef9ce00 70%) center fixed, url({% static 'main/img/stars.gif' %});">
                 <h1>Меню</h1>
                 {% block sidebar %}
-                    {% block home %} <i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a> {% endblock %}
+                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="/news/" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                    {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="/account/" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
+                    {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
+                    {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
+                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="/contacts/" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
                 {% endblock %}
             </div>
             <div class="col">

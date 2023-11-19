@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 #from .models import News
+# from .models import Link
 
 '''def index(request):
     value = -10
@@ -18,6 +19,13 @@ from django.http import HttpResponse
     context['пример']= 'Example'
     return render(request,'main/index.html', context)'''
 
+# def sidebar(request):
+#     home = Link('<li><i class="fa-solid fa-house"></i><a href="/" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>')
+#     context = {
+#         'home': home
+#     }
+#     return render(request, 'main/sidebar.html', context)
+
 
 def about(request):
     return render(request,'main/about.html')
@@ -30,3 +38,6 @@ def contacts(request):
 
 def news(request):
     return render(request,'main/news.html')
+
+def account(request):
+    return render(request,'main/account.html')
