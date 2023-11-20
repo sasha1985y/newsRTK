@@ -9,6 +9,9 @@ def index(request):
 def detail(request):
     return render(request,'news/news.html')
 
+def test(request):
+    return render(request,'news/test.html')
+
 # def index(request):
 #     article = Article.objects.all().first()
 #     context = {'article':article}

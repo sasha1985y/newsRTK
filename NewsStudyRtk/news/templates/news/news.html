@@ -4,21 +4,21 @@
 {% block main %}
     <main>
         <style>
-            .news_title {
-                margin-left: 40%;
+            .single_news {
+                margin-left: 30%;
             }
         </style>
-        <div class="row">
+        <div class="row" style="background: #9D8D8E">
             <div class="col-md-2 side_menu">
-            <h1>Меню</h1>
-            {% block sidebar %}
-                {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="{% url 'user' %}" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
-                {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
-                {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
-                {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
-                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
-            {% endblock %}
+                <h1>Меню</h1>
+                {% block sidebar %}
+                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="{% url 'user' %}" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
+                    {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
+                    {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
+                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                {% endblock %}
             </div>
             <div class="col">
                 <h1>А мы тут, знаете ли, плюшками балуемся XD</h1>
@@ -26,15 +26,42 @@
                 <a href="https://commons.wikimedia.org/w/index.php?curid=63377057">Авторство цифрового дождя: Jahobr. Собственная работа, CC0</a>
             </div>
         </div>
-        <div class="row">
-            <ul class="col">
-                <li><article><h1 class="news_title">Новость</h1></article></li>
-                <li><article><h1 class="news_title">Новость</h1></article></li>
-                <li><article><h1 class="news_title">Новость</h1></article></li>
-                <li><article><h1 class="news_title">Новость</h1></article></li>
-                <li><article><h1 class="news_title">Новость</h1></article></li>
+        <div class="row" style="background: #9D8D8E">
+            <ul class="col" style="background: #9D8D8E">
+                <li>
+                    <div class="single_news">
+                        <div class="p-4 p-md-5 text-white rounded bg-grey" >
+                            <div class="col-md-6 px-0">
+                                <h1 class="display-4 fst-italic">новость 1</h1>
+                                <p class="lead my-3">{{ article.anouncement }}</p>
+                                <p class="lead mb-0"><a href="{% url 'news_test' %}" class="text-white fw-bold">Полный текст...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="single_news">
+                        <div class="p-4 p-md-5 text-white rounded bg-grey" >
+                            <div class="col-md-6 px-0">
+                                <h1 class="display-4 fst-italic">новость 2</h1>
+                                <p class="lead my-3">{{ article.anouncement }}</p>
+                                <p class="lead mb-0"><a href="{% url 'news_test' %}" class="text-white fw-bold">Полный текст...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="single_news">
+                        <div class="p-4 p-md-5 text-white rounded bg-grey" >
+                            <div class="col-md-6 px-0">
+                                <h1 class="display-4 fst-italic">новость 3</h1>
+                                <p class="lead my-3">{{ article.anouncement }}</p>
+                                <p class="lead mb-0"><a href="{% url 'news_test' %}" class="text-white fw-bold">Полный текст...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
-            
         </div>
     </main>
 {% endblock %}
