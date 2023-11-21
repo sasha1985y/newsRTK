@@ -1,0 +1,97 @@
+{% load static %}
+    <style>
+        #time {
+            box-sizing: border-box;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        #time .circle {
+            margin: -100px -100px 0 0px;
+            padding: 0 0 0 0;
+        }
+
+        #time .ap {
+            margin: -50px 140px 0 -40px;
+            padding: 0 0 0 0;
+        }
+
+        #time svg {
+            margin: -100px -100px 0px 0px;
+            padding: 0 0 0 0;
+        }
+
+        #time div {
+            margin: 5px -100px 0px 106px;
+            padding: 0 0 0 0;
+        }
+
+        #time .circle svg {
+            transform: rotate(270deg);
+        }
+
+        #time div span {
+            position: absolute;
+            font-size: 0.8em;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        #time .circle svg circle {
+            width: 100%;
+            height: 100%;
+            fill: transparent;
+            stroke: #575050;
+            stroke-width: 2;
+            transform: translate(1px,1px);
+        }
+
+        #time .circle svg circle:nth-child(2)
+        {
+            stroke: var(--clr);
+            stroke-dasharray: 250;
+        }
+
+        #hours {
+            color: aqua;
+        }
+
+        #minutes {
+            color: chartreuse;
+        }
+
+        #seconds {
+            color: gold;
+        }
+
+        #ampm {
+            color: rgb(167, 88, 219);
+        }
+    </style>
+    <div id="time">
+        <div class="circle" style="--clr:#1bb5e4;">
+            <svg>
+                <circle cx="40" cy="40" r="40"></circle>
+                <circle cx="40" cy="40" r="40" id="hh"></circle>
+            </svg>
+            <div id="hours">00</div>
+        </div>
+        <div class="circle" style="--clr:#25c93b;">
+            <svg>
+                <circle cx="40" cy="40" r="40"></circle>
+                <circle cx="40" cy="40" r="40" id="mm"></circle>
+            </svg>
+            <div id="minutes">00</div>
+        </div>
+        <div class="circle" style="--clr:#c4c123;">
+            <svg>
+                <circle cx="40" cy="40" r="40"></circle>
+                <circle cx="40" cy="40" r="40" id="ss"></circle>
+            </svg>
+            <div id="seconds">00</div>
+        </div>
+        <div class="ap">
+            <div id="ampm">AM</div>
+        </div>
+    </div>
