@@ -3,7 +3,7 @@
 {% block title %} Страница пользователя {% endblock %}
 {% block header %}
     <header class="row" style="background: linear-gradient(87deg, #9D8D8E 30%,#9D5F13 70%) center fixed">
-        <img class="col-md-4 app__logo" src="{% static 'main/img/logo.svg' %}" width="100" height="100" alt="логотип">
+        <img class="col-md-4 app__logo" src="{% static 'main/img/logo.svg' %}" width="100" height="100" alt="логотип" style="transition: all 1.5s;" onmouseover="this.style.transform='scale(1.5) rotate(1440deg)';" onmouseout="this.style.transform='none';">
         <div class="col-md-6">
             <h1>D E P L O Y 53</h1>
         </div>
@@ -23,7 +23,7 @@
                     {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
                     {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
                     {% block exit %}<li><i class="fa-solid fa-door-open"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВыход</a></li>{% endblock %}
-                    {% block admin %}<li><i class="fa-solid fa-screwdriver-wrench"></i><a href="admin/" style="text-decoration: none; color: #FDCE4B;">&nbspЯ-Админ?</a></li>{% endblock %}
+                    {% block admin %}<li><i class="fa-solid fa-screwdriver-wrench"></i><a href="/admin/" style="text-decoration: none; color: #FDCE4B;">&nbspЯ-Админ?</a></li>{% endblock %}
                     {% block create %}<li><i class="fa-solid fa-square-plus"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspСоздать новость</a></li>{% endblock %}
                 </ul>
             {% endblock %}

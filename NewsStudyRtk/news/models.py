@@ -11,7 +11,7 @@ class Article(models.Model):
     title = models.CharField('Название',max_length=50,default='')
     anouncement = models.TextField('Аннотация',max_length=250)
     text = models.TextField('Текст новости')
-    date = models.DateTimeField('Дата публикации',auto_now=True)
+    date = models.DateTimeField('Дата публикации',auto_now=False)
     category = models.CharField(choices=categories, max_length=20,verbose_name='Категории')
 
     #методы моделей
