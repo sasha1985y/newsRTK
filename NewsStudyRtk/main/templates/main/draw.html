@@ -1,0 +1,211 @@
+{% load static %}
+    <style>
+        .rs-draw-body {
+          font-family: "Rubik Marker Hatch", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+          background: linear-gradient(346deg, #84fab0 0%, #64A1F2 100%);
+          padding: 1rem 2rem 0rem 3rem;
+          justify-content: center;
+          overflow: hidden;
+          margin: 0;
+        }
+
+        .rs-draw-row {
+          display: flex;
+          width: 300px;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+        }
+
+        .rs-draw-col-header {
+          width: 75px;
+          box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+          border-radius: 20px;
+          padding: 0.8rem 1rem;
+          color: #fff;
+        }
+
+        .rs-draw-item {
+          /*width: 75px;
+          height: 33px;
+          border: 0 solid #eee;
+          box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+          border-radius: 20px;
+          background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
+          padding: 0.8rem 1rem;
+          color: #828282;
+          text-align: center;*/
+          cursor: grab;
+        }
+
+        .rs-draw-item:active {
+          cursor: grabbing;
+          /*margin-bottom: -100px;
+          color: #ffffff;
+          border-color: #c98ded;
+          background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
+          border-radius: 2%;
+          transition: border-color 150ms, background-color 150ms;*/
+        }
+
+        .rs-draw-placeholder {
+          background-color: #8eede8a1;
+          width: 85px;
+          height: 43px;
+        }
+
+        .rs-draw-hold {
+          border: 1px solid #1c7aa0;
+        }
+
+        .rs-draw-hide {
+          display: none;
+        }
+
+        .rs-draw-hovered {
+          border-top: 5px dotted #F0C077;
+          transition: all 0.2s;
+        }
+    </style>
+    <div class="rs-draw-body">
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 50px; color: white" ></i></a>
+            </div>
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-skype" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-snapchat" style="font-size: 50px; color: white"></i></a>
+            </div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-github" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-discord" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-twitter" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-facebook" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-instagram" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-twitch" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-viber" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-whatsapp" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+    </div>
+    <script>
+        const items = document.querySelectorAll('.rs-draw-item');
+        const placeholders = document.querySelectorAll('.rs-draw-placeholder');
+
+        for (const item of items) {
+            item.addEventListener('dragstart', dragStart);
+            item.addEventListener('dragend', dragEnd);
+        }
+
+        for (const placeholder of placeholders) {
+            placeholder.addEventListener('dragover', dragOver);
+            placeholder.addEventListener('dragenter', dragEnter);
+            placeholder.addEventListener('dragleave', dragLeave);
+            placeholder.addEventListener('drop', dragDrop);
+        }
+
+        function dragStart(evt) {
+            for (const item of items) {
+                if (evt.target === item) {
+                    item.classList.add('rs-draw-hold');
+                    setTimeout(() => item.classList.add('rs-draw-hide'), 0);
+                }
+            }
+        }
+
+        function dragEnd(evt) {
+            for (const item of items) {
+                if (evt.target === item) {
+                    item.className = 'rs-draw-item';
+                }
+            }
+        }
+
+        function dragOver(evt) {
+            evt.preventDefault();
+        }
+
+        function dragEnter(evt) {
+            evt.target.classList.add('rs-draw-hovered');
+        }
+
+        function dragLeave(evt) {
+            evt.target.classList.remove('rs-draw-hovered');
+        }
+
+        function dragDrop(evt) {
+            evt.preventDefault();
+            const draggedItem = document.querySelector('.rs-draw-hold');
+            for (const placeholder of placeholders) {
+                if (placeholder.classList.contains('rs-draw-hovered')) {
+                    placeholder.appendChild(draggedItem);
+                    placeholder.classList.remove('rs-draw-hovered');
+                    draggedItem.classList.remove('rs-draw-hide');
+                    break;
+                }
+            }
+        }
+    </script>

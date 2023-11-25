@@ -19,19 +19,10 @@
                 {% include 'main/hero.html' %}
             {% endblock %}
         </div>
-        <div class="col-md-2" style="margin-left: 8%; margin-top: 8%">
-            <ul>
-                <style>
-                    * {
-                        list-style: none;
-                    }
-                </style>
-                <li><a href="#"><i class="fa-brands fa-vk" style="font-size: 100px"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-telegram" style="font-size: 100px"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-github" style="font-size: 100px"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-discord" style="font-size: 100px"></i></a></li>
-            </ul>
+        <div class="col-md-4">
+            {% block contacts %}
+                {% include 'main/draw.html' %}
+            {% endblock %}
         </div>
     </main>
 {% endblock %}
-

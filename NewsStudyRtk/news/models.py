@@ -1,8 +1,11 @@
 from django.db import models
 
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
 
 class Article(models.Model):
+    #title = models.CharField(max_length=30)
+
     categories = (('E','Economics'),
                   ('S','Science'),
                   ('IT','IT'))
@@ -13,6 +16,7 @@ class Article(models.Model):
     text = models.TextField('Текст новости')
     date = models.DateTimeField('Дата публикации',auto_now=False)
     category = models.CharField(choices=categories, max_length=20,verbose_name='Категории')
+    image = models.ImageField(blank=True, upload_to='images/')
 
     #методы моделей
     def __str__(self):
@@ -26,3 +30,7 @@ class Article(models.Model):
         ordering = ['title','date']
         verbose_name= 'Новость'
         verbose_name_plural='Новости'
+
+    def image_tag(self):
+        if self.image is not None:
+            return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
