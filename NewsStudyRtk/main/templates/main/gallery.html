@@ -1,0 +1,94 @@
+{% load static %}
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        .gallery-body {
+          font-family: "Rubik Marker Hatch", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+          overflow: hidden;
+          margin: 0;
+          background: linear-gradient(342deg, #2F649E 30%,#000F1E 70%) center fixed, url({% static 'main/img/stars.gif' %});
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .gallery-container {
+          width: 100%;
+          display: flex;
+          padding: 0 20px;
+        }
+
+        .gallery-slide {
+          height: 80vh;
+          border-radius: 20px;
+          margin: 10px;
+          cursor: pointer;
+          color: #fff;
+          flex: 1;
+          block-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          position: relative;
+          background-size: cover;
+        }
+
+        .gallery-slide h3 {
+          position: absolute;
+          font-size: 24px;
+          bottom: 20px;
+          left: 20px;
+          margin: 0;
+        }
+
+        .gallery-slide.gallery-active {
+          flex: 10;
+          transition: 1s;
+        }
+
+        .gallery-slide.active h3 {
+          opacity: 1;
+          transition: opacity 0.3s ease-in 0.4s;
+        }
+
+        .gallery-slide.lead {
+          font-family: "Rubik Glitch", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+        }
+    </style>
+    <div class="gallery-body">
+        <div class="gallery-container">
+            <div class="gallery-slide lead" style="background-image: url({% static 'main/img/team-lead.jpg' %}); ">
+                <h3>Team-lead</h3>
+            </div>
+            <div class="gallery-slide" style="background-image: url('https://i.pravatar.cc/128')">
+                <h3>Senior</h3>
+            </div>
+            <div class="gallery-slide" style="background-image: url('https://i.pravatar.cc/127')">
+                <h3>Middle</h3>
+            </div>
+            <div class="gallery-slide" style="background-image: url('https://i.pravatar.cc/126')">
+                <h3>Junior</h3>
+            </div>
+            <div class="gallery-slide" style="background-image: url({% static 'main/img/tl.png' %})">
+                <h3>Tech-lead</h3>
+            </div>
+        </div>
+    </div>
+    <script>
+        const slides = document.querySelectorAll(".gallery-slide");
+
+        function clearActiveClasses() {
+            slides.forEach((slide) => {
+                slide.classList.remove("gallery-active");
+            });
+        }
+
+        for (const slide of slides) {
+            slide.addEventListener("click", () => {
+                clearActiveClasses();
+                slide.classList.add("gallery-active");
+            });
+        }
+    </script>
