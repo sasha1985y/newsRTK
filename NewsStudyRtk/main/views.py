@@ -41,7 +41,7 @@ def news(request):
     return render(request,'main/news.html')
 
 def account(request):
-    return render(request,'main/account.html')
+    return render(request,'users/account.html')
 
 def demoform(request):
     form = DemoForm()

@@ -24,7 +24,7 @@ def index(request):
 #
 def detail(request,id):
     article = Article.objects.filter(id=id)[0]
-    print(article,type(article))
+    print(article, type(article), article.author.username)
     context = {'article': article}
     return render(request, 'news/details.html', context)
 #     #пример создания новости

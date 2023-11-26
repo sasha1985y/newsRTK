@@ -142,7 +142,7 @@
                         {% endfor %}
                     </div>
                     <div class="rs-main-slide">
-                        {% for article in articles %}
+                        {% for article in articles.reverse %}
                         <div>
                             <img src="{{ article.image.url }}" width="100%" height="100%" alt="фото">
                         </div>
