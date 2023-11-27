@@ -24,6 +24,9 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return f'/news/show/{self.id}'
+
+    def get_absolute_url_public(self):
+        return f'/news/show/public/{self.id}'
     #метаданные модели
 
     class Meta:

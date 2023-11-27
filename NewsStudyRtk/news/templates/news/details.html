@@ -9,7 +9,8 @@
                 <h1>Меню</h1>
                 {% block sidebar %}
                     {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                    {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="{% url 'user' %}" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
+                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspК новостям</a></li>{% endblock %}
+                    {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="{% url 'user_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
                     {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
                     {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
                     {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
@@ -47,6 +48,9 @@
             <p class="col">
                 {{ article.text }}
             </p>
+        </div>
+        <div class="row">
+            <p>Автор:&nbsp<a href="{{ article.get_absolute_url_public }}">{{ article.author.first_name }}&nbsp{{ article.author.last_name}}</a></p>
         </div>
     </main>
 {% endblock %}

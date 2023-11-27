@@ -1,6 +1,6 @@
 {% extends 'main/homebase.html' %}
 {% load static %}
-{% block title %} Страница пользователя {% endblock %}
+{% block title %} Публичная страница {% endblock %}
 {% block header %}
     <header class="row" style="background: linear-gradient(87deg, #9D8D8E 30%,#9D5F13 70%) center fixed">
         <img class="col-md-4 app__logo" src="{% static 'main/img/logo.svg' %}" width="100" height="100" alt="логотип" style="transition: all 1.5s;" onmouseover="this.style.transform='scale(1.5) rotate(1440deg)';" onmouseout="this.style.transform='none';">
@@ -13,7 +13,7 @@
     </header>
 {% endblock %}
 {% block main %}
-    <main class="row" style="background: url({% static 'main/img/evening.gif' %}) no-repeat;  background-size: cover">
+    <main class="row" style="background: url({% static 'main/img/field.gif' %}) no-repeat;  background-size: cover">
         <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #F8D093 70%) center fixed">
             {% block sidebar %}
                 <h1>Меню</h1>
@@ -30,7 +30,7 @@
         </div>
         <ul class="col">
             <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.8;">
-                <img src="{{ user_acc.account_image.url }}" id="user-ava" alt="коллега" style="width: 150px; height: 150px;" />
+                <img src="{{ user_acc.account_image.url }}" id="user-ava" alt="коллега" style="background: cover;" />
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>День рождения</p>
