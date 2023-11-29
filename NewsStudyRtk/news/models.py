@@ -3,6 +3,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
 
+class Tag(models.Model):
+    title = models.CharField(max_length=80)
+    status = models.BooleanField(default=True)
+    def __str__(self):
+        return self.title
+    class Meta:
+        ordering = ['title','status']
+        verbose_name= 'Тэг'
+        verbose_name_plural='Тэги'
+
 class Article(models.Model):
     #title = models.CharField(max_length=30)
 
@@ -17,6 +27,7 @@ class Article(models.Model):
     date = models.DateTimeField('Дата публикации',auto_now=False)
     category = models.CharField(choices=categories, max_length=20,verbose_name='Категории')
     image = models.ImageField(blank=True, upload_to='images/')
+    tags = models.ManyToManyField(to=Tag, blank=True)
 
     #методы моделей
     def __str__(self):
@@ -24,6 +35,12 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return f'/news/show/{self.id}'
+
+    def tag_list(self):
+        s = ''
+        for t in self.tags.all():
+            s += t.title + ' '
+        return s
 
     def get_absolute_url_public(self):
         return f'/news/show/public/{self.id}'
