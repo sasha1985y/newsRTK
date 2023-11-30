@@ -12,7 +12,7 @@ def index(request):
             articles = Article.objects.all()
         else:
             articles = Article.objects.filter(author=selected)
-        print(connection.queries)
+        print('connection.queries :', connection.queries)
     else:
         articles = Article.objects.all()
     context = {'articles': articles, 'author_list': author_list, 'selected': selected}
