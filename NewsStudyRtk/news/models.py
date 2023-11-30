@@ -43,7 +43,7 @@ class Article(models.Model):
         return s
 
     def get_absolute_url_public(self):
-        return f'/news/show/public/{self.id}'
+        return f'/news/show/public/{self.author_id}'
     #метаданные модели
 
     class Meta:
