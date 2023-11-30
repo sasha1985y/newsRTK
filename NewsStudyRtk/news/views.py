@@ -1,9 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from .models import *
 from django.db import connection, reset_queries
+from users.models import Account
 def index(request):
-    articles = Article.objects.all()
-    tags = Tag.objects.all()
     author_list = User.objects.all()
     selected = 0
     if request.method == "POST":
@@ -26,6 +25,6 @@ def detail(request, id):
     return render(request, 'news/details.html', context)
 
 def individual(request,id):
-    article = Article.objects.filter(id=id)
-    context = {'article': article}
-    return render(request, 'news/public_page.html', context)
+    author = Account.objects.filter(user_id=id)[0]
+    context = {'author': author}
+    return render(request, 'users/public_page.html', context)
