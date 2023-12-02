@@ -133,6 +133,7 @@
                                   {% for author in author_list %}
                                       <option value="{{ author.id }}" {% if selected == author.id %} selected {% endif %}> {{ author.username }}</option>
                                   {% endfor %}
+                                  <option value="1000">Сегодня</option>
                              </select>
                              <span class="input-group-btn">
                                  <input type="submit" class="btn btn-success" value="Применить" style="margin: 0 15px">
@@ -146,7 +147,7 @@
                     <div class="rs-container">
                         <div class="rs-sidebar">
                             {% for article in articles %}
-                                <div class="single_news">
+                                <div class="single_news" style="margin-left: 10%;">
                                     <div class="p-4 p-md-5 text-white rounded bg-grey" >
                                         <div class="col-md-6 px-0">
                                             <h1 class="display-4 fst-italic">{{article.title}}</h1>

@@ -7,19 +7,19 @@ from django.db import connection, reset_queries
 from users.models import Account
 #@cache_page(60 * 1)
 def index(request):
-    #articles = Article.published.all()
+    #today_articles = Article.published.all()
     # context = {'today_articles': articles}
 
     author_list = User.objects.all()
     selected = 0
     if request.method == "POST":
-        # print(request.POST)
         selected = int(request.POST.get('author_filter'))
         if selected == 0:
             articles = Article.objects.all()
+        elif selected == 1000:
+            articles = Article.published.all()
         else:
             articles = Article.objects.filter(author=selected)
-        # print('connection.queries :', connection.queries)
     else:
         articles = Article.objects.all()
     context = {'articles': articles, 'author_list': author_list, 'selected': selected}
