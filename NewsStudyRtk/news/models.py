@@ -1,5 +1,5 @@
 from django.db import models
-
+import datetime
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
 
@@ -12,6 +12,11 @@ class Tag(models.Model):
         ordering = ['title','status']
         verbose_name= 'Тэг'
         verbose_name_plural='Тэги'
+
+
+class PublishedToday(models.Manager):
+    def get_queryset(self):
+        return super(PublishedToday,self).get_queryset().filter(date__gte=datetime.date.today())
 
 class Article(models.Model):
     #title = models.CharField(max_length=30)
@@ -28,6 +33,8 @@ class Article(models.Model):
     category = models.CharField(choices=categories, max_length=20,verbose_name='Категории')
     image = models.ImageField(blank=True, upload_to='images/')
     tags = models.ManyToManyField(to=Tag, blank=True)
+    objects = models.Manager()
+    published = PublishedToday()
 
     #методы моделей
     def __str__(self):
