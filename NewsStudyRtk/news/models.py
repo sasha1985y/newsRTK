@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
+from users.models import Account
 
 class Tag(models.Model):
     title = models.CharField(max_length=80)
@@ -26,6 +27,7 @@ class Article(models.Model):
                   ('IT','IT'))
     #поля                           #models.CASCADE SET_DEFAULT
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    account = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     title = models.CharField('Название',max_length=50,default='')
     anouncement = models.TextField('Аннотация',max_length=250)
     text = models.TextField('Текст новости')

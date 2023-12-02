@@ -27,8 +27,11 @@ def index(request):
 
 #@cache_page(60 * 1)
 def detail(request, id):
+    nick = Account.objects.all().values_list('nickname', flat=True).filter(article=id)[0]
+    print(nick)
+
     article = Article.objects.select_related('author').filter(id=id)[0]
-    context = {'article': article}
+    context = {'article': article, 'nick': nick}
     return render(request, 'news/details.html', context)
 #@cache_page(60 * 1)
 def individual(request,id):
