@@ -16,8 +16,9 @@ def create_article(request):
             if current_user.id != None: #проверили что не аноним
                 new_article = form.save(commit=False)
                 new_article.author = current_user
+                new_article.account_id = current_user.id
                 new_article.save() #сохраняем в БД
-                form = ArticleForm()
+                form.save_m2m()
                 return redirect('news_index')
     else:
         form = ArticleForm()
