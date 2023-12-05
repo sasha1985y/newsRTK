@@ -1,10 +1,28 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Count, Avg, Max
 #from django.views.decorators.cache import cache_page
-
 from .models import *
 from django.db import connection, reset_queries
 from users.models import Account
+from django.contrib.auth.decorators import login_required
+from .forms import *
+
+@login_required(login_url="/")
+def create_article(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            current_user = request.user
+            if current_user.id != None: #проверили что не аноним
+                new_article = form.save(commit=False)
+                new_article.author = current_user
+                new_article.save() #сохраняем в БД
+                form = ArticleForm()
+                return redirect('news_index')
+    else:
+        form = ArticleForm()
+    return render(request,'news/create_article.html', {'form':form})
+
 #@cache_page(60 * 1)
 def index(request):
     #today_articles = Article.published.all()

@@ -1,0 +1,26 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+{% block title %} Создание статьи {% endblock %}
+{% block main %}
+    <main class="row">
+        <div class="col-md-2 side_menu">
+        {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+        </div>
+        {% block content %}
+            <div class="col-md-2"></div>
+            <div class="col">
+                <div class="text-center" style="margin-top:30px;">
+                    <h1 >Создание статьи</h1>
+                    <form method="post" class="contact_form">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" class="btn btn-success" value = "Сохранить">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        {% endblock %}
+    </main>
+{% endblock %}
