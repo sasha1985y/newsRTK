@@ -22,16 +22,17 @@
                 <main>
                     <div class="row">
                         <div class="col-md-2 side_menu"></div>
-                        <h1 class="col text-center">Почему мы?</h1>
+                        <div class="col-md-5 side_menu"></div>
+                        <h1 class="col text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; background-color: #9D8D8E; margin-bottom: 0;">Почему мы?</h1>
                     </div>
                     <div class="row">
                         <div class="col-md-2 side_menu">
                             {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="padding: 0;">
                             {% block slider %} {% include 'main/slider.html' %} {% endblock %}
                         </div>
-                        <p class="col text-start">
+                        <p class="col-md-4 text-start" style="background-color: #9D8D8E; margin-bottom: 0;">
                             Добро пожаловать на наш сайт! <br>
                             Мы - команда профессионалов,<br>
                             которая занимается созданием<br>
@@ -56,7 +57,6 @@
                         {% block content %}{% endblock %}
                         {% block contacts %}{% endblock %}
                         {% block gallery %}{% endblock %}
-
                     </div>
                 </main>
             {% endblock %}

@@ -21,9 +21,9 @@ setInterval(() => {
   m = (m < 10) ? '0' + m : m;
   s = (s < 10) ? '0' + s : s;
 
-  hours.innerHTML = h + "<br><br><span>Часы</span></br></br>";
-  minutes.innerHTML = m + "<br><br><span>Минуты</span></br></br>";
-  seconds.innerHTML = s + "<br><br><span>Секунды</span></br></br>";
+  hours.innerHTML = h + "<br><br><span>Hours</span></br></br>";
+  minutes.innerHTML = m + "<br><br><span>Minutes</span></br></br>";
+  seconds.innerHTML = s + "<br><br><span>Seconds</span></br></br>";
   amPm.innerHTML = am;
 
   hh.style.strokeDashoffset = 250 - (250 * h) / 12;

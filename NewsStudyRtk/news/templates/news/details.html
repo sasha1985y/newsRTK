@@ -4,9 +4,9 @@
 {% block title %} Новость {% endblock %}
 {% block main %}
     <main style="position: relative;">
-        <div class="row" style="background: #9D8D8E; min-height: 68vh; background-color: #5B5561">
+        <div class="row" style="background: #9D8D8E; min-height: 75vh; background-color: #5B5561">
             <div class="col-md-2 side_menu" style="z-index: 1; padding-bottom: auto;">
-                <h1>Меню</h1>
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
                 {% block sidebar %}
                     {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
                     {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspК новостям</a></li>{% endblock %}
@@ -20,7 +20,7 @@
             <div class="col-md-4" style="z-index: 0;"></div>
             <div class="row" style="position: fixed;">
                 <div class="col-md-2"></div>
-                <div class="col-md-4" style="z-index: 1;">
+                <div class="col-md-4" style="z-index: 1; padding-right: 0;">
                     {% block slider %}
                         <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="false">
                             <div class="carousel-indicators">
@@ -48,9 +48,9 @@
                         </div>
                     {% endblock %}
                 </div>
-                <div class="col-md-6" style="z-index: 0;"></div>
+                <div class="col-md-6" style="z-index: 0;  padding-left: 0;"></div>
             </div>
-            <div class="col-md-6" style="z-index: 1;">
+            <div class="col-md-6" style="z-index: 1; padding-left: 0;">
                 <p class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
                     {{ article.text }}
                 </p>
