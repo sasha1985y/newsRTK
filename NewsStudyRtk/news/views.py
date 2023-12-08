@@ -59,7 +59,7 @@ class ArticleDetailView(DetailView):
 class ArticleUpdateView(UpdateView):
     model = Article
     template_name = 'news/create_article.html'
-    fields = ['title','anouncement','text','tags']
+    fields = ['title','anouncement','text','tags','category']
 
 class ArticleDeleteView(DeleteView):
     model = Article

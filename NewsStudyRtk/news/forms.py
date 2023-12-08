@@ -7,9 +7,11 @@ from .models import Article
 class ArticleForm(ModelForm):
     class Meta:
         model = Article
-        fields = ['title','anouncement','text','tags']
+        #print([x[1] for x in Article.categories])
+        fields = ['title','anouncement','text','tags','category']
         widgets = {
             'anouncement': Textarea(attrs={'cols':80,'rows':2}),
             'text': Textarea(attrs={'cols': 80, 'rows': 2}),
-            'tags': CheckboxSelectMultiple()
+            'tags': CheckboxSelectMultiple(),
+            'category': Select(choices=[(x[0], x[1]) for x in Article.categories])
         }
