@@ -24,9 +24,6 @@
                     {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
                     {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
                     {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
-                    {% block exit %}<li><i class="fa-solid fa-door-open"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВыход</a></li>{% endblock %}
-                    {% block admin %}<li><i class="fa-solid fa-screwdriver-wrench"></i><a href="/admin/" style="text-decoration: none; color: #FDCE4B;">&nbspЯ-Админ?</a></li>{% endblock %}
-                    {% block create %}<li><i class="fa-solid fa-square-plus"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspСоздать новость</a></li>{% endblock %}
                 </ul>
             {% endblock %}
         </div>

@@ -3,6 +3,8 @@ from django.db.models import Count, Avg, Max
 #from django.views.decorators.cache import cache_page
 from .models import *
 from django.db import connection, reset_queries
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, DeleteView, UpdateView
 from users.models import Account
 from django.contrib.auth.decorators import login_required
 from .forms import *
@@ -26,9 +28,8 @@ def create_article(request):
 
 #@cache_page(60 * 1)
 def index(request):
-    #today_articles = Article.published.all()
-    # context = {'today_articles': articles}
-
+    categories = Article.objects.all().values_list('category', flat=True)
+    print(categories)
     author_list = User.objects.all()
     selected = 0
     if request.method == "POST":
@@ -41,16 +42,30 @@ def index(request):
             articles = Article.objects.filter(author=selected)
     else:
         articles = Article.objects.all()
-    context = {'articles': articles, 'author_list': author_list, 'selected': selected}
+    context = {'articles': articles, 'author_list': author_list, 'selected': selected, 'categories':categories}
     return render(request, 'news/news.html', context)
 
 #@cache_page(60 * 1)
-def detail(request, id):
-    nick = Account.objects.all().values_list('nickname', flat=True).filter(article=id)[0]
-    article = Article.objects.select_related('author').filter(id=id)[0]
-    context = {'article': article, 'nick': nick}
-    return render(request, 'news/details.html', context)
-#@cache_page(60 * 1)
+# def detail(request, id):
+#     nick = Account.objects.all().values_list('nickname', flat=True).filter(article=id)[0]
+#     article = Article.objects.select_related('author').filter(id=id)[0]
+#     context = {'article': article, 'nick': nick}
+#     return render(request, 'news/details.html', context)
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'news/details.html'
+    context_object_name = 'article'
+
+class ArticleUpdateView(UpdateView):
+    model = Article
+    template_name = 'news/create_article.html'
+    fields = ['title','anouncement','text','tags']
+
+class ArticleDeleteView(DeleteView):
+    model = Article
+    success_url = reverse_lazy('news_index') #именованная ссылка или абсолютную
+    template_name = 'news/delete_article.html'
+# @cache_page(60 * 1)
 def individual(request,id):
     author = Account.objects.filter(user_id=id)[0]
     context = {'author': author}
