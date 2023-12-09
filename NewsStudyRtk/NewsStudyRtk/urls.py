@@ -19,3 +19,6 @@ if settings.DEBUG:
     urlpatterns+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "Панель ночного сайта"
+admin.site.index_title = "Новости DIXIE"

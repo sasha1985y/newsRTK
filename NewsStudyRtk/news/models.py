@@ -35,6 +35,7 @@ class Article(models.Model):
     category = models.CharField(choices=categories, max_length=20,verbose_name='Категории')
     #image = models.ImageField(blank=True, upload_to='images/')
     tags = models.ManyToManyField(to=Tag, blank=True)
+    #slug = models.SlugField()
     objects = models.Manager()
     published = PublishedToday()
 
