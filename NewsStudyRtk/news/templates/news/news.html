@@ -116,15 +116,17 @@
                     {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
                     {% block create %}<li><i class="fa-solid fa-square-plus"></i><a href="{% url 'create_article' %}" style="text-decoration: none; color: #FDCE4B;">&nbspСоздать новость</a></li>{% endblock %}
                 {% endblock %}
+                <a href="https://commons.wikimedia.org/w/index.php?curid=63377057">Авторство цифрового дождя: Jahobr. Собственная работа, CC0</a>
             </div>
             <div class="col">
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">А мы тут, знаете ли, плюшками балуемся XD</h1>
                 {% block slider %} {% include 'main/team.html' %} {% endblock %}
-                <a href="https://commons.wikimedia.org/w/index.php?curid=63377057">Авторство цифрового дождя: Jahobr. Собственная работа, CC0</a>
             </div>
         </div>
         {% block content %}
             <div class="row">
+                <div class="col-md-4" style="background-color: #5B5561;"></div>
+<!--                <div class="col-md-2" style="background-color: #5B5561;"></div>-->
                 <div class="col">
                     <form method="post">
                         {% csrf_token %}
@@ -137,11 +139,12 @@
                                   <option value="1000">Сегодня</option>
                              </select>
                              <span class="input-group-btn">
-                                 <input type="submit" class="btn btn-success" value="Применить" style="margin: 0 15px">
+                                 <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
                              </span>
                         </div>
                     </form>
-                    <br>
+                </div>
+                <div class="col">
                     <form method="post">
                         {% csrf_token %}
                         <div class="input-group">
@@ -152,11 +155,12 @@
                                 {% endfor %}
                             </select>
                             <span class="input-group-btn">
-                                <input type="submit" class="btn btn-success" value="Применить" style="margin: 0 15px">
+                                <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
                             </span>
                         </div>
                     </form>
                 </div>
+                <div class="col-md-2" style="background-color: #5B5561;"></div>
             </div>
             <div class="row" style="background: #9D8D8E">
                 <div class="rs-body">
