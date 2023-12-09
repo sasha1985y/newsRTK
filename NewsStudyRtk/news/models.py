@@ -61,6 +61,17 @@ class Article(models.Model):
         verbose_name= 'Новость'
         verbose_name_plural='Новости'
 
+
+class Image(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(upload_to='article_images/')
+
+    def __str__(self):
+        return self.title
+
     def image_tag(self):
         if self.image is not None:
-            return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
+            return mark_safe(f'<img src="{self.image.url}" height="50px" width="auto" />')
+        else:
+            return '(no image)'
