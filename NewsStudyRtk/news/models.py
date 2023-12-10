@@ -52,6 +52,13 @@ class Article(models.Model):
             s += t.title + ' '
         return s
 
+    def image_tag(self):
+        image = Image.objects.filter(article=self)
+        if image:
+            return mark_safe(f'<img src="{image[0].image.url}" height="50px" width="auto" />')
+        else:
+            return '(no image)'
+
     def get_absolute_url_public(self):
         return f'/news/show/public/{self.author_id}'
     #метаданные модели

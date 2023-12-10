@@ -3,14 +3,19 @@ from django.db.models.functions import Length
 from django.db.models import Count
 from .models import *
 
+class ArticleImageInline(admin.TabularInline):
+    model = Image
+    extra = 3
+    readonly_fields = ('id','image_tag')
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title','author','date', 'symbols_count']
+    list_display = ['title','author','date', 'symbols_count','image_tag']
     list_filter = ['title','author','date']
     # ordering = ['-date', 'title', 'author'] сортировка
     # list_display_links = ('date',) ссылки
     # list_editable = ['author'] редактировать поле автор или что-то ещё
     # readonly_fields = ['author','title'] нельзя редактировать
     list_per_page = 5
+    inlines = [ArticleImageInline, ]
 
     @admin.display(description='Длина', ordering='_symbols')
     def symbols_count(self, article: Article):
