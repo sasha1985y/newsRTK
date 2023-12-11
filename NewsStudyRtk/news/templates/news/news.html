@@ -140,9 +140,6 @@
                                           {% endfor %}
                                           <option value="1000">Сегодня</option>
                                      </select>
-                                     <span class="input-group-btn">
-                                         <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
-                                     </span>
                                 </div>
                                 <div class="col input-group">
                                     <select class="form-select" name="category_filter" style="width:40%">
@@ -151,10 +148,11 @@
                                             <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }} </option>
                                         {% endfor %}
                                     </select>
-                                    <span class="input-group-btn">
-                                        <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
-                                    </span>
                                 </div>
+                                <span class="col-md-1 input-group-btn">
+                                        <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
+                                </span>
+                                <div class="col-md-1"></div>
                                 <span class="col-md-1">(Всего :{{ articles|length }})</span>
                             </div>
                             {% csrf_token %}
