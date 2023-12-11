@@ -12,7 +12,7 @@ from .forms import *
 @login_required(login_url="/")
 def create_article(request):
     if request.method == 'POST':
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             current_user = request.user
             if current_user.id != None: #проверили что не аноним
@@ -21,6 +21,8 @@ def create_article(request):
                 new_article.account_id = current_user.id
                 new_article.save() #сохраняем в БД
                 form.save_m2m()
+                for img in request.FILES.getlist('image_field'):
+                    Image.objects.create(article=new_article, image=img, title=img.name)
                 return redirect('news_index')
     else:
         form = ArticleForm()
@@ -31,6 +33,8 @@ def index(request):
     categories = Article.objects.all().values_list('category', flat=True)
     print(categories)
     author_list = User.objects.all()
+    # images = Image.objects.all().filter(article=article)[0]
+    # print(images)
     selected = 0
     if request.method == "POST":
         selected = int(request.POST.get('author_filter'))
@@ -55,6 +59,13 @@ class ArticleDetailView(DetailView):
     model = Article
     template_name = 'news/details.html'
     context_object_name = 'article'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_object = self.object
+        images = Image.objects.filter(article=current_object)
+        context['images'] = images
+        return context
 
 class ArticleUpdateView(UpdateView):
     model = Article
