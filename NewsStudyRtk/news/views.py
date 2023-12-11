@@ -30,23 +30,25 @@ def create_article(request):
 
 #@cache_page(60 * 1)
 def index(request):
-    categories = Article.objects.all().values_list('category', flat=True)
-    print(categories)
+    #categories = Article.objects.all().values_list('category', flat=True)
+    categories = Article.categories
     author_list = User.objects.all()
-    # images = Image.objects.all().filter(article=article)[0]
-    # print(images)
     selected = 0
     if request.method == "POST":
         selected = int(request.POST.get('author_filter'))
+        selected_category = int(request.POST.get('category_filter'))
         if selected == 0:
             articles = Article.objects.all()
         elif selected == 1000:
             articles = Article.published.all()
         else:
             articles = Article.objects.filter(author=selected)
+        if selected_category != 0:  # фильтруем найденные по авторам результаты по категориям
+            articles = articles.filter(category__icontains=categories[selected_category - 1][0])
     else:
+        selected_category = 0
         articles = Article.objects.all()
-    context = {'articles': articles, 'author_list': author_list, 'selected': selected, 'categories':categories}
+    context = {'articles': articles, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category}
     return render(request, 'news/news.html', context)
 
 #@cache_page(60 * 1)

@@ -124,43 +124,44 @@
             </div>
         </div>
         {% block content %}
-            <div class="row">
-                <div class="col-md-4" style="background-color: #5B5561;"></div>
+            <div class="row" style="background-color: #5B5561;">
+                <div class="col-md-5" style="background-color: #5B5561;"></div>
+                <div class="col">
+                    <label>
+                        <form method="post">
+                            <div class="row">
+                                <span class="col-md-1"> Фильтры: </span>
+                                <div class="col-md-1"></div>
+                                <div class="col input-group">
+                                     <select class="form-select" name="author_filter" style="width:40%">
+                                          <option value="0">Все авторы</option>
+                                          {% for author in author_list %}
+                                              <option value="{{ author.id }}" {% if selected == author.id %} selected {% endif %}> {{ author.username }}</option>
+                                          {% endfor %}
+                                          <option value="1000">Сегодня</option>
+                                     </select>
+                                     <span class="input-group-btn">
+                                         <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
+                                     </span>
+                                </div>
+                                <div class="col input-group">
+                                    <select class="form-select" name="category_filter" style="width:40%">
+                                        <option value="0">Все категории</option>
+                                        {% for c in categories %}
+                                            <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }} </option>
+                                        {% endfor %}
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
+                                    </span>
+                                </div>
+                                <span class="col-md-1">(Всего :{{ articles|length }})</span>
+                            </div>
+                            {% csrf_token %}
+                        </form>
+                    </label>
+                </div>
 <!--                <div class="col-md-2" style="background-color: #5B5561;"></div>-->
-                <div class="col">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="input-group">
-                             <select class="form-select" name="author_filter" style="width:40%">
-                                  <option value="0">Все авторы</option>
-                                  {% for author in author_list %}
-                                      <option value="{{ author.id }}" {% if selected == author.id %} selected {% endif %}> {{ author.username }}</option>
-                                  {% endfor %}
-                                  <option value="1000">Сегодня</option>
-                             </select>
-                             <span class="input-group-btn">
-                                 <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
-                             </span>
-                        </div>
-                    </form>
-                </div>
-                <div class="col">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <select class="form-select" name="category_filter" style="width:40%">
-                                <option value="0">Все категории</option>
-                                {% for c in categories %}
-                                    <option value="{{ c.0 }}" {% if selected == category. %} selected {% endif %}> {{ c.1 }}</option>
-                                {% endfor %}
-                            </select>
-                            <span class="input-group-btn">
-                                <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
-                            </span>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-2" style="background-color: #5B5561;"></div>
             </div>
             <div class="row" style="background: #9D8D8E">
                 <div class="rs-body">
