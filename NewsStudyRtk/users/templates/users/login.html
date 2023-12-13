@@ -4,19 +4,40 @@
 {% load crispy_forms_tags %}
 {% block title %} Вход в аккаунт {% endblock %}
 
-{% block content %}
-        <div class="row">
-            <div class="text-center" style="margin-top:30px;">
-                <h1 >Войти в аккаунт</h1>
-                <form method="post" class="contact_form">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <input type="submit" class="btn btn-success" value = "Войти">
-                    <div class="border-top pt-3">
-                        <small class="text-muted"> Нужен аккаунт?</small>
-                        <a class="ml-2" href="{% url 'registration' %}">Зарегистрироваться</a>
+{% block main %}
+    <main class="row" style="height: 74vh;">
+        {% block content %}
+            <div class="row" style="margin: 0; padding: 0;">
+                <div class="col-md-2 side_menu" style="list-style: none;">
+                    {% block sidebar %}
+                        <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
+                        {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                        {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                        {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                        {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col">
+                    <div class="row">
+                        <div class="text-center" style="margin-top:30px;">
+                            <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Войти в аккаунт</h1>
+                            <form method="post" class="contact_form">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <input type="submit" class="btn btn-success" value = "Войти">
+                                <div class="border-top pt-3">
+                                    <small class="text-muted"> Нужен аккаунт?</small>
+                                    <a class="ml-2" href="{% url 'registration' %}">Зарегистрироваться</a>
+                                    <small class="text-muted"> или </small>
+                                    <a class="ml-2" href="{% url 'home' %}">&nbspНу нах</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
+                <div class="col-md-2"></div>
             </div>
-        </div>
+        {% endblock %}
+    </main>
 {% endblock %}

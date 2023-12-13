@@ -3,10 +3,17 @@
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
 {% block title %} Страница регистрации {% endblock %}
+
 {% block main %}
     <main class="row">
-        <div class="col-md-2 side_menu">
-        {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+        <div class="col-md-2 side_menu" style="list-style: none;">
+            {% block sidebar %}
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
+                {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+            {% endblock %}
         </div>
         {% block content %}
             <div class="col-md-2"></div>
