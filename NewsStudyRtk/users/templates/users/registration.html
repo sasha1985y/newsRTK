@@ -1,0 +1,26 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+{% block title %} Страница регистрации {% endblock %}
+{% block main %}
+    <main class="row">
+        <div class="col-md-2 side_menu">
+        {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+        </div>
+        {% block content %}
+            <div class="col-md-2"></div>
+            <div class="col">
+                <div class="text-center" style="margin-top:30px;">
+                    <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Регистрация нового пользователя</h1>
+                    <form method="post" class="contact_form">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" class="btn btn-success" value = "Регистрация">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        {% endblock %}
+    </main>
+{% endblock %}

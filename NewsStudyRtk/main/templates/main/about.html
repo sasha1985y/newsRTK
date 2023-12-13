@@ -24,10 +24,10 @@
                 {% block sidebar %}
                 {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
                     {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
-                    {% block profile %}<li><i class="fa-solid fa-address-card"></i><a href="{% url 'user_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspМой профиль</a></li>{% endblock %}
-                    {% block registration %}<li><i class="fa-solid fa-file-pen"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРегистрация</a></li>{% endblock %}
-                    {% block account %}<li><i class="fa-solid fa-person-through-window"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspВход в аккаунт</a></li>{% endblock %}
                     {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block user %}
+                        {% include 'users/user-actions.html' %}
+                    {% endblock %}
                 {% endblock %}
                 <p class="text-center"><a href="https://i.gifer.com/origin/7e/7e4abc8a38403620fdb573948aa5c9b1.gif">источник звёздной гифки</a></p>
             </div>
