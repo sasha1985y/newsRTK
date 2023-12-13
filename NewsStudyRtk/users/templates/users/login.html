@@ -17,8 +17,8 @@
                         {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
                     {% endblock %}
                 </div>
-                <div class="col-md-2"></div>
-                <div class="col">
+                <div class="col-md-2" style="background: linear-gradient(57deg, #030408 50%, #303746 90%);"></div>
+                <div class="col" style="background: url({% static 'main/img/дорога.jpeg' %}) no-repeat;  background-size: cover">
                     <div class="row">
                         <div class="text-center" style="margin-top:30px;">
                             <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Войти в аккаунт</h1>
@@ -26,17 +26,15 @@
                                 {% csrf_token %}
                                 {{ form|crispy }}
                                 <input type="submit" class="btn btn-success" value = "Войти">
-                                <div class="border-top pt-3">
+                                <div class="border-top pt-3" style="margin-top: 20%;">
                                     <small class="text-muted"> Нужен аккаунт?</small>
                                     <a class="ml-2" href="{% url 'registration' %}">Зарегистрироваться</a>
-                                    <small class="text-muted"> или </small>
-                                    <a class="ml-2" href="{% url 'home' %}">&nbspНу нах</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-2" style="background: linear-gradient(318deg, #0D0908 40%, #4f81be 90%);"></div>
             </div>
         {% endblock %}
     </main>

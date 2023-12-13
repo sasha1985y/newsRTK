@@ -1,10 +1,10 @@
 {% load static %}
     <li>
         {% if request.user.id %}  <!-- проверяем аутентификацию-->
-            <div class="dropdown flex-column mb-auto" >
+            <div>
                 <button class="btn btn-primary dropdown-toggle col-12" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
-                    <img src="{{ request.user.account.account_image.url }}" alt="" width="55" height="55">
-                    <div class="d-none d-lg-block "> {{ request.user.username }} </div>
+                    <img src="{{ request.user.account.account_image.url }}" alt="user" width="55" height="55">
+                    <div class="d-none d-lg-block "> {{ request.user.account.nickname }} </div>
                 </button>
                 <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
                     <li><a class="dropdown-item" href="{% url 'create_article' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>

@@ -7,9 +7,10 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, DeleteView, UpdateView
 from users.models import Account
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from .forms import *
 
-@login_required(login_url="/")
+@login_required(login_url=settings.LOGIN_URL)
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)
@@ -28,7 +29,6 @@ def create_article(request):
         form = ArticleForm()
     return render(request,'news/create_article.html', {'form':form})
 
-#@cache_page(60 * 1)
 def index(request):
     #categories = Article.objects.all().values_list('category', flat=True)
     categories = Article.categories
@@ -51,12 +51,6 @@ def index(request):
     context = {'articles': articles, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category}
     return render(request, 'news/news.html', context)
 
-#@cache_page(60 * 1)
-# def detail(request, id):
-#     nick = Account.objects.all().values_list('nickname', flat=True).filter(article=id)[0]
-#     article = Article.objects.select_related('author').filter(id=id)[0]
-#     context = {'article': article, 'nick': nick}
-#     return render(request, 'news/details.html', context)
 class ArticleDetailView(DetailView):
     model = Article
     template_name = 'news/details.html'
@@ -78,7 +72,8 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = reverse_lazy('news_index') #именованная ссылка или абсолютную
     template_name = 'news/delete_article.html'
-# @cache_page(60 * 1)
+
+#@login_required(login_url=settings.LOGIN_URL)
 def individual(request,id):
     author = Account.objects.filter(user_id=id)[0]
     context = {'author': author}

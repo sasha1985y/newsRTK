@@ -15,21 +15,27 @@
     </header>
 {% endblock %}
 {% block main %}
-    <main class="row" style="background: url({% static 'main/img/field.gif' %}) no-repeat;  background-size: cover">
-        <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #A5796C 70%) center fixed">
+    <main class="row" style="background: url({% static 'main/img/field.gif' %}) no-repeat;  background-size: cover;">
+        <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #A5796C 70%) center fixed; list-style: none;">
+            <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
             {% block sidebar %}
-                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
-                <ul>
-                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
-                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
-                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
-                </ul>
+                {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                {% block user %}
+                    {% include 'users/user-actions.html' %}
+                {% endblock %}
             {% endblock %}
         </div>
-        <ul class="col">
-            <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.8;">
+        <ul class="col" style="list-style: none;">
+            <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.9;">
                 <img src="{{ author.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Имя</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Фамилия</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>День рождения</p>
@@ -41,14 +47,10 @@
                 <p>Место работы</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>Сайт</p>
-            </li>
-            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Дата регистрации</p>
             </li>
-            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;"></li>
         </ul>
-        <ul class="col-md-5" style="margin-top: 10%">
+        <ul class="col-md-5" style="margin-top: 12%;  list-style: none;">
             <li class="col-md-12" style="background: #9D8D8E; padding: 50% 0 0 50%; margin: 1%; opacity: 0;"></li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>USER DATA</p>
@@ -69,7 +71,7 @@
                 <p>USER DATA</p>
             </li>
         </ul>
-        <ul class="row">
+        <ul class="row" style="list-style: none;">
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.7;"></li>
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.6;"></li>
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.5;"></li>
