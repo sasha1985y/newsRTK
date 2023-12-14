@@ -18,6 +18,7 @@ def registration(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
 
+            #!!!не аутентифицируется - нужно доделать
             authenticate(username=username,password=password)
             messages.success(request,f'{username} был зарегистрирован!')
             return redirect('home')

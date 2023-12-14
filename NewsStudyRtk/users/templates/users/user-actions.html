@@ -15,10 +15,10 @@
             {% else %} <!-- ссылки на регистрацию и аутентификацию-->
             <ul class="nav nav-pills flex-column mb-auto">
                 <li>
-                    <a href="{% url 'registration' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-file-pen"></i>&nbspРегистрация</a>
+                    <a href="{% url 'registration' %}" {% if request.resolver_match.view_name  == registration %} class="link-active" aria-current="page" {% endif %} style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-file-pen"></i>&nbspРегистрация</a>
                 </li>
                 <li>
-                    <a href="{% url 'login' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-person-through-window"></i>&nbspВход</a>
+                    <a href="{% url 'login' %}" {% if request.resolver_match.view_name  == login %} class="link-active" aria-current="page" {% endif %} style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-person-through-window"></i>&nbspВход</a>
                 </li>
             </ul>
         {% endif %}
