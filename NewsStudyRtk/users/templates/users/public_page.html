@@ -20,6 +20,9 @@
             <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
             {% block sidebar %}
                 {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
                 <br>
                 {% block user %}
                     {% include 'users/user-actions.html' %}
@@ -51,29 +54,34 @@
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Почта</p>
             </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Последний онлайн</p>
+            </li>
         </ul>
-        <ul class="col-md-5" style="margin-top: 12%;  list-style: none;">
-            <li class="col-md-12" style="background: #9D8D8E; padding: 50% 0 0 50%; margin: 1%; opacity: 0;"></li>
+        <ul class="col-md-5" style="margin-top: 32%;  list-style: none;">
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>{{ request.user.first_name }}</p>
+                <p class="text-center">{{ author.user.first_name }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>{{ request.user.last_name }}</p>
+                <p class="text-center">{{ author.user.last_name }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>USER DATA</p>
+                <p class="text-center">USER DATA</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>USER DATA</p>
+                <p class="text-center">USER DATA</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>USER DATA</p>
+                <p class="text-center">USER DATA</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>USER DATA</p>
+                <p class="text-center">{{ author.user.date_joined }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>USER DATA</p>
+                <p class="text-center">USER DATA</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p class="text-center">{{ author.user.last_login }}</p>
             </li>
         </ul>
         <ul class="row" style="list-style: none;">
