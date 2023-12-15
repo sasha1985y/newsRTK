@@ -1,6 +1,7 @@
 {% extends 'main/homebase.html' %}
 {% load static %}
 {% block title %} Страница пользователя {% endblock %}
+
 {% block header %}
     <header class="row" style="background: linear-gradient(87deg, #9D8D8E 30%,#9D5F13 70%) center fixed">
         <div class="col-md-1"></div>
@@ -15,6 +16,11 @@
     </header>
 {% endblock %}
 {% block main %}
+<!--    <style>-->
+<!--        *{-->
+<!--          border: 1px solid black;-->
+<!--        }-->
+<!--    </style>-->
     <main class="row" style="background: url({% static 'main/img/evening.gif' %}) no-repeat;  background-size: cover">
         <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #F8D093 70%) center fixed">
             {% block sidebar %}
@@ -31,10 +37,18 @@
                 </ul>
             {% endblock %}
         </div>
-<!--        <img src="{{ user_acc.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />-->
         <ul class="col" style="list-style: none;">
-            <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.9;">
-                <img src="{{ user_acc.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />
+            <li class="col-md-5" style="background: #9D8D8E; padding: 0; margin: 1%; opacity: 0.9;">
+                <div class="row">
+                    <img src="{{ user_acc.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        {% block private-contacts %}
+                            {% include 'users/private-draw-contacts.html' %}
+                        {% endblock %}
+                    </div>
+                </div>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Имя</p>
@@ -58,6 +72,9 @@
                 <p>Почта</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Телефон</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Последний онлайн</p>
             </li>
         </ul>
@@ -72,10 +89,10 @@
                 <p class="text-center">{{ request.user.account.birthdate }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ request.user.account.address }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ request.user.account.job }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ request.user.date_joined }}</p>
@@ -85,6 +102,9 @@
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ request.user.last_login }}</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p class="text-center">{{ request.user.account.phone }}</p>
             </li>
         </ul>
         <ul class="row" style="list-style: none;">

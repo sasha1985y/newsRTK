@@ -1,0 +1,147 @@
+{% load static %}
+    <style>
+        .rs-draw-body {
+          font-family: "Rubik Marker Hatch", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+          background: linear-gradient(346deg, #EFC3C3 30%, #625155 70%);
+          padding: 0;
+          justify-content: center;
+          overflow: hidden;
+          margin: 0;
+          width: 212px;
+          height: 152px;
+        }
+
+        .rs-draw-row {
+          display: flex;
+          justify-content: space-between;
+          margin: 5px 5px 5px 5px;
+        }
+
+        .rs-draw-col-header {
+          width: 25px;
+          box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+          border-radius: 20px;
+          padding: 0.8rem 1rem;
+          color: #fff;
+        }
+
+        .rs-draw-item {
+          cursor: grab;
+        }
+
+        .rs-draw-item:active {
+          cursor: grabbing;
+        }
+
+        .rs-draw-placeholder {
+          background-color: #A78675;
+          width: 2rem;
+          height: 2rem;
+        }
+
+        .rs-draw-hold {
+          border: 1px solid #1c7aa0;
+        }
+
+        .rs-draw-hide {
+          display: none;
+        }
+
+        .rs-draw-hovered {
+          border-top: 5px dotted #F0C077;
+          transition: all 0.2s;
+        }
+    </style>
+    <div class="rs-draw-body">
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder">
+                <a href="{{ author.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white" ></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder">
+                <a href="{{ author.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+    </div>
+    <script>
+        const items = document.querySelectorAll('.rs-draw-item');
+        const placeholders = document.querySelectorAll('.rs-draw-placeholder');
+
+        for (const item of items) {
+            item.addEventListener('dragstart', dragStart);
+            item.addEventListener('dragend', dragEnd);
+        }
+
+        for (const placeholder of placeholders) {
+            placeholder.addEventListener('dragover', dragOver);
+            placeholder.addEventListener('dragenter', dragEnter);
+            placeholder.addEventListener('dragleave', dragLeave);
+            placeholder.addEventListener('drop', dragDrop);
+        }
+
+        function dragStart(evt) {
+            for (const item of items) {
+                if (evt.target === item) {
+                    item.classList.add('rs-draw-hold');
+                    setTimeout(() => item.classList.add('rs-draw-hide'), 0);
+                }
+            }
+        }
+
+        function dragEnd(evt) {
+            for (const item of items) {
+                if (evt.target === item) {
+                    item.className = 'rs-draw-item';
+                }
+            }
+        }
+
+        function dragOver(evt) {
+            evt.preventDefault();
+        }
+
+        function dragEnter(evt) {
+            evt.target.classList.add('rs-draw-hovered');
+        }
+
+        function dragLeave(evt) {
+            evt.target.classList.remove('rs-draw-hovered');
+        }
+
+        function dragDrop(evt) {
+            evt.preventDefault();
+            const draggedItem = document.querySelector('.rs-draw-hold');
+            for (const placeholder of placeholders) {
+                if (placeholder.classList.contains('rs-draw-hovered')) {
+                    placeholder.appendChild(draggedItem);
+                    placeholder.classList.remove('rs-draw-hovered');
+                    draggedItem.classList.remove('rs-draw-hide');
+                    break;
+                }
+            }
+        }
+    </script>

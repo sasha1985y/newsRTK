@@ -30,8 +30,17 @@
             {% endblock %}
         </div>
         <ul class="col" style="list-style: none;">
-            <li class="col-md-5" style="background: #9D8D8E; padding: 30% 0 0 30%; margin: 1%; opacity: 0.9;">
-                <img src="{{ author.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />
+            <li class="col-md-5" style="background: #9D8D8E; padding: 0; margin: 1%; opacity: 0.9;">
+                <div class="row">
+                    <img src="{{ author.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        {% block private-contacts %}
+                            {% include 'users/public-draw-contacts.html' %}
+                        {% endblock %}
+                    </div>
+                </div>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Имя</p>
@@ -55,6 +64,9 @@
                 <p>Почта</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Телефон</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Последний онлайн</p>
             </li>
         </ul>
@@ -69,10 +81,10 @@
                 <p class="text-center">{{ author.birthdate }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ author.address }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ author.job }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ author.user.date_joined }}</p>
@@ -82,6 +94,9 @@
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ author.user.last_login }}</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p class="text-center">{{ author.phone }}</p>
             </li>
         </ul>
         <ul class="row" style="list-style: none;">
