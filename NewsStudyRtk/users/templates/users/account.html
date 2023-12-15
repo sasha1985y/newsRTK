@@ -69,7 +69,7 @@
                 <p class="text-center">{{ request.user.last_name }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ request.user.account.birthdate }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">USER DATA</p>
@@ -78,13 +78,13 @@
                 <p class="text-center">USER DATA</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ request.user.date_joined }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ request.user.email }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">USER DATA</p>
+                <p class="text-center">{{ request.user.last_login }}</p>
             </li>
         </ul>
         <ul class="row" style="list-style: none;">
