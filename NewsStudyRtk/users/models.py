@@ -13,6 +13,12 @@ class Account(models.Model):
     account_image = models.ImageField(default='default.jpg',
                                       upload_to='account_images')
 
+    address = models.CharField(max_length=100)
+    job = models.CharField(max_length=100)
+    vk = models.CharField(max_length=100)
+    telegram = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+
     def __str__(self):
         return f"{self.user.username}'s account"
 
