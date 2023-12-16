@@ -10,9 +10,18 @@ from .forms import AccountUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
-def profile(request):
+# def profile(request):
+#     context = dict()
+#     return render(request,'users/profile.html',context)
+#
+# def index(request):
+#     user_acc = Account.objects.get(user=request.user)
+#     context = {'user_acc': user_acc}
+#     return render(request,'users/account.html', context)
+
+def index(request):
     context = dict()
-    return render(request,'users/profile.html',context)
+    return render(request,'users/account.html',context)
 
 def profile_update(request):
     user = request.user
@@ -75,8 +84,3 @@ def contact_page(request):
         form.name='Любимый клиент'
     context = {'form': form}
     return render(request,'users/contact_page.html',context)
-
-def index(request):
-    user_acc = Account.objects.get(user=request.user)
-    context = {'user_acc': user_acc}
-    return render(request,'users/account.html', context)
