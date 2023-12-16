@@ -16,11 +16,6 @@
     </header>
 {% endblock %}
 {% block main %}
-<!--    <style>-->
-<!--        *{-->
-<!--          border: 1px solid black;-->
-<!--        }-->
-<!--    </style>-->
     <main class="row" style="background: url({% static 'main/img/evening.gif' %}) no-repeat;  background-size: cover">
         <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #F8D093 70%) center fixed">
             {% block sidebar %}
@@ -40,15 +35,164 @@
         <ul class="col" style="list-style: none;">
             <li class="col-md-5" style="background: #9D8D8E; padding: 0; margin: 1%; opacity: 0.9;">
                 <div class="row">
-                    <img src="{{ user_acc.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />
+                    <img src="{{ request.user.account.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh;" />
                 </div>
                 <div class="row">
                     <div class="col-md-1">
-                        {% block private-contacts %}
-                            {% include 'users/private-draw-contacts.html' %}
-                        {% endblock %}
+                        <style>
+                            .rs-draw-body {
+                              font-family: "Rubik Marker Hatch", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+                              background: linear-gradient(346deg, #F7C583 30%, #7F5829 70%);
+                              padding: 0;
+                              justify-content: center;
+                              overflow: hidden;
+                              margin: 0;
+                              width: 212px;
+                              height: 152px;
+                            }
+
+                            .rs-draw-row {
+                              display: flex;
+                              justify-content: space-between;
+                              margin: 5px 5px 5px 5px;
+                            }
+
+                            .rs-draw-col-header {
+                              width: 25px;
+                              box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+                              border-radius: 20px;
+                              padding: 0.8rem 1rem;
+                              color: #fff;
+                            }
+
+                            .rs-draw-item {
+                              cursor: grab;
+                            }
+
+                            .rs-draw-item:active {
+                              cursor: grabbing;
+                            }
+
+                            .rs-draw-placeholder {
+                              background-color: #A56C2A;
+                              width: 2rem;
+                              height: 2rem;
+                            }
+
+                            .rs-draw-hold {
+                              border: 1px solid #1c7aa0;
+                            }
+
+                            .rs-draw-hide {
+                              display: none;
+                            }
+
+                            .rs-draw-hovered {
+                              border-top: 5px dotted #F0C077;
+                              transition: all 0.2s;
+                            }
+                        </style>
+                        <div class="rs-draw-body">
+                            <div class="rs-draw-row">
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                            </div>
+
+                            <div class="rs-draw-row">
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder">
+                                    <a href="{{ request.user.account.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white" ></i></a>
+                                </div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                            </div>
+                            <div class="rs-draw-row">
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder">
+                                    <a href="{{ request.user.account.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>
+                                </div>
+                                <div class="rs-draw-placeholder"></div>
+                            </div>
+                            <div class="rs-draw-row">
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                                <div class="rs-draw-placeholder"></div>
+                            </div>
+                        </div>
+                        <script>
+                            const items = document.querySelectorAll('.rs-draw-item');
+                            const placeholders = document.querySelectorAll('.rs-draw-placeholder');
+
+                            for (const item of items) {
+                                item.addEventListener('dragstart', dragStart);
+                                item.addEventListener('dragend', dragEnd);
+                            }
+
+                            for (const placeholder of placeholders) {
+                                placeholder.addEventListener('dragover', dragOver);
+                                placeholder.addEventListener('dragenter', dragEnter);
+                                placeholder.addEventListener('dragleave', dragLeave);
+                                placeholder.addEventListener('drop', dragDrop);
+                            }
+
+                            function dragStart(evt) {
+                                for (const item of items) {
+                                    if (evt.target === item) {
+                                        item.classList.add('rs-draw-hold');
+                                        setTimeout(() => item.classList.add('rs-draw-hide'), 0);
+                                    }
+                                }
+                            }
+
+                            function dragEnd(evt) {
+                                for (const item of items) {
+                                    if (evt.target === item) {
+                                        item.className = 'rs-draw-item';
+                                    }
+                                }
+                            }
+
+                            function dragOver(evt) {
+                                evt.preventDefault();
+                            }
+
+                            function dragEnter(evt) {
+                                evt.target.classList.add('rs-draw-hovered');
+                            }
+
+                            function dragLeave(evt) {
+                                evt.target.classList.remove('rs-draw-hovered');
+                            }
+
+                            function dragDrop(evt) {
+                                evt.preventDefault();
+                                const draggedItem = document.querySelector('.rs-draw-hold');
+                                for (const placeholder of placeholders) {
+                                    if (placeholder.classList.contains('rs-draw-hovered')) {
+                                        placeholder.appendChild(draggedItem);
+                                        placeholder.classList.remove('rs-draw-hovered');
+                                        draggedItem.classList.remove('rs-draw-hide');
+                                        break;
+                                    }
+                                }
+                            }
+                        </script>
                     </div>
                 </div>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Никнейм</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>User name</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Имя</p>
@@ -60,7 +204,7 @@
                 <p>День рождения</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>Город</p>
+                <p>Адрес</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Место работы</p>
@@ -72,13 +216,19 @@
                 <p>Почта</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>Телефон</p>
+                <p>Последний онлайн</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>Последний онлайн</p>
+                <p>Телефон</p>
             </li>
         </ul>
         <ul class="col-md-5" style="margin-top: 32%;  list-style: none;">
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p class="text-center">{{ request.user.account.nickname }}</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p class="text-center">{{ request.user.username }}</p>
+            </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ request.user.first_name }}</p>
             </li>
@@ -109,7 +259,7 @@
         </ul>
         <ul class="row" style="list-style: none;">
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.7;"></li>
-            <li class="col-md-2" style="background: #9D8D8E; padding: 1% 1% 1% 1%; opacity: 0.6;"><div class="text-center"><i class="fa-solid fa-screwdriver-wrench"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspРедактировать</a></div></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 1% 1% 1% 1%; opacity: 0.6;"><div class="text-center"><i class="fa-solid fa-screwdriver-wrench"></i><a href="{% url 'profile_update' %}" style="text-decoration: none; color: #FDCE4B;">&nbspРедактировать</a></div></li>
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.5;"></li>
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.4;"></li>
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.3;"></li>

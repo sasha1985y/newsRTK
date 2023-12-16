@@ -43,6 +43,12 @@
                 </div>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>Никнейм</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p>User name</p>
+            </li>
+            <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Имя</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
@@ -52,7 +58,7 @@
                 <p>День рождения</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>Город</p>
+                <p>Адрес</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p>Место работы</p>
@@ -64,13 +70,19 @@
                 <p>Почта</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>Телефон</p>
+                <p>Последний онлайн</p>
             </li>
             <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p>Последний онлайн</p>
+                <p>Телефон</p>
             </li>
         </ul>
         <ul class="col-md-5" style="margin-top: 32%;  list-style: none;">
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p class="text-center">{{ author.nickname }}</p>
+            </li>
+            <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                <p class="text-center">{{ author.user.username }}</p>
+            </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ author.user.first_name }}</p>
             </li>

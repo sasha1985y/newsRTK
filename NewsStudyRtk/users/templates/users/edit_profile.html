@@ -1,0 +1,285 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% block title %} Редактировать профиль {% endblock %}
+
+{% block header %}
+    <header class="row" style="background: linear-gradient(87deg, #9D8D8E 30%,#9D5F13 70%) center fixed">
+        <div class="col-md-1"></div>
+        <img class="col-md-1 app__logo" src="{% static 'main/img/logo.svg' %}" width="100" height="100" alt="логотип" style="transition: all 1.5s;" onmouseover="this.style.transform='scale(1.5) rotate(1440deg)';" onmouseout="this.style.transform='none';">
+        <div class="col-md-1"></div>
+        <div class="col-md-3" style="margin-top: 2%">
+            <h1>D E P L O Y 53</h1>
+        </div>
+        {% block clock %}
+            {% include 'main/clock-special.html' %}
+        {% endblock %}
+    </header>
+{% endblock %}
+{% block main %}
+    <main class="row" style="background: url({% static 'main/img/evening.gif' %}) no-repeat;  background-size: cover;">
+        <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #F8D093 70%) center fixed;">
+            {% block sidebar %}
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
+                <ul>
+                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    {% block exit %}<li><i class="fa-solid fa-door-open"></i><a href="{% url 'logout' %}" style="text-decoration: none; color: #FDCE4B;">&nbspВыход</a></li>{% endblock %}
+                    {% block admin %}<li><i class="fa-solid fa-crown {% if request.path  == '/admin/' %} link-active {% endif %}"></i><a href="/admin/" style="text-decoration: none; color: #FDCE4B;">&nbspЯ-Админ?</a></li>{% endblock %}
+                    {% block create %}<li><i class="fa-solid fa-square-plus"></i><a href="{% url 'create_article' %}" style="text-decoration: none; color: #FDCE4B;">&nbspСоздать новость</a></li>{% endblock %}
+                    {% block catalog %}<li><i class="fa-solid fa-layer-group"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspМои статьи</a></li>{% endblock %}
+                </ul>
+            {% endblock %}
+        </div>
+        <div  class="col">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <ul class="col-md-6" style="list-style: none;">
+                        <li style="margin: 1%; opacity: 0.9;">
+                            <div>
+                                <img src="{{ request.user.account.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh; width: 16vw;" />
+<!--                            <div style="width: 212px;">-->
+<!--                                {{ account_form.account_image }}-->
+<!--                            </div>-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <style>
+                                        .rs-draw-body {
+                                          font-family: "Rubik Marker Hatch", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+                                          background: linear-gradient(346deg, #F7C583 30%, #7F5829 70%);
+                                          padding: 0;
+                                          justify-content: center;
+                                          overflow: hidden;
+                                          margin: 0;
+                                          width: 212px;
+                                          height: 152px;
+                                        }
+
+                                        .rs-draw-row {
+                                          display: flex;
+                                          justify-content: space-between;
+                                          margin: 5px 5px 5px 5px;
+                                        }
+
+                                        .rs-draw-col-header {
+                                          width: 25px;
+                                          box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+                                          border-radius: 20px;
+                                          padding: 0.8rem 1rem;
+                                          color: #fff;
+                                        }
+
+                                        .rs-draw-item {
+                                          cursor: grab;
+                                        }
+
+                                        .rs-draw-item:active {
+                                          cursor: grabbing;
+                                        }
+
+                                        .rs-draw-placeholder {
+                                          background-color: #A56C2A;
+                                          width: 2rem;
+                                          height: 2rem;
+                                        }
+
+                                        .rs-draw-hold {
+                                          border: 1px solid #1c7aa0;
+                                        }
+
+                                        .rs-draw-hide {
+                                          display: none;
+                                        }
+
+                                        .rs-draw-hovered {
+                                          border-top: 5px dotted #F0C077;
+                                          transition: all 0.2s;
+                                        }
+                                    </style>
+                                    <div class="rs-draw-body">
+                                        <div class="rs-draw-row">
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+                                            <div style="width: 212px;">
+                                                <span style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.account_image }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="rs-draw-row">
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder">-->
+<!--&lt;!&ndash;                                                <a href="{{ request.user.account.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white" ></i></a>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+                                            <span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.vk }}</span>
+                                        </div>
+                                        <div class="rs-draw-row">
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+<!--                                            <div class="rs-draw-placeholder">-->
+<!--&lt;!&ndash;                                                <a href="{{ request.user.account.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>&ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            <div class="rs-draw-placeholder"></div>-->
+                                            <span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.telegram }}</span>
+                                        </div>
+                                        <div class="rs-draw-row">
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        const items = document.querySelectorAll('.rs-draw-item');
+                                        const placeholders = document.querySelectorAll('.rs-draw-placeholder');
+
+                                        for (const item of items) {
+                                            item.addEventListener('dragstart', dragStart);
+                                            item.addEventListener('dragend', dragEnd);
+                                        }
+
+                                        for (const placeholder of placeholders) {
+                                            placeholder.addEventListener('dragover', dragOver);
+                                            placeholder.addEventListener('dragenter', dragEnter);
+                                            placeholder.addEventListener('dragleave', dragLeave);
+                                            placeholder.addEventListener('drop', dragDrop);
+                                        }
+
+                                        function dragStart(evt) {
+                                            for (const item of items) {
+                                                if (evt.target === item) {
+                                                    item.classList.add('rs-draw-hold');
+                                                    setTimeout(() => item.classList.add('rs-draw-hide'), 0);
+                                                }
+                                            }
+                                        }
+
+                                        function dragEnd(evt) {
+                                            for (const item of items) {
+                                                if (evt.target === item) {
+                                                    item.className = 'rs-draw-item';
+                                                }
+                                            }
+                                        }
+
+                                        function dragOver(evt) {
+                                            evt.preventDefault();
+                                        }
+
+                                        function dragEnter(evt) {
+                                            evt.target.classList.add('rs-draw-hovered');
+                                        }
+
+                                        function dragLeave(evt) {
+                                            evt.target.classList.remove('rs-draw-hovered');
+                                        }
+
+                                        function dragDrop(evt) {
+                                            evt.preventDefault();
+                                            const draggedItem = document.querySelector('.rs-draw-hold');
+                                            for (const placeholder of placeholders) {
+                                                if (placeholder.classList.contains('rs-draw-hovered')) {
+                                                    placeholder.appendChild(draggedItem);
+                                                    placeholder.classList.remove('rs-draw-hovered');
+                                                    draggedItem.classList.remove('rs-draw-hide');
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Никнейм</p>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>User name</p>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Имя</p>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Фамилия</p>
+                        </li>
+                        <li class="col-md-5 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>День рождения</p>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Адрес</p>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Место работы</p>
+                        </li>
+                        <li class="col-md-5 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Дата регистрации</p>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Почта</p>
+                        </li>
+                        <li class="col-md-5 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Последний онлайн</p>
+                        </li>
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p>Телефон</p>
+                        </li>
+                    </ul>
+                    <ul class="col-md-6" style="margin-top: 38%;  list-style: none;">
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ account_form.nickname }}</p>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ user_form.username }}</p>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ user_form.first_name }}</p>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ user_form.last_name }}</p>
+                        </li>
+                        <li class="col-md-12 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ request.user.account.birthdate }}</p>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ account_form.address }}</p>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ account_form.job }}</p>
+                        </li>
+                        <li class="col-md-12 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ request.user.date_joined }}</p>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ user_form.email }}</p>
+                        </li>
+                        <li class="col-md-12 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ request.user.last_login }}</p>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ account_form.phone }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <ul class="row" style="list-style: none;">
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.7;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 1% 1% 1% 1%; opacity: 0.6;"><div class="text-center"><i class="fa-solid fa-screwdriver-wrench"></i><a href="{% url 'user_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspСохранить</a></div></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 1% 1% 1% 1%; opacity: 0.5;"><div class="text-center"><i class="fa-solid fa-screwdriver-wrench"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspИзменить Пароль</a></div></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.4;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.3;"></li>
+            <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.2;"></li>
+        </ul>
+        <a href="https://99px.ru/sstorage/86/2017/06/image_860306172119167238077.gif">источник гифки</a>
+    </main>
+{% endblock %}
