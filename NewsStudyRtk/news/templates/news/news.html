@@ -120,8 +120,37 @@
             </div>
         </div>
         {% block content %}
+<!--            &lt;!&ndash; jQuery !&ndash;&gt;-->
+<!--            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>-->
+<!--            &lt;!&ndash; jQuery UI !&ndash;&gt;-->
+<!--            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
+<!--            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->
+            <script>
+                $(function() {
+                    $("#search_input").autocomplete({
+                        source: "search_auto/",
+                        select: function (event, ui) { //item selected
+                          AutoCompleteSelectHandler(event, ui)
+                        },
+                        minLength: 2,
+                    });
+                });
+
+                function AutoCompleteSelectHandler(event, ui)
+                {
+                  var selectedObj = ui.item;
+                }
+            </script>
             <div class="row" style="background-color: #5B5561;">
-                <div class="col-md-5" style="background-color: #5B5561;"></div>
+                <div class="col-md-5" style="background-color: #5B5561;">
+                    <div class="row">
+                        <div class="search">
+                            <label for="search_input">Поиск: </label>
+                            <input id="search_input">
+                            <button class="btn btn-primary"> Найти</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="col">
                     <label>
                         <form method="post">
@@ -198,55 +227,55 @@
             </div>
         {% endblock %}
     </main>
-    <script>
-        const upBtn = document.querySelector('.rs-up-button');
-        const downBtn = document.querySelector('.rs-down-button');
-        const sidebar = document.querySelector('.rs-sidebar');
-        const container = document.querySelector('.rs-container');
+<!--    <script>-->
+<!--        const upBtn = document.querySelector('.rs-up-button');-->
+<!--        const downBtn = document.querySelector('.rs-down-button');-->
+<!--        const sidebar = document.querySelector('.rs-sidebar');-->
+<!--        const container = document.querySelector('.rs-container');-->
 
-        const mainSlide = document.querySelector('.rs-main-slide')
-        const slidesCount = mainSlide.querySelectorAll('div').length;
+<!--        const mainSlide = document.querySelector('.rs-main-slide')-->
+<!--        const slidesCount = mainSlide.querySelectorAll('div').length;-->
 
-        let activeSlideIndex = 0;
+<!--        let activeSlideIndex = 0;-->
 
-        sidebar.style.top = `-${(slidesCount - 1) * 100}vh`;
+<!--        sidebar.style.top = `-${(slidesCount - 1) * 100}vh`;-->
 
-        upBtn.addEventListener('click', () => {
-            changeSlide('up');
-        })
+<!--        upBtn.addEventListener('click', () => {-->
+<!--            changeSlide('up');-->
+<!--        })-->
 
-        downBtn.addEventListener('click', () => {
-            changeSlide('down');
-        })
+<!--        downBtn.addEventListener('click', () => {-->
+<!--            changeSlide('down');-->
+<!--        })-->
 
-        document.addEventListener('keydown', evt => {
-            if (evt.key === 'RsArrowUp') {
-                changeSlide('up');
-            } else if (evt.key === 'RsArrowDown') {
-                changeSlide('down');
-            }
-        })
+<!--        document.addEventListener('keydown', evt => {-->
+<!--            if (evt.key === 'RsArrowUp') {-->
+<!--                changeSlide('up');-->
+<!--            } else if (evt.key === 'RsArrowDown') {-->
+<!--                changeSlide('down');-->
+<!--            }-->
+<!--        })-->
 
-        function changeSlide(direction) {
-            if (direction === 'up') {
-                activeSlideIndex++;
-                if (activeSlideIndex === slidesCount) {
-                    {
-                        activeSlideIndex = 0;
-                    }
-                }
-            } else if (direction === 'down') {
-              activeSlideIndex--;
-              if (activeSlideIndex < 0) {
-                activeSlideIndex = slidesCount - 1;
-              }
-            }
+<!--        function changeSlide(direction) {-->
+<!--            if (direction === 'up') {-->
+<!--                activeSlideIndex++;-->
+<!--                if (activeSlideIndex === slidesCount) {-->
+<!--                    {-->
+<!--                        activeSlideIndex = 0;-->
+<!--                    }-->
+<!--                }-->
+<!--            } else if (direction === 'down') {-->
+<!--              activeSlideIndex&#45;&#45;;-->
+<!--              if (activeSlideIndex < 0) {-->
+<!--                activeSlideIndex = slidesCount - 1;-->
+<!--              }-->
+<!--            }-->
 
-            const height = container.clientHeight;
+<!--            const height = container.clientHeight;-->
 
-            mainSlide.style.transform = `translateY(-${activeSlideIndex * height}px)`;
+<!--            mainSlide.style.transform = `translateY(-${activeSlideIndex * height}px)`;-->
 
-            sidebar.style.transform = `translateY(${activeSlideIndex * height}px)`;
-        }
-    </script>
+<!--            sidebar.style.transform = `translateY(${activeSlideIndex * height}px)`;-->
+<!--        }-->
+<!--    </script>-->
 {% endblock %}

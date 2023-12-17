@@ -9,6 +9,22 @@ from users.models import Account
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from .forms import *
+import json
+
+
+#URL:    path('search_auto/', views.search_auto, name='search_auto'),
+def search_auto(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        q = request.GET.get('term','')
+        articles = Article.objects.filter(title__icontains=q)
+        results =[]
+        for a in articles:
+            results.append(a.title)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data,mimetype)
 
 @login_required(login_url=settings.LOGIN_URL)
 def create_article(request):

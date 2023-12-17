@@ -33,7 +33,7 @@ def profile_update(request):
             user_form.save()
             account_form.save()
             messages.success(request,"Профиль успешно обновлен")
-            return redirect('profile')
+            return redirect('user_index')
     else:
         context = {'account_form':AccountUpdateForm(instance=account),
                    'user_form':UserUpdateForm(instance=user)}
@@ -47,7 +47,7 @@ def password_update(request):
             password_info = form.save()
             update_session_auth_hash(request,password_info)
             messages.success(request,'Пароль успешно изменен')
-            return redirect('profile')
+            return redirect('user_index')
 
     context = {"form": form}
     return render(request,'users/edit_password.html',context)
@@ -63,7 +63,6 @@ def registration(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
 
-            #!!!не аутентифицируется - нужно доделать
             authenticate(username=username,password=password)
             messages.success(request,f'{username} был зарегистрирован!')
             return redirect('home')
