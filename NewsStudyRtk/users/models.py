@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-
 class Account(models.Model):
     gender_choices= (('M','Male'),
                      ('F','Female'),
