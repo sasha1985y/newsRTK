@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from .forms import *
 import json
+import os
 
 
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
@@ -100,6 +101,7 @@ class ArticleUpdateView(UpdateView):
             field_image_id = f'image_set-{i}-id'
             if field_delete in request.POST and request.POST[field_delete] == 'on':
                 image = Image.objects.get(id=request.POST[field_image_id])
+                os.remove(image.image.storage.path(image.image.name))  # удаление файла из файловой системы
                 image.delete()
                 deleted_ids.append(field_image_id)
 
