@@ -7,7 +7,6 @@
                     <div class="d-none d-lg-block "> {{ request.user.account.nickname }} </div>
                     <p class="text-secondary mb-1"> {% if request.user.is_staff %} Персонал {% endif %}</p>
                     <p class="text-secondary mb-1"> {% if request.user.is_superuser %} Админ {% endif %}</p>
-                    <p class="text-secondary mb-1"> {% if request.user.is_superuser %} Админ {% endif %}</p>
                 </button>
                 <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
                     <li><a class="dropdown-item" href="{% url 'create_article' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>

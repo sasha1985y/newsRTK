@@ -131,7 +131,7 @@ class ArticleDeleteView(DeleteView):
     success_url = reverse_lazy('news_index') #именованная ссылка или абсолютную
     template_name = 'news/delete_article.html'
 
-#@login_required(login_url=settings.LOGIN_URL)
+@login_required(login_url=settings.LOGIN_URL)
 def individual(request,id):
     author = Account.objects.filter(user_id=id)[0]
     context = {'author': author}
