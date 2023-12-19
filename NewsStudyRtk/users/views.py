@@ -57,8 +57,14 @@ def registration(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save() #появляется новый пользователь
-            group = Group.objects.get(name='Authors')
-            user.groups.add(group)
+
+            category = request.POST['account_type']
+            if category == 'author':
+                group = Group.objects.get(name='Actions Required')
+                user.groups.add(group)
+            else:
+                group = Group.objects.get(name='Reader')
+                user.groups.add(group)
 
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
