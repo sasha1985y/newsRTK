@@ -13,21 +13,41 @@
                 {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
                 {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
                 {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                <a href="https://ru.freepik.com/free-photo/asphalt-road-in-the-city_934935.htm?query=%D1%84%D0%BE%D1%82%D0%BE%20%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B8#from_view=detail_alsolike">Изображение от evening_tao</a> на Freepik
             {% endblock %}
         </div>
         {% block content %}
-            <div class="col-md-2"></div>
-            <div class="col">
-                <div class="text-center" style="margin-top:30px;">
+            <div class="col" style="background: url({% static 'main/img/пригород.jpg' %}) no-repeat;  background-size: cover; padding: 0;">
+                <div class="text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%);">
                     <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Регистрация нового пользователя</h1>
-                    <form method="post" class="contact_form">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <input type="submit" class="btn btn-success" value = "Регистрация">
-                    </form>
+                    <div class="row">
+                        <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+                        <div class="col">
+                            <form method="post" class="contact_form">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col form-check">
+                                        <h5>Тип аккаунта:</h5>
+                                        <div>
+                                            <input class="form-check-input" type="radio" id="author" name="account_type" value="author"/>
+                                            <label class="form-check-label" for="author">Автор</label>
+                                        </div>
+                                        <div>
+                                            <input class="form-check-input" type="radio" id="reader" name="account_type" value="reader"/>
+                                            <label class="form-check-label" for="reader">Читатель</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <input type="submit" class="btn btn-success" value = "Регистрация">
+                            </form>
+                        </div>
+                        <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2"></div>
         {% endblock %}
     </main>
 {% endblock %}
