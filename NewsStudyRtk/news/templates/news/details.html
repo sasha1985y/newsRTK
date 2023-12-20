@@ -1,6 +1,7 @@
 {% extends 'main/homebase.html' %}
 {% load static %}
 {% load bootstrap5 %}
+{% load users_extras %}
 {% block title %} Новость {% endblock %}
 {% block main %}
     <main style="position: relative;">
@@ -49,10 +50,12 @@
                 <p class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
                     {{ article.text }}
                 </p>
-                <div class="text-center">
-                    <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-outline-secondary" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a>
-                </div>
+                {% if request.user|has_group:"Authors" %}
+                    <div class="text-center">
+                        <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="btn btn-outline-secondary" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </main>

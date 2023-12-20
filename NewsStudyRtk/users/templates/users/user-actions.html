@@ -1,4 +1,5 @@
 {% load static %}
+{% load users_extras %}
     <li>
         {% if request.user.id %}  <!-- проверяем аутентификацию-->
             <div>
@@ -9,7 +10,7 @@
                     <p class="text-secondary mb-1"> {% if request.user.is_superuser %} Админ {% endif %}</p>
                 </button>
                 <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
-                    <li><a class="dropdown-item" href="{% url 'create_article' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>
+                    {% if request.user|has_group:"Authors" %}<li><a class="dropdown-item" href="{% url 'create_article' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>{% endif %}
                     <li><a class="dropdown-item" href="{% url 'user_index' %}" style="color: #FDCE4B;"><i class="fa-solid fa-address-card"></i> Мой профиль</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: #FDCE4B;"><i class="fa-solid fa-door-open"></i> Выход</a></li>
                 </ul>
