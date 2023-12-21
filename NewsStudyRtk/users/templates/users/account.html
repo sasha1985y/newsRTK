@@ -240,31 +240,59 @@
                 <p class="text-center">{{ request.user.username }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">{{ request.user.first_name }}</p>
+                <p class="text-center">{% if request.user.first_name == '' %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.first_name }}
+                {% endif %}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">{{ request.user.last_name }}</p>
+                <p class="text-center">{% if request.user.last_name == '' %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.last_name }}
+                {% endif %}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">{{ request.user.account.birthdate }}</p>
+                <p class="text-center">{% if request.user.account.birthdate == None %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.account.birthdate }}
+                {% endif %}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">{{ request.user.account.address }}</p>
+                <p class="text-center">{% if request.user.account.address == '' %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.account.address }}
+                {% endif %}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">{{ request.user.account.job }}</p>
+                <p class="text-center">{% if request.user.account.job == '' %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.account.job }}
+                {% endif %}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ request.user.date_joined }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">{{ request.user.email }}</p>
+                <p class="text-center">{% if request.user.email == '' %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.email }}
+                {% endif %}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ request.user.last_login }}</p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center">{{ request.user.account.phone }}</p>
+                <p class="text-center">{% if request.user.account.phone == '' %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.account.phone }}
+                {% endif %}</p>
             </li>
         </ul>
         <ul class="row" style="list-style: none;">

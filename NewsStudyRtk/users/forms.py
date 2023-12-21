@@ -4,7 +4,7 @@ from django.core.validators import MinLengthValidator
 
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
-from django.forms import TextInput, EmailInput, FileInput, Select
+from django.forms import TextInput, EmailInput, FileInput, DateInput
 
 class UserUpdateForm(UserChangeForm):
     class Meta:
@@ -23,9 +23,10 @@ class UserUpdateForm(UserChangeForm):
 
 from .models import Account
 class AccountUpdateForm(forms.ModelForm):
+    birthdate = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
     class Meta:
         model = Account
-        fields = ['phone', 'address','job','vk','telegram', 'account_image','nickname']
+        fields = ['phone', 'address','job','vk','telegram', 'account_image','nickname','birthdate']
         widgets = {'phone': TextInput({'class': 'textinput form-control',
                                        'placeholder': 'phone number'}),
                    'address': TextInput({'class': 'textinput form-control',
@@ -40,6 +41,7 @@ class AccountUpdateForm(forms.ModelForm):
                                        'placeholder': 'image'}),
                    'nickname': TextInput({'class': 'textinput form-control',
                                             'placeholder': 'nickname'}),
+                   'birthdate': DateInput(attrs={'type': 'date'})
                    }
 
 class ContactForm(forms.Form):
