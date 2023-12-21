@@ -2,6 +2,7 @@
 {% load static %}
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
+{% load users_extras %}
 {% block title %} Удаление статьи {% endblock %}
 
 {% block main %}
@@ -13,7 +14,11 @@
                     <form method="post" class="contact_form">
                         {% csrf_token %}
                         <a class="btn btn-warning" href="{% url 'news_index' %}">Отмена</a>
-                        <input type="submit" class="btn btn-danger" value = "Удалить">
+                        {% if request.user|has_group:"Authors" %}
+                            <input type="submit" class="btn btn-danger" value = "Удалить">
+                        {% else %}
+                            <a href="{% url 'home' %}" class="btn btn-danger">&nbspУдалить</a>
+                        {% endif %}
                     </form>
                 </div>
             </div>

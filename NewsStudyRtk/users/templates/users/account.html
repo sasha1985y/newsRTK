@@ -28,11 +28,6 @@
                     {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
                     {% block exit %}<li><i class="fa-solid fa-door-open"></i><a href="{% url 'logout' %}" style="text-decoration: none; color: #FDCE4B;">&nbspВыход</a></li>{% endblock %}
                     {% block admin %}<li><i class="fa-solid fa-crown {% if request.path  == '/admin/' %} link-active {% endif %}"></i><a href="/admin/" style="text-decoration: none; color: #FDCE4B;">&nbspЯ-Админ?</a></li>{% endblock %}
-                    {% block create %}
-                        {% if request.user|has_group:"Authors" %}
-                            <li><i class="fa-solid fa-square-plus"></i><a href="{% url 'create_article' %}" style="text-decoration: none; color: #FDCE4B;">&nbspСоздать новость</a></li>
-                        {% endif %}
-                    {% endblock %}
                     {% block catalog %}
                         {% if request.user|has_group:"Authors" %}
                             <li><i class="fa-solid fa-layer-group"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspМои статьи</a></li>
@@ -235,7 +230,11 @@
         </ul>
         <ul class="col-md-5" style="margin-top: 32%;  list-style: none;">
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                <p class="text-center"><button class="visually-hidden"><i class="fa-solid fa-lock-open"></i><i class="fa-solid fa-lock"></i></button>{{ request.user.account.nickname }}</p>
+                <p class="text-center">{% if request.user.account.nickname == '' %}
+                    Пока нет данных
+                {% else %}
+                    {{ request.user.account.nickname }}
+                {% endif %}<!--button class="visually-hidden"><i class="fa-solid fa-lock-open"></i><i-- class="fa-solid fa-lock"></i></button--></p>
             </li>
             <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                 <p class="text-center">{{ request.user.username }}</p>

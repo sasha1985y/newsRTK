@@ -11,6 +11,7 @@ from django.conf import settings
 from .forms import *
 import json
 import os
+from users.utils import check_group
 
 
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
@@ -28,6 +29,7 @@ def search_auto(request):
     return HttpResponse(data,mimetype)
 
 @login_required(login_url=settings.LOGIN_URL)
+@check_group('Authors')
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)
