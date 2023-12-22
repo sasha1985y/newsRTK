@@ -198,7 +198,13 @@
                                             <p style="width: 20vw; text-center; word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></p>
                                             <p class="text-center">
                                                 <p class="lead my-3">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
-                                                <p class="lead my-3">Автор:<a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.account.nickname %} {{ n }} {% endfor %}</a></p>
+                                                <p class="lead my-3">Автор:
+                                                    {% if article.account.nickname == '' %}
+                                                        Никнейм<i class="fa-solid fa-lock"></i>
+                                                    {% else %}
+                                                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.account.nickname %} {{ n }} {% endfor %}</a>
+                                                    {% endif %}
+                                                </p>
                                             </p>
                                         </div>
                                     </div>

@@ -5,9 +5,16 @@
             <div>
                 <button class="btn btn-primary dropdown-toggle col-12" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
                     <img src="{{ request.user.account.account_image.url }}" alt="user" width="55" height="55">
-                    <div class="d-none d-lg-block "> {{ request.user.account.nickname }} </div>
-                    <p class="text-secondary mb-1"> {% if request.user.is_staff %} Персонал {% endif %}</p>
+                    <div class="d-none d-lg-block ">
+                        {% if request.user.account.nickname == '' %}
+                            Никнейм <i class="fa-solid fa-lock"></i>
+                        {% else %}
+                            {{ request.user.account.nickname }}
+                        {% endif %}
+                    </div>
                     <p class="text-secondary mb-1"> {% if request.user.is_superuser %} Админ {% endif %}</p>
+                    <p class="text-secondary mb-1"> {% if request.user.is_staff %} Персонал {% endif %}</p>
+                    <p class="text-secondary mb-1"> {% if request.user|has_group:"Authors" %} Автор {% endif %}</p>
                 </button>
                 <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
                     {% if request.user|has_group:"Authors" %}<li><a class="dropdown-item" href="{% url 'create_article' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>{% endif %}

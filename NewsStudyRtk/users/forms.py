@@ -41,7 +41,7 @@ class AccountUpdateForm(forms.ModelForm):
                                        'placeholder': 'image'}),
                    'nickname': TextInput({'class': 'textinput form-control',
                                             'placeholder': 'nickname'}),
-                   'birthdate': DateInput(attrs={'type': 'date'})
+                   'birthdate': DateInput(attrs={'type': 'date'}),
                    }
 
 class ContactForm(forms.Form):

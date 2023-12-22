@@ -212,7 +212,7 @@
                         <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                             <p>Фамилия</p>
                         </li>
-                        <li class="col-md-5 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                        <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
                             <p>День рождения</p>
                         </li>
                         <li class="col-md-5" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
@@ -247,8 +247,8 @@
                         <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
                             <p class="text-center">{{ user_form.last_name }}</p>
                         </li>
-                        <li class="col-md-12 visually-hidden" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
-                            <p class="text-center">{{ request.user.account.birthdate }}</p>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 4% 0 0 4%; margin: 1%; opacity: 0.5;">
+                            <p class="text-center">{{ account_form.birthdate }}</p>
                         </li>
                         <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
                             <p class="text-center">{{ account_form.address }}</p>
