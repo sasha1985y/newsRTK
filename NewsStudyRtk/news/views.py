@@ -12,6 +12,7 @@ from .forms import *
 import json
 import os
 from users.utils import check_group
+from .utils import ViewCountMixin
 
 
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
@@ -70,7 +71,7 @@ def index(request):
     context = {'articles': articles, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category}
     return render(request, 'news/news.html', context)
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(ViewCountMixin, DetailView):
     model = Article
     template_name = 'news/details.html'
     context_object_name = 'article'

@@ -65,3 +65,7 @@ admin.site.register(Article,ArticleAdmin)
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['title','article','image_tag']
+
+@admin.register(ViewCount)
+class ViewCountAdmin(admin.ModelAdmin):
+    list_display = ['article','ip_address','view_date']
