@@ -100,29 +100,109 @@
                         </style>
                         <div class="rs-draw-body">
                             <div class="rs-draw-row">
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
+                                {% if request.user.account.vk == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.telegram == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.skype == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.skype }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-skype" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.snapchat == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.snapchat }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-snapchat" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.linkedin == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.linkedin }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-linkedin" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
                             </div>
 
                             <div class="rs-draw-row">
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder">
-                                    <a href="{{ request.user.account.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white" ></i></a>
-                                </div>
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
+                                {% if request.user.account.youtube == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.youtube }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-youtube" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.github == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.github }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-github" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.discord == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.discord }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-discord" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.twitter == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.twitter }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-twitter" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.facebook == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.facebook }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-facebook" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
                             </div>
                             <div class="rs-draw-row">
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder"></div>
-                                <div class="rs-draw-placeholder">
-                                    <a href="{{ request.user.account.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>
-                                </div>
+                                {% if request.user.account.instagram == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.instagram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-instagram" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.twitch == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.twitch }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-twitch" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.viber == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.viber }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-viber" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
+                                {% if request.user.account.whatsapp == '' %}
+                                    <div class="rs-draw-placeholder"></div>
+                                {% else %}
+                                    <div class="rs-draw-placeholder">
+                                        <a href="{{ request.user.account.whatsapp }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-whatsapp" style="font-size: 30px; color: white"></i></a>
+                                    </div>
+                                {% endif%}
                                 <div class="rs-draw-placeholder"></div>
                             </div>
                             <div class="rs-draw-row">

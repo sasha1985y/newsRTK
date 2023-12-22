@@ -54,29 +54,109 @@
     </style>
     <div class="rs-draw-body">
         <div class="rs-draw-row">
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
+            {% if author.vk == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if request.author. == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.skype == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.skype }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-skype" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.snapchat == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.snapchat }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-snapchat" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.linkedin == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.linkedin }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-linkedin" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
         </div>
 
         <div class="rs-draw-row">
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder">
-                <a href="{{ author.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white" ></i></a>
-            </div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
+            {% if author.youtube == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.youtube }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-youtube" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.github == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.github }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-github" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.discord == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.discord }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-discord" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.twitter == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.twitter }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-twitter" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.facebook == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.facebook }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-facebook" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
         </div>
         <div class="rs-draw-row">
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder">
-                <a href="{{ author.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>
-            </div>
+            {% if author.instagram == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.instagram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-instagram" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.twitch == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.twitch }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-twitch" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.viber == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.viber }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-viber" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
+            {% if author.whatsapp == '' %}
+                <div class="rs-draw-placeholder"></div>
+            {% else %}
+                <div class="rs-draw-placeholder">
+                    <a href="{{ author.whatsapp }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-whatsapp" style="font-size: 30px; color: white"></i></a>
+                </div>
+            {% endif%}
             <div class="rs-draw-placeholder"></div>
         </div>
         <div class="rs-draw-row">

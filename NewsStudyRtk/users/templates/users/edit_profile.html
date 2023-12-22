@@ -40,9 +40,9 @@
                         <li style="margin: 1%; opacity: 0.9;">
                             <div>
                                 <img src="{{ request.user.account.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh; width: 16vw;" />
-<!--                            <div style="width: 212px;">-->
-<!--                                {{ account_form.account_image }}-->
-<!--                            </div>-->
+                            <div style="width: 212px;">
+                                {{ account_form.account_image }}
+                            </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
@@ -101,35 +101,26 @@
                                     </style>
                                     <div class="rs-draw-body">
                                         <div class="rs-draw-row">
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-                                            <div style="width: 212px;">
-                                                <span style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.account_image }}</span>
-                                            </div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
                                         </div>
 
                                         <div class="rs-draw-row">
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder">-->
-<!--&lt;!&ndash;                                                <a href="{{ request.user.account.telegram }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 30px; color: white" ></i></a>&ndash;&gt;-->
-<!--                                            </div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-                                            <span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.vk }}</span>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
                                         </div>
                                         <div class="rs-draw-row">
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-<!--                                            <div class="rs-draw-placeholder">-->
-<!--&lt;!&ndash;                                                <a href="{{ request.user.account.vk }}" class="rs-draw-item" draggable="true"><i class="fa-brands fa-vk" style="font-size: 30px; color: white"></i></a>&ndash;&gt;-->
-<!--                                            </div>-->
-<!--                                            <div class="rs-draw-placeholder"></div>-->
-                                            <span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.telegram }}</span>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
+                                            <div class="rs-draw-placeholder"></div>
                                         </div>
                                         <div class="rs-draw-row">
                                             <div class="rs-draw-placeholder"></div>
@@ -234,7 +225,49 @@
                             <p>Телефон</p>
                         </li>
                     </ul>
-                    <ul class="col-md-6" style="margin-top: 38%;  list-style: none;">
+                    <ul class="col-md-6" style="margin-top: 6.8rem;  list-style: none;">
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <div class="row">
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.vk }}</span></div>
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.telegram }}</span></div>
+                            </div>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <div class="row">
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.skype }}</span></div>
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.snapchat }}</span></div>
+                            </div>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <div class="row">
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.linkedin }}</span></div>
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.youtube }}</span></div>
+                            </div>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <div class="row">
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.github }}</span></div>
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.discord }}</span></div>
+                            </div>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <div class="row">
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.twitter }}</span></div>
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.facebook }}</span></div>
+                            </div>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <div class="row">
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.instagram }}</span></div>
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.twitch }}</span></div>
+                            </div>
+                        </li>
+                        <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
+                            <div class="row">
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.viber }}</span></div>
+                                <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.whatsapp }}</span></div>
+                            </div>
+                        </li>
                         <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
                             <p class="text-center">{{ account_form.nickname }}</p>
                         </li>
