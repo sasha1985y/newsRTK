@@ -10,6 +10,7 @@ from django.contrib.auth.models import Group
 from .forms import AccountUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.http import JsonResponse
 
 # def profile(request):
 #     context = dict()
@@ -28,16 +29,20 @@ def index(request):
 @login_required
 def add_to_favorites(request, id):
     article = Article.objects.get(id=id)
-    #проверям есть ли такая закладка с этой новостью
-    bookmark = FavoriteArticle.objects.filter(user=request.user.id,
-                                              article=article)
+    bookmark = FavoriteArticle.objects.filter(user=request.user.id, article=article)
     if bookmark.exists():
         bookmark.delete()
-        messages.warning(request,f"Новость {article.title} удалена из закладок")
+        status = 'removed'
+        messages.warning(request, f"Новость {article.title} удалена из закладок")
     else:
         bookmark = FavoriteArticle.objects.create(user=request.user, article=article)
-        messages.success(request,f"Новость {article.title} добавлена в закладки")
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        status = 'added'
+        messages.success(request, f"Новость {article.title} добавлена в закладки")
+    response = {
+        'status': status,
+        'id': id,
+    }
+    return JsonResponse(response)
 
 def profile_update(request):
     user = request.user
