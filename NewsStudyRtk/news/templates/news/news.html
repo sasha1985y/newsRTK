@@ -146,7 +146,7 @@
                     $('.favorite-btn').each(function() {
                         var articleId = $(this).data('article-id');
                         if (localStorage.getItem('favorite_' + articleId) === 'true') {
-                            $(this).html('<i class="fa-solid fa-heart-circle-minus"></i>');
+                            $(this).html('<i class="fa-solid fa-heart-circle-minus"> Забыть</i>');
                             $(this).addClass('btn-danger');
                             $(this).removeClass('btn-success');
                         }
@@ -161,12 +161,12 @@
                             type: 'GET',
                             success: function(response) {
                                 if (response.status === 'added') {
-                                    button.html('<i class="fa-solid fa-heart-circle-minus"></i>');
+                                    button.html('<i class="fa-solid fa-heart-circle-minus"> Забыть</i>');
                                     button.addClass('btn-danger');
                                     button.removeClass('btn-success');
                                     localStorage.setItem('favorite_' + response.id, 'true');
                                 } else {
-                                    button.html('<i class="fa-solid fa-heart-circle-plus"></i>');
+                                    button.html('<i class="fa-solid fa-heart-circle-plus"> В избранное</i>');
                                     button.addClass('btn-success');
                                     button.removeClass('btn-danger');
                                     localStorage.removeItem('favorite_' + response.id);
@@ -240,9 +240,9 @@
                                                 <p><small>Просмотры: {{ article.get_views }}</small></p>
                                                 <a class="btn btn-success favorite-btn" href="{% url 'favorites' article.pk %}" data-article-id="{{ article.pk }}">
                                                     {% if article.favorite or 'favorite_'|add:article.pk in request.session %}
-                                                        <i class="fa-solid fa-heart-circle-minus"></i>
+                                                        <i class="fa-solid fa-heart-circle-minus"> Забыть</i>
                                                     {% else %}
-                                                        <i class="fa-solid fa-heart-circle-plus"></i>
+                                                        <i class="fa-solid fa-heart-circle-plus"> В избранное</i>
                                                     {% endif %}
                                                 </a>
                                             </p>
