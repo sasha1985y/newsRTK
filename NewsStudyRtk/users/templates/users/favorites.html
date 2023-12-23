@@ -5,7 +5,7 @@
 {% block title %} Избранное {% endblock %}
 
 {% block main %}
-    <main class="row">
+    <main class="row" style="min-height: 90vh;">
         <div class="col-md-2 side_menu" style="list-style: none;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
@@ -13,12 +13,15 @@
                 {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
                 {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
                 {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                {% block user %}
+                        {% include 'users/user-actions.html' %}
+                {% endblock %}
                 <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494">Изображение от evening_tao</a> на Freepik
             {% endblock %}
         </div>
         {% block content %}
             <div class="col" style="background: url({% static 'main/img/утро.jpg' %}) no-repeat;  background-size: cover; padding: 0;">
-                <div class="text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%); min-height: 80vh;">
+                <div class="text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%); min-height: 90vh;">
                     <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Избранное</h1>
                     <div class="row">
                         <div class="col-md-3" style="margin: 0; padding: 0;"></div>
@@ -26,13 +29,7 @@
                             {% if favorites %}
                                 <ul>
                                     {% for favorite in favorites %}
-                                        <li>
-                                            <a href="{{ favorite.article.get_absolute_url }}">{{ favorite.article.title }}</a>
-                                            <form method="post" action="{% url 'remove_favorite' favorite.pk %}">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger">Удалить из избранного</button>
-                                            </form>
-                                        </li>
+                                        <li style="list-style: none;"><a class="fs-1" href="{{ favorite.article.get_absolute_url }}" style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; text-decoration: none; color: #FDCE4B;">{{ favorite.article.title }}</a></li>
                                     {% endfor %}
                                 </ul>
                             {% else %}
