@@ -202,7 +202,7 @@
                                                     <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.author.username %} {{ n }} {% endfor %}</a>
                                                 </p>
                                                 <p><small>Просмотры: {{ article.get_views }}</small></p>
-                                                <a class="btn btn-success" href="{% url 'favorites' article.pk %}"><i class="fa fa-bookmark">В избранное</i></a>
+                                                <a class="btn btn-success" href="{% url 'favorites' article.pk %}"><i class="fa-solid fa-heart-circle-plus"></i></a>
                                             </p>
                                         </div>
                                     </div>

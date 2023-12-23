@@ -75,7 +75,7 @@ class AccountUpdateForm(forms.ModelForm):
                    'snapchat': TextInput({'class': 'textinput form-control',
                                     'placeholder': 'snapchat'}),
                    'skype': TextInput({'class': 'textinput form-control',
-                                          'placeholder': 'telegram'}),
+                                          'placeholder': 'skype'}),
                    'vk': TextInput({'class': 'textinput form-control',
                                     'placeholder': 'vk'}),
                    'telegram': TextInput({'class': 'textinput form-control',

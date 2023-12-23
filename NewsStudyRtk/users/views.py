@@ -32,7 +32,6 @@ def add_to_favorites(request, id):
     bookmark = FavoriteArticle.objects.filter(user=request.user.id,
                                               article=article)
     if bookmark.exists():
-        print(bookmark)
         bookmark.delete()
         messages.warning(request,f"Новость {article.title} удалена из закладок")
     else:
