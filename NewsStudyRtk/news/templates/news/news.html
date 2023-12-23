@@ -199,13 +199,10 @@
                                             <p class="text-center">
                                                 <p class="lead my-3">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
                                                 <p class="lead my-3">Автор:
-                                                    {% if article.account.nickname == '' %}
-                                                        Никнейм<i class="fa-solid fa-lock"></i>
-                                                    {% else %}
-                                                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.account.nickname %} {{ n }} {% endfor %}</a>
-                                                    {% endif %}
+                                                    <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.author.username %} {{ n }} {% endfor %}</a>
                                                 </p>
                                                 <p><small>Просмотры: {{ article.get_views }}</small></p>
+                                                <a class="btn btn-success" href="{% url 'favorites' article.pk %}"><i class="fa fa-bookmark">В избранное</i></a>
                                             </p>
                                         </div>
                                     </div>
