@@ -13,4 +13,6 @@ urlpatterns = [
         template_name='users/logout.html'), name='logout'),
     path('password', views.password_update, name='password'),
     path('favorites/<int:id>', views.add_to_favorites, name='favorites'),
+    path('favorites/', views.favorites, name='favorites'),
+    path('favorites/<int:id>/remove/', views.remove_favorite, name='remove_favorite'),
 ]

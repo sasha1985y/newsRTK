@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
@@ -25,7 +25,6 @@ def index(request):
     context = dict()
     return render(request,'users/account.html',context)
 
-
 @login_required
 def add_to_favorites(request, id):
     article = Article.objects.get(id=id)
@@ -43,6 +42,15 @@ def add_to_favorites(request, id):
         'id': id,
     }
     return JsonResponse(response)
+
+def favorites(request):
+    favorites = FavoriteArticle.objects.filter(user=request.user).select_related('article')
+    return render(request, 'users/favorites.html', {'favorites': favorites})
+
+def remove_favorite(request, id):
+    favorite = get_object_or_404(FavoriteArticle, pk=id, user=request.user)
+    favorite.delete()
+    return redirect('favorites')
 
 def profile_update(request):
     user = request.user
