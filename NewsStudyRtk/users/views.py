@@ -11,6 +11,7 @@ from .forms import AccountUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 # def profile(request):
 #     context = dict()
@@ -123,3 +124,22 @@ def contact_page(request):
         form.name='Любимый клиент'
     context = {'form': form}
     return render(request,'users/contact_page.html',context)
+
+def my_news_list(request):
+    categories = Article.categories #создали перечень категорий
+    author = User.objects.get(id=request.user.id) #создали перечень авторов
+    articles = Article.objects.filter(author=author)
+    if request.method == "POST":
+        selected_category = int(request.POST.get('category_filter'))
+        if selected_category != 0: #фильтруем найденные результаты по категориям
+            articles = articles.filter(category__icontains=categories[selected_category-1][0])
+    else: #если страница открывется впервые
+        selected_category = 0
+    total = len(articles)
+    p = Paginator(articles,2)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    context = {'articles': page_obj, 'total':total,
+               'categories':categories,'selected_category': selected_category}
+
+    return render(request,'users/my_news_list.html',context)

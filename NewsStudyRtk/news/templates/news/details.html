@@ -50,7 +50,7 @@
                 <p class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
                     {{ article.text }}
                 </p>
-                {% if request.user|has_group:"Authors" %}
+                {% if request.user|has_group:"Authors" and article.author_id == request.user.id %}
                     <div class="text-center">
                         <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a class="btn btn-outline-secondary" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a>
@@ -62,6 +62,6 @@
 {% endblock %}
 {% block foot %}
     <footer class="row" style="position: relative; z-index: 2;">
-        <p class="col text-center">Copyright Александр Куянцев</p>
+        <p class="col text-center">Copyright ***{{ request.user }}***</p>
     </footer>
 {% endblock %}

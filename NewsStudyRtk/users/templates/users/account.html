@@ -34,7 +34,7 @@
                     {% endblock %}
                     {% block catalog %}
                         {% if request.user|has_group:"Authors" %}
-                            <li><i class="fa-solid fa-layer-group"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspМои статьи</a></li>
+                            <li><i class="fa-solid fa-layer-group"></i><a href="{% url 'my_news_list' %}" style="text-decoration: none; color: #FDCE4B;">&nbspМои статьи</a></li>
                             <li><i class="fa-solid fa-heart"></i><a href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;">&nbspИзбранное</a></li>
                         {% else %}
                             <li><i class="fa-solid fa-heart"></i><a href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;">&nbspИзбранное</a></li>

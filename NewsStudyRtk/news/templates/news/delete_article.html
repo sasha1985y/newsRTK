@@ -14,10 +14,10 @@
                     <form method="post" class="contact_form">
                         {% csrf_token %}
                         <a class="btn btn-warning" href="{% url 'news_index' %}">Отмена</a>
-                        {% if request.user|has_group:"Authors" %}
+                        {% if request.user|has_group:"Authors" and article.author_id == request.user.id %}
                             <input type="submit" class="btn btn-danger" value = "Удалить">
                         {% else %}
-                            <a href="{% url 'home' %}" class="btn btn-danger">&nbspУдалить</a>
+                            <a href="{% url 'logout' %}" class="btn btn-danger">&nbspУдалить</a>
                         {% endif %}
                     </form>
                 </div>
