@@ -5,8 +5,8 @@
 {% block title %} Избранное {% endblock %}
 
 {% block main %}
-    <main class="row" style="min-height: 90vh;">
-        <div class="col-md-2 side_menu" style="list-style: none;">
+    <main class="row" style="background: url({% static 'main/img/утро.jpg' %}) no-repeat;  background-size: cover; position: relative; height: auto;">
+        <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
                 {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
@@ -16,28 +16,28 @@
                 {% block user %}
                         {% include 'users/user-actions.html' %}
                 {% endblock %}
-                <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494">Изображение от evening_tao</a> на Freepik
             {% endblock %}
+            <div style="height: 13vh;"></div>
         </div>
         {% block content %}
-            <div class="col" style="background: url({% static 'main/img/утро.jpg' %}) no-repeat;  background-size: cover; padding: 0;">
-                <div class="text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%); min-height: 90vh;">
-                    <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Избранное</h1>
-                    <div class="row">
-                        <div class="col-md-3" style="margin: 0; padding: 0;"></div>
-                        <div class="col">
-                            {% if favorites %}
-                                <ul>
-                                    {% for favorite in favorites %}
-                                        <li style="list-style: none;"><a class="fs-1" href="{{ favorite.article.get_absolute_url }}" style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; text-decoration: none; color: #FDCE4B;">{{ favorite.article.title }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p>Вы еще не добавили ни одной статьи в избранное.</p>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+            <div class="col text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%); position: relative; height: auto;">
+                <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Избранное</h1>
+                <div class="row">
+                    <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+                    <div class="col">
+                        {% if favorites %}
+                            <ol>
+                                {% for favorite in favorites %}
+                                    <li><a class="fs-1" href="{{ favorite.article.get_absolute_url }}" style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; text-decoration: none; color: #FDCE4B;">{{ favorite.article.title }}</a></li>
+                                {% endfor %}
+                                <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494" style="text-decoration: none; color: #FDCE4B; ">Изображение от evening_tao</a> на Freepik
+                            </ol>
+                        {% else %}
+                            <p>Вы еще не добавили ни одной статьи в избранное.</p>
+                            <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494" style="text-decoration: none; color: #FDCE4B; ">Изображение от evening_tao</a> на Freepik
+                        {% endif %}
                     </div>
+                    <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                 </div>
             </div>
         {% endblock %}
