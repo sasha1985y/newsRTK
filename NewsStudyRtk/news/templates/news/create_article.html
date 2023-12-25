@@ -21,7 +21,7 @@
                         {% if request.user|has_group:"Authors" and article.author_id == request.user.id %}
                             <input type="submit" class="btn btn-success" value = "Сохранить">
                         {% else %}
-                            <a href="{% url 'logout' %}" class="btn btn-success">&nbspСохранить</a>
+                            <a href="{% url 'logout' %}" id="warning" class="btn btn-success">&nbspСохранить</a>
                         {% endif %}
                     </form>
                 </div>
@@ -29,4 +29,13 @@
             <div class="col-md-2"></div>
         {% endblock %}
     </main>
+    <script>
+        warning.onmouseover = handler;
+        function handler(event) {
+
+            if (event.type == 'mouseover') {
+                alert('Уважаемый пользователь, Вы можете сохранять прогресс только тех новостей, которые создали сами, в противном случае Вы будете разлогинены. Спасибо за понимание.');
+            }
+        }
+    </script>
 {% endblock %}
