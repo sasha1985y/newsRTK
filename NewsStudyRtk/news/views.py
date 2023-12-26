@@ -139,3 +139,9 @@ def individual(request,id):
     author = Account.objects.filter(user_id=id)[0]
     context = {'author': author}
     return render(request, 'users/public_page.html', context)
+
+def readers(request):
+    readers = User.objects.all()
+    print('readers', readers)
+    context = {'readers': readers}
+    return render(request, 'news/readers.html', context)

@@ -1,0 +1,37 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+{% block title %} Избранное {% endblock %}
+
+{% block main %}
+    <main class="row" style="background: url({% static 'main/img/утро.jpg' %}) no-repeat;  background-size: cover; position: relative; height: auto;">
+        <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
+            {% block sidebar %}
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
+                {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                {% block user %}
+                        {% include 'users/user-actions.html' %}
+                {% endblock %}
+            {% endblock %}
+            <div style="height: 13vh;"></div>
+        </div>
+        {% block content %}
+            <div class="col text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%); position: relative; height: auto;">
+                <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Избранное</h1>
+                <div class="row">
+                    <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+                    <ul class="col">
+                        {% for reader in readers %}
+                            <li><a>{{reader}}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+{% endblock %}
