@@ -14,56 +14,58 @@
         <title>{% block title %}Главная страница{% endblock %}</title>
         {% block head %}{% endblock %}
     </head>
-    <body>
-        <div class="container-fluid">
-            {% block header %}
-                {% include 'main/header.html' %}<!--header-->
-            {% endblock %}
-            {% block main %}
-                <main>
-                    <div class="row">
-                        <div class="col-md-2 side_menu"></div>
-                        <div class="col-md-5 side_menu"></div>
-                        <h1 class="col text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; background-color: #9D8D8E; margin-bottom: 0;">Почему мы?</h1>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 side_menu">
-                            {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+    {% block body %}
+        <body>
+            <div class="container-fluid">
+                {% block header %}
+                    {% include 'main/header.html' %}<!--header-->
+                {% endblock %}
+                {% block main %}
+                    <main>
+                        <div class="row">
+                            <div class="col-md-2 side_menu"></div>
+                            <div class="col-md-5 side_menu"></div>
+                            <h1 class="col text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; background-color: #9D8D8E; margin-bottom: 0;">Почему мы?</h1>
                         </div>
-                        <div class="col-md-6" style="padding: 0;">
-                            {% block slider %} {% include 'main/slider.html' %} {% endblock %}
+                        <div class="row">
+                            <div class="col-md-2 side_menu">
+                                {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+                            </div>
+                            <div class="col-md-6" style="padding: 0;">
+                                {% block slider %} {% include 'main/slider.html' %} {% endblock %}
+                            </div>
+                            <p class="col-md-4 text-start" style="background-color: #9D8D8E; margin-bottom: 0;">
+                                Добро пожаловать на наш сайт! <br>
+                                Мы - команда профессионалов,<br>
+                                которая занимается созданием<br>
+                                сайтов и приложений любой сложности.<br>
+                                Мы готовы предложить Вам полный<br>
+                                спектр услуг: от разработки дизайна<br>
+                                до запуска проекта в интернете.<br>
+                                Наша цель - создать для Вас уникальный<br>
+                                продукт, который будет соответствовать<br>
+                                всем Вашим требованиям и пожеланиям.<br>
+                                Мы используем самые современные технологии<br>
+                                и инструменты, чтобы достичь максимального<br>
+                                качества и эффективности. Наш опыт и<br>
+                                профессионализм позволяют нам создавать<br>
+                                сайты и приложения, которые привлекают<br>
+                                внимание и удобны в использовании.<br>
+                                Мы готовы воплотить в жизнь Ваши идеи и<br>
+                                помочь Вам достичь успеха в интернете.<br>
+                                Свяжитесь с нами, чтобы начать работу<br>
+                                над Вашим проектом уже сегодня!
+                            </p>
+                            {% block content %}{% endblock %}
+                            {% block contacts %}{% endblock %}
+                            {% block gallery %}{% endblock %}
                         </div>
-                        <p class="col-md-4 text-start" style="background-color: #9D8D8E; margin-bottom: 0;">
-                            Добро пожаловать на наш сайт! <br>
-                            Мы - команда профессионалов,<br>
-                            которая занимается созданием<br>
-                            сайтов и приложений любой сложности.<br>
-                            Мы готовы предложить Вам полный<br>
-                            спектр услуг: от разработки дизайна<br>
-                            до запуска проекта в интернете.<br>
-                            Наша цель - создать для Вас уникальный<br>
-                            продукт, который будет соответствовать<br>
-                            всем Вашим требованиям и пожеланиям.<br>
-                            Мы используем самые современные технологии<br>
-                            и инструменты, чтобы достичь максимального<br>
-                            качества и эффективности. Наш опыт и<br>
-                            профессионализм позволяют нам создавать<br>
-                            сайты и приложения, которые привлекают<br>
-                            внимание и удобны в использовании.<br>
-                            Мы готовы воплотить в жизнь Ваши идеи и<br>
-                            помочь Вам достичь успеха в интернете.<br>
-                            Свяжитесь с нами, чтобы начать работу<br>
-                            над Вашим проектом уже сегодня!
-                        </p>
-                        {% block content %}{% endblock %}
-                        {% block contacts %}{% endblock %}
-                        {% block gallery %}{% endblock %}
-                    </div>
-                </main>
-            {% endblock %}
+                    </main>
+                {% endblock %}
 
-            {% block foot %}{% include 'main/footer.html' %} {% endblock %}
-        </div>
-        <script src="{% static 'main/js/main.js' %}" type="module"></script>
-    </body>
+                {% block foot %}{% include 'main/footer.html' %} {% endblock %}
+            </div>
+            <script src="{% static 'main/js/main.js' %}" type="module"></script>
+        </body>
+    {% endblock %}
 </html>
