@@ -2,10 +2,10 @@
 {% load static %}
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
-{% block title %} Избранное {% endblock %}
+{% block title %} Участники {% endblock %}
 
 {% block main %}
-    <main class="row" style="background: url({% static 'main/img/утро.jpg' %}) no-repeat;  background-size: cover; position: relative; height: auto;">
+    <main class="row" style="background: url({% static 'main/img/зима.gif' %}) no-repeat;  background-size: cover; position: relative; height: auto;">
         <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
@@ -20,8 +20,8 @@
             <div style="height: 13vh;"></div>
         </div>
         {% block content %}
-            <div class="col text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%); position: relative; height: auto;">
-                <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Избранное</h1>
+            <div class="col text-center">
+                <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Гости сайта</h1>
                 <div class="row">
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                     <ul class="col">
