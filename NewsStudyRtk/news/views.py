@@ -96,7 +96,6 @@ class ArticleUpdateView(UpdateView):
         return context
 
     def post(self, request, **kwargs):
-        request.POST = request.POST
         current_object = Article.objects.get(id=request.POST['image_set-0-article'])
         deleted_ids = []
         for i in range(int(request.POST['image_set-TOTAL_FORMS'])):  # удаление всех по галочкам
