@@ -1,4 +1,9 @@
 import os
+import environ
+env = environ.Env()
+environ.Env.read_env()
+from dotenv import load_dotenv
+load_dotenv()
 """
 Django settings for NewsStudyRtk project.
 
@@ -21,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j^d=79*rpkee%dgyl-=+i6yi^wh@ct7*z@9s4$!o-fkx)wqg9_'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,11 +97,11 @@ WSGI_APPLICATION = 'NewsStudyRtk.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'deploy53db',#env("DB_NAME"),
-        'USER': 'postgres',#env("DB_USER"),
-        'PASSWORD': 'sashapostgres',#env("DB_PASSWORD"),
-        'HOST': '127.0.0.1',#env("DB_HOST"),
-        'PORT': '5432',#env("DB_PORT"),
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env("DB_HOST"),
+        'PORT': env("DB_PORT"),
     }
 }
 
