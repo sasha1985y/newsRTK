@@ -2,6 +2,7 @@
 {% load static %}
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
+{% regroup readers by id as reader_list %}
 {% block title %} Участники {% endblock %}
 
 {% block main %}
@@ -24,11 +25,15 @@
                 <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Гости сайта</h1>
                 <div class="row">
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
-                    <ul class="col">
-                        {% for reader in readers %}
-                            <li><a>{{reader}}</a></li>
-                        {% endfor %}
-                    </ul>
+                        <ul class="col">
+                            {% for article in unique_articles %}
+                                {% for reader in unique_readers %}
+                                    {% if reader == article %}
+                                        <li><a href="{% url 'user_detail' reader %}">{{reader}}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                 </div>
             </div>

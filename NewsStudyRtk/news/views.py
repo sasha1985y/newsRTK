@@ -50,7 +50,6 @@ def create_article(request):
     return render(request,'news/create_article.html', {'form':form})
 
 def index(request):
-    #categories = Article.objects.all().values_list('category', flat=True)
     categories = Article.categories
     author_list = User.objects.all()
     selected = 0
@@ -140,7 +139,10 @@ def individual(request,id):
     return render(request, 'users/public_page.html', context)
 
 def readers(request):
-    readers = User.objects.all()
-    print('readers', readers)
-    context = {'readers': readers}
+    readers = User.objects.values_list('id', flat=True)
+    unique_readers = sorted(tuple(set(readers)))
+    articles = Article.objects.values_list('author_id', flat=True)
+    unique_articles = sorted(tuple(set(articles)))
+    print('unique_articles', unique_articles, 'unique_readers', unique_readers)
+    context = {'unique_readers': unique_readers, 'unique_articles': unique_articles}
     return render(request, 'news/readers.html', context)
