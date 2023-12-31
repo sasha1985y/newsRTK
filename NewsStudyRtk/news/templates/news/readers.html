@@ -22,18 +22,22 @@
         </div>
         {% block content %}
             <div class="col text-center">
-                <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Гости сайта</h1>
-                <div class="row">
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Гости сайта</h1>
+                <div class="row text-center">
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
-                        <ul class="col">
-                            {% for article in unique_articles %}
-                                {% for reader in unique_readers %}
-                                    {% if reader == article %}
-                                        <li><a href="{% url 'user_detail' reader %}">{{reader}}</a></li>
-                                    {% endif %}
-                                {% endfor %}
+                    <div class="row fs-2" style="font-family: Iceberg , cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
+                        <div class="col-md-5" style="margin: 0; padding: 0;"></div>
+                        <ol class="col-md-2" style="color: #46344e">
+                            {% for nickname in readers_nickname %}
+                                <li><span style="color: #46344e">{{nickname}}</span></li>
+                            {% endfor %}
+                        </ol>
+                        <ul class="col-md-2" style="list-style: none;">
+                            {% for item in readers_id %}
+                                <li><a href="{% url 'user_detail' item %}">{{item}}</a></li>
                             {% endfor %}
                         </ul>
+                    </div>
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                 </div>
             </div>

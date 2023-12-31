@@ -139,10 +139,8 @@ def individual(request,id):
     return render(request, 'users/public_page.html', context)
 
 def readers(request):
-    readers = User.objects.values_list('id', flat=True)
-    unique_readers = sorted(tuple(set(readers)))
-    articles = Article.objects.values_list('author_id', flat=True)
-    unique_articles = sorted(tuple(set(articles)))
-    print('unique_articles', unique_articles, 'unique_readers', unique_readers)
-    context = {'unique_readers': unique_readers, 'unique_articles': unique_articles}
+    readers_id = tuple(User.objects.values_list('id', flat=True))
+    readers_nickname = tuple(User.objects.values_list('username', flat=True))
+    print('readers_nickname', readers_nickname, 'readers_id', readers_id)
+    context = {'readers_id': readers_id, 'readers_nickname': readers_nickname}
     return render(request, 'news/readers.html', context)
