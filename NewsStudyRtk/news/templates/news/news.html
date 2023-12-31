@@ -1,5 +1,6 @@
 {% extends 'main/homebase.html' %}
 {% load static %}
+{% load users_extras %}
 {% block title %} Новости {% endblock %}
 {% block main %}
     <main>
@@ -198,7 +199,9 @@
                                      <select class="form-select" name="author_filter" style="width:40%">
                                           <option value="0">Все авторы</option>
                                           {% for author in author_list %}
-                                              <option value="{{ author.id }}" {% if selected == author.id %} selected {% endif %}> {{ author.username }}</option>
+                                                {% if author|has_group:"Authors" %}
+                                                    <option value="{{ author.id }}" {% if selected == author.id %} selected {% endif %}> {{ author.username }}</option>
+                                                {% endif %}
                                           {% endfor %}
                                           <option value="1000">Сегодня</option>
                                      </select>
