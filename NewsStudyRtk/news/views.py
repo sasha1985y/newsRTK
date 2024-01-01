@@ -137,7 +137,7 @@ def individual(request,id):
     author = Account.objects.filter(user_id=id)[0]
     context = {'author': author}
     return render(request, 'users/public_page.html', context)
-
+@login_required(login_url=settings.LOGIN_URL)
 def readers(request):
     readers_id = tuple(User.objects.values_list('id', flat=True))
     readers_nickname = tuple(User.objects.values_list('username', flat=True))

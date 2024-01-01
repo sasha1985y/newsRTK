@@ -3,6 +3,7 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from news.models import Article
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login
@@ -29,6 +30,7 @@ def index(request):
 @login_required
 def add_to_favorites(request, id):
     article = Article.objects.get(id=id)
+    print(article.author_id)
     bookmark = FavoriteArticle.objects.filter(user=request.user.id, article=article)
     if bookmark.exists():
         bookmark.delete()
@@ -143,3 +145,13 @@ def my_news_list(request):
                'categories':categories,'selected_category': selected_category}
 
     return render(request,'users/my_news_list.html',context)
+
+def article_detail(request, id):
+    article = Article.objects.get(id=id)
+    user = User.objects.get(id=id)
+    context = {
+        'article': article,
+        'user': user,
+    }
+    return render(request, 'news/favorite_btn.html', context)
+

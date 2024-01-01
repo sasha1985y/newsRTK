@@ -1,0 +1,48 @@
+{% load static %}
+    <script>
+        var userId = {{ user.id }};
+        $(document).ready(function() {
+          $('.favorite-btn').each(function() {
+            var articleId = $(this).data('article-id');
+            //var userId = $(this).data('user-id'); // добавляем получение id пользователя
+            if (localStorage.getItem('favorite_' + userId + '_' + articleId) === 'true') {
+              $(this).html('<i class="fa-solid fa-heart-circle-minus"> Забыть</i>');
+              $(this).addClass('btn-danger');
+              $(this).removeClass('btn-success');
+            }
+          });
+
+          $('.favorite-btn').click(function(event) {
+            event.preventDefault();
+            var articleId = $(this).data('article-id');
+            //var userId = $(this).data('user-id'); // добавляем получение id пользователя
+            var url = $(this).attr('href');
+            var button = $(this);
+
+            $.ajax({
+              url: url,
+              type: 'GET',
+              success: function(response) {
+                if (response.status === 'added') {
+                  button.html('<i class="fa-solid fa-heart-circle-minus"> Забыть</i>');
+                  button.addClass('btn-danger');
+                  button.removeClass('btn-success');
+                  localStorage.setItem('favorite_' + userId + '_' + response.id, 'true'); // добавляем id пользователя в ключ
+                } else {
+                  button.html('<i class="fa-solid fa-heart-circle-plus"> В избранное</i>');
+                  button.addClass('btn-success');
+                  button.removeClass('btn-danger');
+                  localStorage.removeItem('favorite_' + userId + '_' + response.id); // добавляем id пользователя в ключ
+                }
+              }
+            });
+          });
+        });
+    </script>
+    <a class="btn btn-success favorite-btn" href="{% url 'favorites' article.pk %}" data-article-id="{{ article.pk }}">
+        {% if article.favorite or 'favorite_'|add:article.pk in request.session %}
+            <i class="fa-solid fa-heart-circle-minus"> Забыть</i>
+        {% else %}
+            <i class="fa-solid fa-heart-circle-plus"> В избранное</i>
+        {% endif %}
+    </a>
