@@ -140,11 +140,13 @@ def individual(request,id):
     return render(request, 'users/public_page.html', context)
 @login_required(login_url=settings.LOGIN_URL)
 def readers(request):
-    readers_id = list(User.objects.values_list('id', flat=True))
-    readers_nickname = list(User.objects.values_list('username', flat=True))
+    readers_id = sorted(list(User.objects.values_list('id', flat=True)))
+    readers_username = list(User.objects.values_list('username', flat=True))
+    readers_image = list(Account.objects.values_list('account_image', flat=True))
+    readers_account_id = list(Account.objects.values_list('user_id', flat=True))
 
-    # Объединяем два списка в список кортежей
-    readers = list(zip(readers_nickname, readers_id))
+    # Создаем список кортежей из трех элементов: username, id и ссылка на изображение
+    readers = list(zip(readers_username, readers_id, readers_image))
 
     # Создаем объект Paginator для списка кортежей
     paginator = Paginator(readers, 8)
@@ -157,5 +159,6 @@ def readers(request):
 
     context = {
         'readers': page_obj,
+        'readers_account_id': readers_account_id
     }
     return render(request, 'news/readers.html', context)
