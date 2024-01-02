@@ -13,6 +13,7 @@ import json
 import os
 from users.utils import check_group
 from .utils import ViewCountMixin
+from django.core.paginator import Paginator
 
 
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
@@ -139,8 +140,22 @@ def individual(request,id):
     return render(request, 'users/public_page.html', context)
 @login_required(login_url=settings.LOGIN_URL)
 def readers(request):
-    readers_id = tuple(User.objects.values_list('id', flat=True))
-    readers_nickname = tuple(User.objects.values_list('username', flat=True))
-    print('readers_nickname', readers_nickname, 'readers_id', readers_id)
-    context = {'readers_id': readers_id, 'readers_nickname': readers_nickname}
+    readers_id = list(User.objects.values_list('id', flat=True))
+    readers_nickname = list(User.objects.values_list('username', flat=True))
+
+    # Объединяем два списка в список кортежей
+    readers = list(zip(readers_nickname, readers_id))
+
+    # Создаем объект Paginator для списка кортежей
+    paginator = Paginator(readers, 8)
+
+    # Получаем номер страницы из GET-параметра 'page'
+    page_number = request.GET.get('page')
+
+    # Получаем объект страницы
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'readers': page_obj,
+    }
     return render(request, 'news/readers.html', context)

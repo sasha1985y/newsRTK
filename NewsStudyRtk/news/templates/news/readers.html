@@ -28,15 +28,24 @@
                     <div class="row fs-2" style="font-family: Iceberg , cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                         <div class="col-md-5" style="margin: 0; padding: 0;"></div>
                         <ol class="col-md-2" style="color: #46344e">
-                            {% for nickname in readers_nickname %}
-                                <li><span style="color: #46344e">{{nickname}}</span></li>
+                            {% for reader in readers %}
+                                <li><span style="color: #46344e">{{reader.0}}</span></li>
                             {% endfor %}
                         </ol>
                         <ul class="col-md-2" style="list-style: none;">
-                            {% for item in readers_id %}
-                                <li><a href="{% url 'user_detail' item %}">{{item}}</a></li>
+                            {% for reader in readers %}
+                                <li><a href="{% url 'user_detail' reader.1 %}">{{reader.1}}</a></li>
                             {% endfor %}
                         </ul>
+                        <!-- Добавляем ссылки на предыдущую и следующую страницы -->
+                        <div class="col-md-3">
+                            {% if readers.has_previous %}
+                                <a href="?page={{ readers.previous_page_number }}">previous</a>
+                            {% endif %}
+                            {% if readers.has_next %}
+                                <a href="?page={{ readers.next_page_number }}">next</a>
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                 </div>
