@@ -30,7 +30,6 @@ def index(request):
 @login_required
 def add_to_favorites(request, id):
     article = Article.objects.get(id=id)
-    print(article.author_id)
     bookmark = FavoriteArticle.objects.filter(user=request.user.id, article=article)
     if bookmark.exists():
         bookmark.delete()

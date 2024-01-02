@@ -18,7 +18,7 @@
                         {% csrf_token %}
                         {{ form|crispy }}
                         {{ image_form|crispy }}
-                        {% if request.user|has_group:"Authors" and article.author_id == request.user.id %}
+                        {% if request.user|has_group:"Authors" and article.author_id == request.user.id or request.user|has_group:"Authors" and article.author_id == article.user.id %}
                             <input type="submit" class="btn btn-success" value = "Сохранить">
                         {% else %}
                             <a href="{% url 'logout' %}" id="not_author" class="btn btn-success">&nbspСохранить</a>
@@ -27,15 +27,14 @@
                 </div>
             </div>
             <div class="col-md-2"></div>
+            <script>
+                not_author.onmouseover = handler;
+                function handler(event) {
+                    if (event.type == 'mouseover') {
+                        alert('Уважаемый пользователь, Вы не являетесь автором Этой новости, Вы не можете изменять или сохранять её состояние.');
+                    }
+                }
+            </script>
         {% endblock %}
     </main>
-    <script>
-        not_author.onmouseover = handler;
-        function handler(event) {
-
-            if (event.type == 'mouseover') {
-                alert('Уважаемый пользователь, Вы не являетесь автором Этой новости, Вы не можете изменять или сохранять её состояние.');
-            }
-        }
-    </script>
 {% endblock %}
