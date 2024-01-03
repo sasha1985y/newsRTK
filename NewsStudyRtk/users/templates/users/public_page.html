@@ -9,15 +9,15 @@
         <div class="col-md-1">
             <div class="row">
                 <div class="col p-2"></div>
-                <div class="col p-2">{% if author.user|has_group:"Actions Required" %}<img src="{% static 'main/img/ico/question-solid.svg' %}" title="На рассмотрении" style="cursor: help;">{% endif %}</div>
+                <div class="col p-2">{% if author.user|has_group:"Actions Required" %}<img src="{% static 'main/img/ico/question-solid.svg' %}" title="На рассмотрении" style="cursor: help;" width="30" height="30">{% endif %}</div>
             </div>
             <div class="row">
-                <div class="col p-2">{% if author.user|has_group:"Authors" %}<img src="{% static 'main/img/ico/feather-solid.svg' %}" title="Автор" style="cursor: help;">{% endif %}</div>
-                <div class="col p-2">{% if author.user|has_group:"Reader" %}<img src="{% static 'main/img/ico/scroll-solid.svg' %}" title="Читатель" style="cursor: help;">{% endif %}</div>
+                <div class="col p-2">{% if author.user|has_group:"Authors" %}<img src="{% static 'main/img/ico/feather-solid.svg' %}" title="Автор" style="cursor: help;" width="30" height="30">{% endif %}</div>
+                <div class="col p-2">{% if author.user|has_group:"Reader" %}<img src="{% static 'main/img/ico/scroll-solid.svg' %}" title="Читатель" style="cursor: help;" width="30" height="30">{% endif %}</div>
             </div>
             <div class="row">
-                <div class="col p-2">{% if author.user.is_superuser %}<img src="{% static 'main/img/ico/crown-solid.svg' %}" title="Администратор сайта" style="cursor: help;">{% endif %}</div>
-                <div class="col p-2">{% if author.user.is_staff %}<img src="{% static 'main/img/ico/key-solid.svg' %}" title="Персонал" style="cursor: help;">{% endif %}</div>
+                <div class="col p-2">{% if author.user.is_superuser %}<img src="{% static 'main/img/ico/crown-solid.svg' %}" title="Администратор сайта" style="cursor: help;" width="30" height="30">{% endif %}</div>
+                <div class="col p-2">{% if author.user.is_staff %}<img src="{% static 'main/img/ico/key-solid.svg' %}" title="Персонал" style="cursor: help;" width="30" height="30">{% endif %}</div>
             </div>
         </div>
         <div class="col-md-3" style="margin-top: 2%">
@@ -29,7 +29,7 @@
     </header>
 {% endblock %}
 {% block main %}
-    <main class="row" style="background: url({% static 'main/img/field.gif' %}) no-repeat;  background-size: cover;">
+    <main class="row" style="background: url({% static 'main/img/field.gif' %}) no-repeat;  background-size: cover;" id="main">
         <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #A5796C 70%) center fixed; list-style: none;">
             <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
             {% block sidebar %}
@@ -166,4 +166,57 @@
             <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.2;"></li>
         </ul>
     </main>
+    <script>
+        let currentElem = null;
+
+        main.onmouseover = function(event) {
+          // перед тем, как войти на следующий элемент, курсор всегда покидает предыдущий
+          // если currentElem есть, то мы ещё не ушли с предыдущего <li>,
+          // это переход внутри - игнорируем такое событие
+          if (currentElem) return;
+
+          let target = event.target.closest('li');
+
+          // переход не на <li> - игнорировать
+          if (!target) return;
+
+          // переход на <li>, но вне нашей таблицы (возможно при вложенных таблицах)
+          // игнорировать
+          if (!main.contains(target)) return;
+
+          // ура, мы зашли на новый <li>
+          currentElem = target;
+          target.style.background = '#212529';
+          target.style.color = '#FEDE00';
+          target.style.boxShadow = "5px -5px 5px #212529, -5px 5px 5px #212529, -5px -5px 5px #212529, 5px 5px 5px #212529";
+          currentElem.style.transition = 'all 0.5s';
+        };
+
+
+        main.onmouseout = function(event) {
+          // если мы вне <li>, то игнорируем уход мыши
+          // это какой-то переход внутри таблицы, но вне <li>,
+          // например с <tr> на другой <tr>
+          if (!currentElem) return;
+
+          // мы покидаем элемент – но куда? Возможно, на потомка?
+          let relatedTarget = event.relatedTarget;
+
+          while (relatedTarget) {
+            // поднимаемся по дереву элементов и проверяем – внутри ли мы currentElem или нет
+            // если да, то это переход внутри элемента – игнорируем
+            if (relatedTarget == currentElem) return;
+
+            relatedTarget = relatedTarget.parentNode;
+          }
+
+          // мы действительно покинули элемент
+          currentElem.style.background = '#9D8D8E';
+          currentElem.style.color = '#E8C24D';
+          currentElem.style.border = '';
+          currentElem.style.boxShadow = '';
+          currentElem.style.transition = 'all 0.5s';
+          currentElem = null;
+        };
+    </script>
 {% endblock %}

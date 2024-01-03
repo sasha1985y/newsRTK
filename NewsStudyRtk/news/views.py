@@ -144,8 +144,20 @@ def readers(request):
     readers_username = list(User.objects.values_list('username', flat=True))
     readers_image = list(Account.objects.values_list('account_image', flat=True))
 
+    authors = list(User.objects.values_list('id', 'username'))
+    photos = list(Account.objects.values_list('user_id', 'account_image'))
+
+    readers = []
+    for author in authors:
+        for photo in photos:
+            if author[0] == photo[0]:
+                readers.append((author[0], author[1], photo[1]))
+                break
+    print(readers)
+    #account, article, date_joined, email, favoritearticle, first_name, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, password, user_permissions, username
+
     # Создаем список кортежей из трех элементов: username, id и ссылка на изображение
-    readers = list(zip(readers_username, readers_id, readers_image))
+    # readers = list(zip(readers_username, readers_id, readers_image))
 
     # Создаем объект Paginator для списка кортежей
     paginator = Paginator(readers, 8)
