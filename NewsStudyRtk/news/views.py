@@ -143,7 +143,6 @@ def readers(request):
     readers_id = sorted(list(User.objects.values_list('id', flat=True)))
     readers_username = list(User.objects.values_list('username', flat=True))
     readers_image = list(Account.objects.values_list('account_image', flat=True))
-    readers_account_id = list(Account.objects.values_list('user_id', flat=True))
 
     # Создаем список кортежей из трех элементов: username, id и ссылка на изображение
     readers = list(zip(readers_username, readers_id, readers_image))
@@ -156,9 +155,7 @@ def readers(request):
 
     # Получаем объект страницы
     page_obj = paginator.get_page(page_number)
-
     context = {
         'readers': page_obj,
-        'readers_account_id': readers_account_id
     }
     return render(request, 'news/readers.html', context)

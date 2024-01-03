@@ -22,17 +22,17 @@
         </div>
         {% block content %}
             <div class="col text-center">
-                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Гости сайта</h1>
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; color: #46344E;">Гости сайта</h1>
                 <div class="row text-center">
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
-                    <div class="row">
+                    <div class="row" style="font-family: Iceberg , cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                         {% for reader in readers %}
                           <div class="col-sm-3">
                             <a href="{% url 'user_detail' reader.1 %}">
-                              <img src="{{ '/media/'|add:reader.2 }}" alt="{{ reader.0 }}" width="40" height="40">
+                              <img src="{{ '/media/'|add:reader.2 }}" alt="{{ reader.0 }}" width="100" height="100">
                             </a>
-                            <p><a href="{% url 'user_detail' reader.1 %}">{{ reader.0 }}</a></p>
-                            <p><a href="{% url 'user_detail' reader.1 %}">ID: {{ reader.1 }}</a></p>
+<!--                            <p><a href="{% url 'user_detail' reader.1 %}">{{ reader.0 }}</a></p>-->
+                            <p class="fs-3"><a href="{% url 'user_detail' reader.1 %}" style="color: #46344E; text-decoration: none;">ID: {{ reader.1 }}</a></p>
                           </div>
                         {% endfor %}
                     </div>
