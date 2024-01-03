@@ -3,7 +3,7 @@
     <li>
         {% if request.user.id %}  <!-- проверяем аутентификацию-->
             <div>
-                <button class="btn btn-primary dropdown-toggle col-12" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
+                <button class="btn btn-primary dropdown-toggle col-11" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
                     <img src="{{ request.user.account.account_image.url }}" alt="user" width="55" height="55">
                     <div class="d-none d-lg-block ">
                         {% if request.user.account.nickname == '' %}
