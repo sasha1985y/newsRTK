@@ -1,47 +1,44 @@
 {% load static %}
 {% load users_extras %}
-    <li>
-        {% if request.user.id %}  <!-- проверяем аутентификацию-->
-            <div>
-                <button class="btn btn-primary dropdown-toggle col-11" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
-                    <img src="{{ request.user.account.account_image.url }}" alt="user" width="55" height="55">
-                    <div class="d-none d-lg-block ">
-                        {% if request.user.account.nickname == '' %}
-                            <p class="text-secondary mb-1">Никнейм <i class="fa-solid fa-lock"></i></p>
-                        {% else %}
-                            <p class="text-secondary mb-1" style="font-family: Iceberg , cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{ request.user.account.nickname }}</p>
-                        {% endif %}
-                    </div>
-                    <small class="text-secondary mb-1">Ваш статус</small>
-                    <p class="text-secondary mb-1"> {% if request.user.is_superuser %}<i class="fa-solid fa-crown"> Админ</i>{% endif %}</p>
-                    <p class="text-secondary mb-1"> {% if request.user.is_staff %}<i class="fa-solid fa-key"> Персонал</i>{% endif %}</p>
-                    <p class="text-secondary mb-1"> {% if request.user|has_group:"Authors" %}<i class="fa-solid fa-feather"> Автор</i>{% endif %}</p>
-                    <p class="text-secondary mb-1"> {% if request.user|has_group:"Reader" %}<i class="fa-solid fa-scroll"> Читатель</i>{% endif %}</p>
-                    <p class="text-secondary mb-1"> {% if request.user|has_group:"Actions Required" %}<i class="fa-solid fa-question"> На рассмотрении</i>{% endif %}</p>
-                </button>
-                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
-                    {% if request.user|has_group:"Authors" %}
-                            <li><a class="dropdown-item" href="{% url 'create_article' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>
-                            <li><a class="dropdown-item" href="{% url 'my_news_list' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-layer-group"></i>&nbspМои статьи</a></li>
-                            <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
+    {% if request.user.id %}  <!-- проверяем аутентификацию-->
+        <li>
+            <button class="btn btn-primary dropdown-toggle col-11" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background:#212529;">
+                <img src="{{ request.user.account.account_image.url }}" alt="user" width="55" height="55">
+                <div class="d-none d-lg-block ">
+                    {% if request.user.account.nickname == '' %}
+                        <p class="text-secondary mb-1">Никнейм <i class="fa-solid fa-lock"></i></p>
                     {% else %}
-                        <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
+                        <p class="text-secondary mb-1" style="font-family: Iceberg , cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{ request.user.account.nickname }}</p>
                     {% endif %}
-                    <li><a class="dropdown-item" href="{% url 'user_index' %}" style="color: #FDCE4B;"><i class="fa-solid fa-address-card"></i> Мой профиль</a></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: #FDCE4B;"><i class="fa-solid fa-door-open"></i> Выход</a></li>
-                </ul>
-            </div> <!-- выпадающее меню-->
-            {% else %} <!-- ссылки на регистрацию и аутентификацию-->
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li>
-                    <a href="{% url 'registration' %}" {% if request.resolver_match.view_name  == registration %} class="link-active" aria-current="page" {% endif %} style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-file-pen"></i>&nbspРегистрация</a>
-                </li>
-                <li>
-                    <a href="{% url 'login' %}" {% if request.resolver_match.view_name  == login %} class="link-active" aria-current="page" {% endif %} style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-person-through-window"></i>&nbspВход</a>
-                </li>
+                </div>
+                <small class="text-secondary mb-1">Ваш статус</small>
+                <p class="text-secondary mb-1"> {% if request.user.is_superuser %}<i class="fa-solid fa-crown"> Админ</i>{% endif %}</p>
+                <p class="text-secondary mb-1"> {% if request.user.is_staff %}<i class="fa-solid fa-key"> Персонал</i>{% endif %}</p>
+                <p class="text-secondary mb-1"> {% if request.user|has_group:"Authors" %}<i class="fa-solid fa-feather"> Автор</i>{% endif %}</p>
+                <p class="text-secondary mb-1"> {% if request.user|has_group:"Reader" %}<i class="fa-solid fa-scroll"> Читатель</i>{% endif %}</p>
+                <p class="text-secondary mb-1"> {% if request.user|has_group:"Actions Required" %}<i class="fa-solid fa-question"> На рассмотрении</i>{% endif %}</p>
+            </button>
+            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
+                {% if request.user|has_group:"Authors" %}
+                        <li><a class="dropdown-item" href="{% url 'create_article' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>
+                        <li><a class="dropdown-item" href="{% url 'my_news_list' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-layer-group"></i>&nbspМои статьи</a></li>
+                        <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
+                {% else %}
+                    <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
+                {% endif %}
+                <li><a class="dropdown-item" href="{% url 'user_index' %}" style="color: #FDCE4B;"><i class="fa-solid fa-address-card"></i> Мой профиль</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: #FDCE4B;"><i class="fa-solid fa-door-open"></i> Выход</a></li>
             </ul>
-        {% endif %}
-        <br >
+        </li>
+    {% else %} <!-- ссылки на регистрацию и аутентификацию-->
+        <ul class="nav nav-pills mb-auto gap-2">
+            <li class="p-1">
+                <a href="{% url 'registration' %}" {% if request.resolver_match.view_name  == registration %} class="link-active" aria-current="page" {% endif %} style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-file-pen"></i>&nbspРегистрация</a>
+            </li>
+            <li class="p-1">
+                <a href="{% url 'login' %}" {% if request.resolver_match.view_name  == login %} class="link-active" aria-current="page" {% endif %} style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-person-through-window"></i>&nbspВход</a>
+            </li>
+        </ul>
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -49,4 +46,34 @@
                 </div>
             {% endfor %}
         {% endif %}
-    </li>
+    {% endif %}
+    <script>
+        let currentElem = null;
+        main.onmouseover = function(event) {
+          if (currentElem) return;
+          let target = event.target.closest('li');
+          if (!target) return;
+          if (!main.contains(target)) return;
+          currentElem = target;
+          target.style.background = '#212529';
+          target.style.color = '#FEDE00';
+          target.style.boxShadow = "5px -5px 5px #212529, -5px 5px 5px #212529, -5px -5px 5px #212529, 5px 5px 5px #212529";
+          target.style.fontWeight = '600';
+          currentElem.style.transition = 'all 0.5s';
+        };
+        main.onmouseout = function(event) {
+          if (!currentElem) return;
+          let relatedTarget = event.relatedTarget;
+          while (relatedTarget) {
+            if (relatedTarget == currentElem) return;
+            relatedTarget = relatedTarget.parentNode;
+          }
+          currentElem.style.background = '#5B5561';
+          currentElem.style.color = '#E8C24D';
+          currentElem.style.border = '';
+          currentElem.style.boxShadow = '';
+          currentElem.style.fontWeight = '400';
+          currentElem.style.transition = 'all 0.5s';
+          currentElem = null;
+        };
+    </script>

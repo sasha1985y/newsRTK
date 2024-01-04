@@ -140,10 +140,6 @@ def individual(request,id):
     return render(request, 'users/public_page.html', context)
 @login_required(login_url=settings.LOGIN_URL)
 def readers(request):
-    readers_id = sorted(list(User.objects.values_list('id', flat=True)))
-    readers_username = list(User.objects.values_list('username', flat=True))
-    readers_image = list(Account.objects.values_list('account_image', flat=True))
-
     authors = list(User.objects.values_list('id', 'username'))
     photos = list(Account.objects.values_list('user_id', 'account_image'))
 
