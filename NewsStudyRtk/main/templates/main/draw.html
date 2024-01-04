@@ -25,30 +25,14 @@
         }
 
         .rs-draw-item {
-          /*width: 75px;
-          height: 33px;
-          border: 0 solid #eee;
-          box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
-          border-radius: 20px;
-          background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
-          padding: 0.8rem 1rem;
-          color: #828282;
-          text-align: center;*/
           cursor: grab;
         }
 
         .rs-draw-item:active {
           cursor: grabbing;
-          /*margin-bottom: -100px;
-          color: #ffffff;
-          border-color: #c98ded;
-          background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
-          border-radius: 2%;
-          transition: border-color 150ms, background-color 150ms;*/
         }
 
         .rs-draw-placeholder {
-          background-color: #8eede8a1;
           width: 85px;
           height: 43px;
         }
@@ -62,21 +46,32 @@
         }
 
         .rs-draw-hovered {
-          border-top: 5px dotted #F0C077;
+          background: #fff;
+          box-shadow: 5px -5px 5px #fff, -5px 5px 5px #fff, -5px -5px 5px #fff, 5px 5px 5px #fff;
           transition: all 0.2s;
         }
     </style>
     <div class="rs-draw-body">
         <div class="rs-draw-row">
-            <div class="rs-draw-placeholder">
-                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 50px; color: white" ></i></a>
-            </div>
-            <div class="rs-draw-placeholder">
-                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-skype" style="font-size: 50px; color: white"></i></a>
-            </div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
             <div class="rs-draw-placeholder">
                 <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-snapchat" style="font-size: 50px; color: white"></i></a>
             </div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-skype" style="font-size: 50px; color: white"></i></a>
+            </div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
         </div>
 
         <div class="rs-draw-row">
@@ -92,25 +87,25 @@
         </div>
 
         <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+            <div class="rs-draw-placeholder"></div>
+        </div>
+
+        <div class="rs-draw-row">
             <div class="rs-draw-placeholder">
                 <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-github" style="font-size: 50px; color: white"></i></a>
             </div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-        </div>
-
-        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-whatsapp" style="font-size: 50px; color: white"></i></a>
+            </div>
             <div class="rs-draw-placeholder">
                 <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-discord" style="font-size: 50px; color: white"></i></a>
             </div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
         </div>
 
         <div class="rs-draw-row">
-            <div class="rs-draw-placeholder">
-                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-twitter" style="font-size: 50px; color: white"></i></a>
-            </div>
+            <div class="rs-draw-placeholder"></div>
             <div class="rs-draw-placeholder"></div>
             <div class="rs-draw-placeholder"></div>
         </div>
@@ -119,14 +114,16 @@
             <div class="rs-draw-placeholder">
                 <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-facebook" style="font-size: 50px; color: white"></i></a>
             </div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-        </div>
-
-        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder">
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-twitter" style="font-size: 50px; color: white"></i></a>
+            </div>
             <div class="rs-draw-placeholder">
                 <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-instagram" style="font-size: 50px; color: white"></i></a>
             </div>
+        </div>
+
+        <div class="rs-draw-row">
+            <div class="rs-draw-placeholder"></div>
             <div class="rs-draw-placeholder"></div>
             <div class="rs-draw-placeholder"></div>
         </div>
@@ -135,24 +132,12 @@
             <div class="rs-draw-placeholder">
                 <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-twitch" style="font-size: 50px; color: white"></i></a>
             </div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-        </div>
-
-        <div class="rs-draw-row">
             <div class="rs-draw-placeholder">
                 <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-viber" style="font-size: 50px; color: white"></i></a>
             </div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
-        </div>
-
-        <div class="rs-draw-row">
             <div class="rs-draw-placeholder">
-                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-square-whatsapp" style="font-size: 50px; color: white"></i></a>
+                <a href="#" class="rs-draw-item" draggable="true"><i class="fa-brands fa-telegram" style="font-size: 50px; color: white" ></i></a>
             </div>
-            <div class="rs-draw-placeholder"></div>
-            <div class="rs-draw-placeholder"></div>
         </div>
     </div>
     <script>
