@@ -106,13 +106,14 @@
             <div class="col-md-2 side_menu" style="list-style: none;">
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
                 {% block sidebar %}
-                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
-                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
-                    {% block readers %}<li><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %}
-                    {% block user %}
-                        {% include 'users/user-actions.html' %}
-                    {% endblock %}
+                    <ul id="main" class="vstack gap-2">
+                        {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                        {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                        {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                        {% block readers %}<li><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %} {% block user %}
+                            {% include 'users/user-actions.html' %}
+                        {% endblock %}
+                    </ul>
                 {% endblock %}
                 <a href="https://commons.wikimedia.org/w/index.php?curid=63377057">Авторство цифрового дождя: Jahobr. Собственная работа, CC0</a>
             </div>
@@ -288,5 +289,35 @@
 
             sidebar.style.transform = `translateY(${activeSlideIndex * height}px)`;
         }
+    </script>
+    <script>
+        let currentElem = null;
+        main.onmouseover = function(event) {
+          if (currentElem) return;
+          let target = event.target.closest('li');
+          if (!target) return;
+          if (!main.contains(target)) return;
+          currentElem = target;
+          target.style.background = '#212529';
+          target.style.color = '#FEDE00';
+          target.style.boxShadow = "5px -5px 5px #212529, -5px 5px 5px #212529, -5px -5px 5px #212529, 5px 5px 5px #212529";
+          target.style.fontWeight = '600';
+          currentElem.style.transition = 'all 0.5s';
+        };
+        main.onmouseout = function(event) {
+          if (!currentElem) return;
+          let relatedTarget = event.relatedTarget;
+          while (relatedTarget) {
+            if (relatedTarget == currentElem) return;
+            relatedTarget = relatedTarget.parentNode;
+          }
+          currentElem.style.background = '#5B5561';
+          currentElem.style.color = '#E8C24D';
+          currentElem.style.border = '';
+          currentElem.style.boxShadow = '';
+          currentElem.style.fontWeight = '400';
+          currentElem.style.transition = 'all 0.5s';
+          currentElem = null;
+        };
     </script>
 {% endblock %}
