@@ -174,7 +174,7 @@
                                 </div>
                                 <div class="col input-group">
                                     <select class="form-select" name="category_filter" style="width:40%">
-                                        <option value="0">Все категории</option>
+                                        <!--option value="0">Все категории</option-->
                                         {% for c in categories %}
                                             <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }} </option>
                                         {% endfor %}
