@@ -5,9 +5,10 @@
 {% load users_extras %}
 {% block title %} Редактирование статьи {% endblock %}
 {% block main %}
-    <main class="row">
+    <main class="row" style="background: url({% static 'main/img/Volgograd.gif' %}) no-repeat;  background-size: cover;">
         <div class="col-md-2 side_menu">
-        {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+            {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+            <div id="vk_post_178644073_3589"></div>
         </div>
         {% block content %}
             <div class="col-md-2"></div>
@@ -34,6 +35,12 @@
                         alert('Уважаемый пользователь, Вы не являетесь автором Этой новости, Вы не можете изменять или сохранять её состояние.');
                     }
                 }
+            </script>
+            <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+            <script type="text/javascript">
+              (function() {
+                VK.Widgets.Post("vk_post_178644073_3589", 178644073, 3589, 'l4GGFj7QxOiOPGsCtX73iYnGgzl3');
+              }());
             </script>
         {% endblock %}
     </main>
