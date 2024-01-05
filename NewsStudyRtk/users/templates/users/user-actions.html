@@ -16,7 +16,7 @@
                 <p class="text-secondary mb-1"> {% if request.user.is_staff %}<i class="fa-solid fa-key"> Персонал</i>{% endif %}</p>
                 <p class="text-secondary mb-1"> {% if request.user|has_group:"Authors" %}<i class="fa-solid fa-feather"> Автор</i>{% endif %}</p>
                 <p class="text-secondary mb-1"> {% if request.user|has_group:"Reader" %}<i class="fa-solid fa-scroll"> Читатель</i>{% endif %}</p>
-                <p class="text-secondary mb-1"> {% if request.user|has_group:"Actions Required" %}<i class="fa-solid fa-question"> На рассмотрении</i>{% endif %}</p>
+                <p class="text-secondary mb-1"> {% if request.user|has_group:"Actions Required" %}<i class="fa-solid fa-question"> Гость</i>{% endif %}</p>
             </button>
             <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
                 {% if request.user|has_group:"Authors" %}
