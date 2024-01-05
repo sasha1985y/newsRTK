@@ -6,17 +6,31 @@
 {% block title %} Участники {% endblock %}
 
 {% block main %}
-    <main class="row" style="background: url({% static 'main/img/зима.gif' %}) no-repeat;  background-size: cover; position: relative; height: auto;">
+    <style>
+        .fade {
+            width: 10px;
+            height: 10px;
+            transition: all 2s;
+        }
+
+        .unfade {
+            transition: all 2s;
+        }
+    </style>
+    <main class="row" style="background: url({% static 'main/img/зима.gif' %}) no-repeat;  background-size: cover; position: relative; height: auto;" id="main">
         <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
-                {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
-                {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
-                {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
-                {% block user %}
-                        {% include 'users/user-actions.html' %}
-                {% endblock %}
+                <ul class="vstack gap-2">
+                    {% block home %}<li class="p-1"><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block news %}<li class="p-1"><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                    {% block contacts %}<li class="p-1"><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li class="p-1"><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    <li class="p-1"><button type="button" class="btn btn-secondary fa-solid fa-solid fa-user-ninja"></button></li>
+                    {% block user %}
+                            {% include 'users/user-actions.html' %}
+                    {% endblock %}
+                </ul>
             {% endblock %}
             <div style="height: 13vh;"></div>
         </div>
@@ -27,9 +41,9 @@
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                     <div class="row" style="font-family: Iceberg , cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                         {% for reader in readers %}
-                          <div class="col-sm-3">
+                          <div class="col-sm-3 fadeable unfade">
                             <a href="{% url 'user_detail' reader.0 %}">
-                              <img src="{{ '/media/'|add:reader.2 }}" alt="{{ reader.1 }}" width="100" height="100">
+                              <img src="{{ '/media/'|add:reader.2 }}" alt="{{ reader.1 }}" width="150" height="150">
                             </a>
                             <p class="fs-3"><a href="{% url 'user_detail' reader.0 %}" style="color: #46344E; text-decoration: none;">{{ reader.1 }}</a></p>
                           </div>
@@ -67,4 +81,13 @@
             </div>
         {% endblock %}
     </main>
+    <script>
+        const fadeBtn = document.querySelector('.btn-secondary');
+        fadeBtn.addEventListener('click', () => {
+            fadeBtn.classList.toggle('fa-user-ninja');
+            fadeBtn.classList.toggle('fa-people-group');
+            const photos = document.querySelectorAll('.fadeable');
+            Array.from(photos).map((item) => item.classList.toggle('fade'));
+        });
+    </script>
 {% endblock %}
