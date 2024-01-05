@@ -39,13 +39,14 @@
                 <a href="{% url 'login' %}" {% if request.resolver_match.view_name  == login %} class="link-active" aria-current="page" {% endif %} style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-person-through-window"></i>&nbspВход</a>
             </li>
         </ul>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+    {% endif %}
+    <br>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+            </div>
+        {% endfor %}
     {% endif %}
     <script>
         let currentElem = null;

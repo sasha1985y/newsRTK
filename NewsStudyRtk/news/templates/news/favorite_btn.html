@@ -1,10 +1,14 @@
 {% load static %}
+    <!-- jQuery !-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jQuery UI !-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script>
         var userId = {{ user.id }};
         $(document).ready(function() {
           $('.favorite-btn').each(function() {
             var articleId = $(this).data('article-id');
-            //var userId = $(this).data('user-id'); // добавляем получение id пользователя
             if (localStorage.getItem('favorite_' + userId + '_' + articleId) === 'true') {
               $(this).html('<i class="fa-solid fa-heart-circle-minus"> Забыть</i>');
               $(this).addClass('btn-danger');
@@ -15,7 +19,6 @@
           $('.favorite-btn').click(function(event) {
             event.preventDefault();
             var articleId = $(this).data('article-id');
-            //var userId = $(this).data('user-id'); // добавляем получение id пользователя
             var url = $(this).attr('href');
             var button = $(this);
 
