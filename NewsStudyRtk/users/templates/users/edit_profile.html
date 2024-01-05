@@ -20,16 +20,16 @@
         <div class="col-md-2 side_menu" style="background: linear-gradient(167deg, #9D8D8E 30%, #F8D093 70%) center fixed;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
-                <ul>
-                    {% block home %}<li><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                    {% block news %}<li><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
-                    {% block contacts %}<li><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
-                    {% block about %}<li><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
-                    {% block readers %}<li><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %}
-                    {% block exit %}<li><i class="fa-solid fa-door-open"></i><a href="{% url 'logout' %}" style="text-decoration: none; color: #FDCE4B;">&nbspВыход</a></li>{% endblock %}
-                    {% block admin %}<li><i class="fa-solid fa-crown {% if request.path  == '/admin/' %} link-active {% endif %}"></i><a href="/admin/" style="text-decoration: none; color: #FDCE4B;">&nbspЯ-Админ?</a></li>{% endblock %}
-                    {% block create %}<li><i class="fa-solid fa-square-plus"></i><a href="{% url 'create_article' %}" style="text-decoration: none; color: #FDCE4B;">&nbspСоздать новость</a></li>{% endblock %}
-                    {% block catalog %}<li><i class="fa-solid fa-layer-group"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspМои статьи</a></li>{% endblock %}
+                <ul class="vstack gap-2" id="main">
+                    {% block home %}<li class="p-1"><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block news %}<li class="p-1"><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                    {% block contacts %}<li class="p-1"><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li class="p-1"><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    {% block readers %}<li class="p-1"><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %}
+                    {% block exit %}<li class="p-1"><i class="fa-solid fa-door-open"></i><a href="{% url 'logout' %}" style="text-decoration: none; color: #FDCE4B;">&nbspВыход</a></li>{% endblock %}
+                    {% block admin %}<li class="p-1"><i class="fa-solid fa-crown {% if request.path  == '/admin/' %} link-active {% endif %}"></i><a href="/admin/" style="text-decoration: none; color: #FDCE4B;">&nbspЯ-Админ?</a></li>{% endblock %}
+                    {% block create %}<li class="p-1"><i class="fa-solid fa-square-plus"></i><a href="{% url 'create_article' %}" style="text-decoration: none; color: #FDCE4B;">&nbspСоздать новость</a></li>{% endblock %}
+                    {% block catalog %}<li class="p-1"><i class="fa-solid fa-layer-group"></i><a href="#" style="text-decoration: none; color: #FDCE4B;">&nbspМои статьи</a></li>{% endblock %}
                 </ul>
             {% endblock %}
         </div>
@@ -37,7 +37,7 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
-                    <ul class="col-md-6" style="list-style: none;">
+                    <ul class="col-md-6" style="list-style: none;" id="main2">
                         <li style="margin: 1%; opacity: 0.9;">
                             <div>
                                 <img src="{{ request.user.account.account_image.url }}" id="user-ava" alt="коллега" style="height: 40vh; width: 16vw;" />
@@ -226,7 +226,7 @@
                             <p>Телефон</p>
                         </li>
                     </ul>
-                    <ul class="col-md-6" style="margin-top: 6.8rem;  list-style: none;">
+                    <ul class="col-md-6" style="margin-top: 6.8rem;  list-style: none;" id="main3">
                         <li class="col-md-12" style="background: #9D8D8E; padding: 1% 1% 0% 1%; margin: 1%; opacity: 0.5;">
                             <div class="row">
                                 <div class="col"><span style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ account_form.vk }}</span></div>
@@ -304,7 +304,7 @@
                         </li>
                     </ul>
                 </div>
-                <ul class="row" style="list-style: none;">
+                <ul class="row" style="list-style: none;" id="main4">
                     <li class="col-md-2" style="background: #9D8D8E; padding: 4% 0 0 4%; opacity: 0.7;"></li>
                     <li class="col-md-2" style="background: #9D8D8E; padding: 1% 1% 1% 1%; opacity: 0.6;"><div class="text-center"><i class="fa-solid fa-screwdriver-wrench"></i><button class="btn btn-outline-success" href="{% url 'user_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspСохранить</button></div></li>
                     <li class="col-md-2" style="background: #9D8D8E; padding: 1% 1% 1% 1%; opacity: 0.5;"><div class="text-center"><a class="btn btn-outline-danger" href="{% url 'password' %}" style="text-decoration: none; color: #FDCE4B;">&nbsp<i class="fa-solid fa-screwdriver-wrench"></i> Пароль</a></div></li>
@@ -316,4 +316,74 @@
         </div>
         <a href="https://99px.ru/sstorage/86/2017/06/image_860306172119167238077.gif">источник гифки</a>
     </main>
+    <script>
+                let currentItem = null;
+        main.onmouseover = function(event) {
+          if (currentItem) return;
+          let target = event.target.closest('li');
+          if (!target) return;
+          if (!main.contains(target)) return;
+          currentItem = target;
+          target.style.background = '#212529';
+          target.style.color = '#FEDE00';
+          target.style.boxShadow = "5px -5px 5px #212529, -5px 5px 5px #212529, -5px -5px 5px #212529, 5px 5px 5px #212529";
+          target.style.fontWeight = '600';
+          currentItem.style.transition = 'all 0.5s';
+        };
+        main.onmouseout = function(event) {
+          if (!currentItem) return;
+          let relatedTarget = event.relatedTarget;
+          while (relatedTarget) {
+            if (relatedTarget == currentItem) return;
+            relatedTarget = relatedTarget.parentNode;
+          }
+          currentItem.style.background = '';
+          currentItem.style.color = '#E8C24D';
+          currentItem.style.border = '';
+          currentItem.style.boxShadow = '';
+          currentItem.style.fontWeight = '400';
+          currentItem.style.transition = 'all 0.5s';
+          currentItem = null;
+        };
+    </script>
+    <script>
+        let currentElem = null;
+        function handleMouseOver(event) {
+          if (currentElem) return;
+          let target = event.target.closest('li');
+          if (!target) return;
+          if (!main2.contains(target) && !main3.contains(target) && !main4.contains(target)) {
+            return;
+          }
+          currentElem = target;
+          target.style.background = '#212529';
+          target.style.color = '#FEDE00';
+          target.style.boxShadow = "5px -5px 5px #212529, -5px 5px 5px #212529, -5px -5px 5px #212529, 5px 5px 5px #212529";
+          target.style.fontWeight = '600';
+          currentElem.style.transition = 'all 0.5s';
+        };
+        function handleMouseOut(event) {
+          if (!currentElem) return;
+          let relatedTarget = event.relatedTarget;
+          while (relatedTarget) {
+            if (relatedTarget == currentElem) return;
+            relatedTarget = relatedTarget.parentNode;
+          }
+          currentElem.style.background = '#AE998F';
+          currentElem.style.color = '#E8C24D';
+          currentElem.style.border = '';
+          currentElem.style.boxShadow = '';
+          currentElem.style.fontWeight = '400';
+          currentElem.style.transition = 'all 0.5s';
+          currentElem = null;
+        };
+        main.addEventListener('mouseover', handleMouseOver);
+        main2.addEventListener('mouseover', handleMouseOver);
+        main3.addEventListener('mouseover', handleMouseOver);
+        main4.addEventListener('mouseover', handleMouseOver);
+        main.addEventListener('mouseout', handleMouseOut);
+        main2.addEventListener('mouseout', handleMouseOut);
+        main3.addEventListener('mouseout', handleMouseOut);
+        main4.addEventListener('mouseout', handleMouseOut);
+    </script>
 {% endblock %}
