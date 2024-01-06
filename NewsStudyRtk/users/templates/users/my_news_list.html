@@ -54,6 +54,18 @@
                                         {% block favoritebtn %}
                                             {% include 'news/favorite_btn.html' %}
                                         {% endblock %}
+                                        <button type="button" class="btn btn-info" id="liveToastBtn{{ article.pk }}"><img src="{% static 'main/img/ico/question-solid.svg' %}" title="Важно" style="cursor: help;" width="20" height="20"></button>
+                                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                                          <div id="liveToast{{ article.pk }}" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                                            <div class="toast-header">
+                                              <strong class="me-auto">Admin</strong>
+                                              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                            </div>
+                                            <div class="toast-body">
+                                              <p style="color: black;">Уважаемый пользователь, этот функционал сейчас в на стадии разработки. Перед тем как добавить новость в закладки подтвердите категорию новости. Если добавить или убрать из закладок новость не удаётся, попробуйте это сделать со страницы новостей, тоже сначала подтвердив категорию новости.</p>
+                                            </div>
+                                          </div>
+                                        </div>
                                     </div>
                                     {% if article.image_set.all %}
                                         <div class="col-md-6 px-0">
@@ -143,6 +155,19 @@
           currentElem.style.transition = 'all 0.5s';
           currentElem = null;
         };
+    </script>
+   <script>
+        const toastTriggers = document.querySelectorAll('[id^="liveToastBtn"]')
+        if (toastTriggers.length > 0) {
+            toastTriggers.forEach((toastTrigger) => {
+                const articleId = toastTrigger.id.replace('liveToastBtn', '')
+                const toastLiveExample = document.getElementById(`liveToast${articleId}`)
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastTrigger.addEventListener('click', () => {
+                    toastBootstrap.show()
+                })
+            })
+        }
     </script>
 {% endblock %}
 
