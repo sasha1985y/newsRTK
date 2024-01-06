@@ -27,3 +27,8 @@ def showlastmodel(request):
     model = Demo.objects.all().first()
     context = {'model':model }
     return render(request,'main/image_Form.html',context)
+
+def custom_404(request, exeption):
+    # context = {'exeption': exeption}
+    # return render(request, 'main/page_404.html', context)
+    return HttpResponse(f'jfdklfjdklfklsjklfjdkl:{exeption}')
