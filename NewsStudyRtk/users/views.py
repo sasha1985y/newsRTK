@@ -47,7 +47,10 @@ def add_to_favorites(request, id):
 
 def favorites(request):
     favorites = FavoriteArticle.objects.filter(user=request.user).select_related('article')
-    return render(request, 'users/favorites.html', {'favorites': favorites})
+    p = Paginator(favorites, 5)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    return render(request, 'users/favorites.html', {'favorites': page_obj})
 
 def remove_favorite(request, id):
     favorite = get_object_or_404(FavoriteArticle, pk=id, user=request.user)

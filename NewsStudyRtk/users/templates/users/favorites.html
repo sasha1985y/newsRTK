@@ -24,20 +24,47 @@
         </div>
         {% block content %}
             <div class="col text-center" style="background: linear-gradient(180deg, #8f8f8f60 50%, #000000bd 70%); position: relative; height: auto;">
-                <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Избранное</h1>
                 <div class="row">
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
-                    <div class="col">
+                    <div class="col" style="position: fixed;">
+                        <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Избранное</h1>
                         {% if favorites %}
-                            <ol>
+                            <ul style="list-style: none;">
                                 {% for favorite in favorites %}
                                     <li><a class="fs-1" href="{{ favorite.article.get_absolute_url }}" style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; text-decoration: none; color: #FDCE4B;">{{ favorite.article.title }}</a></li>
                                 {% endfor %}
-                                <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494" style="text-decoration: none; color: #FDCE4B; ">Изображение от evening_tao</a> на Freepik
-                            </ol>
+                            </ul>
+                            <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494" style="text-decoration: none; color: #FDCE4B; ">Изображение от evening_tao</a> на Freepick
                         {% else %}
                             <p>Вы еще не добавили ни одной статьи в избранное.</p>
-                            <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494" style="text-decoration: none; color: #FDCE4B; ">Изображение от evening_tao</a> на Freepik
+                            <a href="https://ru.freepik.com/free-photo/beautiful-modern-house-in-cement-view-from-the-garden_1175819.htm#page=5&query=%D0%BF%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D1%84%D0%BE%D1%82%D0%BE&position=39&from_view=search&track=ais&uuid=03f3eea3-e029-403f-ae17-c56c19946494" style="text-decoration: none; color: #FDCE4B; ">Изображение от evening_tao</a> на Freepick
+                        {% endif %}
+                        {% if favorites.has_other_pages %}
+                            <nav aria-label="Page navigation">
+                              <ul class="pagination" style="margin-left: 560px;">
+                                {% if favorites.has_previous %}
+                                  <li class="page-item">
+                                    <a class="page-link" href="?page={{ favorites.previous_page_number }}">Previous</a>
+                                  </li>
+                                {% endif %}
+                                {% for num in favorites.paginator.page_range %}
+                                  {% if num == favorites.number %}
+                                    <li class="page-item active">
+                                      <a class="page-link" href="#">{{ num }} <span class="sr-only">(current)</span></a>
+                                    </li>
+                                  {% elif num > favorites.number|add:'-3' and num < favorites.number|add:'3' %}
+                                    <li class="page-item">
+                                      <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                  {% endif %}
+                                {% endfor %}
+                                {% if favorites.has_next %}
+                                  <li class="page-item">
+                                    <a class="page-link" href="?page={{ favorites.next_page_number }}">Next</a>
+                                  </li>
+                                {% endif %}
+                              </ul>
+                            </nav>
                         {% endif %}
                     </div>
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
