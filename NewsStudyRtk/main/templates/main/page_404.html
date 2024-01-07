@@ -10,7 +10,8 @@
                 {% include 'main/header.html' %}<!--header-->
             {% endblock %}
             {% block main %}
-                <main style="background: url({% static 'main/img/page404.gif' %}) no-repeat;  background-size: cover; height: 90vh; margin: 0; padding: 0;">
+<!--                <main style="background: url({% static 'main/img/page404.gif' %}) no-repeat;  background-size: cover; height: 90vh; margin: 0; padding: 0;">-->
+                <main>
                     {% block content %}
                        <i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a>
                     {% endblock %}
