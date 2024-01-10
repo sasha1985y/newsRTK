@@ -166,3 +166,10 @@ def readers(request):
         'readers': page_obj,
     }
     return render(request, 'news/readers.html', context)
+
+def article_favorite_btn(request, id):
+    article = Article.objects.get(id=id)
+    context = {
+        'article': article
+    }
+    return render(request, 'users/favorite_btn.html', context)

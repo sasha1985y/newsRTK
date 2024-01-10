@@ -22,110 +22,92 @@
             <div style="height: 13vh;"></div>
         </div>
         {% block content %}
-            <div class="col content_center">
-                {% if articles|length  != 0 %}
-                <div class="row">
-                    <label><h1> Фильтры: (Всего :{{ total }} результатов) </h1>
-                        <form class="d-flex" method="post">
-                            {% csrf_token %}
-                            <div class="form-group col-4">
-                                <select class="form-select" name="category_filter" style="width:40%">
-                                    <option value="0">Все категории</option>
-                                    {% for c in categories %}
-                                        <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <input type="submit" class="btn btn-success col-3" value="Применить">
-                        </form>
-                    </label>
-                </div>
-                <br>
-                <div class="row">
-                    {% for article in articles %}
-                        <div style="position: fixed;">
-                            <div class="p-4 p-md-5 rounded " style="background: #00000050;">
-                                <div class="row" style="position: inherit;">
-                                    <div class="col-md-{% if article.image_set.all %}6{% else %}12 {% endif %} px-0">
-                                        <h1 class="display-6" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ article.title }}</h1>
-                                        <p class="lead my-3">{{ article.anouncement }}</p>
-                                        <p class="lead mb-0"><a href="{% url 'news_detail' article.pk %}" class="text-white fw-bold">Полный текст..</a></p>
-                                        <p><small>Просмотры: {{ article.get_views }}</small></p>
-                                        <!--кнопка в избранное-->
-                                        {% block favoritebtn %}
-                                            {% include 'news/favorite_btn.html' %}
-                                        {% endblock %}
-                                        <!--button type="button" class="btn btn-info" id="liveToastBtn{{ article.pk }}"><img src="{% static 'main/img/ico/question-solid.svg' %}" title="Важно" style="cursor: help;" width="20" height="20"></button>
-                                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                                          <div id="liveToast{{ article.pk }}" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                                            <div class="toast-header">
-                                              <strong class="me-auto">Admin</strong>
-                                              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                                            </div>
-                                            <div class="toast-body">
-                                              <p style="color: black;">
-                                                  Уважаемый пользователь, этот функционал сейчас в на стадии разработки.
-                                                  Перед тем как добавить новость в закладки подтвердите категорию новости,<strong style="color: green;">выбрав категорию
-                                                  из вариантов и  нажав "Применить".</strong>Если добавить или убрать из закладок новость не
-                                                  удаётся, попробуйте это сделать со страницы новостей, тоже сначала подтвердив категорию новости.
-                                                  Если же всё-таки и такой вариант не работает, то заранее приносим свои извинения, мы уже работаем
-                                                  над решением этой проблемы.
-                                              </p>
-                                            </div>
-                                          </div>
-                                        </div-->
-                                    </div>
-                                    {% if article.image_set.all %}
-                                        <div class="col-md-6 px-0">
-                                            <img src="{{ article.image_set.all.0.image.url }}" style="width:auto; height:200px; border-radius:5px;">
+            {% if articles|length  != 0 %}
+                <div class="col content_center">
+                    <div class="row">
+                        <label>
+                            <h1> Фильтры: (Всего :{{ total }} результатов) </h1>
+                            <form class="d-flex" method="post">
+                                {% csrf_token %}
+                                <div class="form-group col-4">
+                                    <select class="form-select" name="category_filter" style="width:40%">
+                                        <option value="0">Все категории</option>
+                                        {% for c in categories %}
+                                            <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <input type="submit" class="btn btn-success col-3" value="Применить">
+                            </form>
+                        </label>
+                    </div>
+                    <br>
+                    <div class="row">
+                        {% for article in articles %}
+                            <div style="position: fixed;">
+                                <div class="p-4 p-md-5 rounded " style="background: #00000050;">
+                                    <div class="row" style="position: inherit;">
+                                        <div class="col-md-{% if article.image_set.all %}6{% else %}12 {% endif %} px-0">
+                                            <h1 class="display-6" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ article.title }}</h1>
+                                            <p class="lead my-3">{{ article.anouncement }}</p>
+                                            <p class="lead mb-0"><a href="{% url 'news_detail' article.pk %}" class="text-white fw-bold">Полный текст..</a></p>
+                                            <p><small>Просмотры: {{ article.get_views }}</small></p>
+                                            <!--кнопка в избранное-->
+                                            {% block favoritebtn %}
+                                                {% include 'news/favorite_btn.html' %}
+                                            {% endblock %}
                                         </div>
-                                    {% endif %}
+                                        {% if article.image_set.all %}
+                                            <div class="col-md-6 px-0">
+                                                <img src="{{ article.image_set.all.0.image.url }}" style="width:auto; height:200px; border-radius:5px;">
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                     <!--    ниже пагинатор -->
-                    {% if total > 1 %}
-                        <div class="row" style="position: fixed;">
-                            <nav aria-label="Page navigation example">
-                                  <ul class="pagination">
-                                      {% if articles.has_previous %}
-                                        <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Previous</a></li>
-                                      {% endif %}
-                                      {% for p in articles.paginator.page_range %}
-                                        {% if articles.number == p %}
-                                            <li class="page-item"><p class="page-link" style="color:black;"> {{ p }}</p></li>
-                                        {% else %}
-                                            <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
-                                        {% endif %}
-                                      {% endfor %}
-                                      {% if articles.has_next %}
-                                        <li class="page-item"><a class="page-link" href="?page={{ articles.next_page_number }}">Next</a></li>
-                                      {% endif %}
-                                  </ul>
-                            </nav>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-            {% else %}
-                <div class="row">
-                    <label><h1> Фильтры: (Всего :{{ total }} результатов) </h1>
-                        <form class="d-flex" method="post">
-                            {% csrf_token %}
-                            <div class="form-group col-4">
-                                <select class="form-select" name="category_filter" style="width:40%">
-                                    <!--option value="0">Все категории</option-->
-                                    {% for c in categories %}
-                                        <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}</option>
-                                    {% endfor %}
-                                </select>
+                        {% endfor %}
+                         <!--    ниже пагинатор -->
+                        {% if total > 1 %}
+                            <div class="row" style="position: fixed;">
+                                <nav aria-label="Page navigation example">
+                                      <ul class="pagination">
+                                          {% if articles.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Previous</a></li>
+                                          {% endif %}
+                                          {% for p in articles.paginator.page_range %}
+                                            {% if articles.number == p %}
+                                                <li class="page-item"><p class="page-link" style="color:black;"> {{ p }}</p></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
+                                            {% endif %}
+                                          {% endfor %}
+                                          {% if articles.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ articles.next_page_number }}">Next</a></li>
+                                          {% endif %}
+                                      </ul>
+                                </nav>
                             </div>
-                            <input type="submit" class="btn btn-success col-3" value="Применить">
-                        </form>
-                    </label>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="content_center">
+                {% else %}
+                <div class="col content_center">
+                    <div class="row">
+                        <label><h1> Фильтры: (Всего :{{ total }} результатов) </h1>
+                            <form class="d-flex" method="post">
+                                {% csrf_token %}
+                                <div class="form-group col-4">
+                                    <select class="form-select" name="category_filter" style="width:40%">
+                                        <option value="0">Все категории</option>
+                                        {% for c in categories %}
+                                            <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <input type="submit" class="btn btn-success col-3" value="Применить">
+                            </form>
+                        </label>
+                    </div>
                     <div class="row">
                         <h1> Вы еще не написали ни одной новости. </h1>
                         <a class="ml-2" href="{% url 'create_article' %}"><h1> Хотите создать первую?</h1></a>
@@ -164,18 +146,5 @@
           currentElem = null;
         };
     </script>
-   <!--script>
-        const toastTriggers = document.querySelectorAll('[id^="liveToastBtn"]')
-        if (toastTriggers.length > 0) {
-            toastTriggers.forEach((toastTrigger) => {
-                const articleId = toastTrigger.id.replace('liveToastBtn', '')
-                const toastLiveExample = document.getElementById(`liveToast${articleId}`)
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-                toastTrigger.addEventListener('click', () => {
-                    toastBootstrap.show()
-                })
-            })
-        }
-    </script-->
 {% endblock %}
 
