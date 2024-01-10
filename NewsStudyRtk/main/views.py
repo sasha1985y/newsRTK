@@ -31,4 +31,4 @@ def showlastmodel(request):
 def custom_404(request, exeption):
     # context = {'exeption': exeption}
     # return render(request, 'main/page_404.html', context)
-    return HttpResponse(f'jfdklfjdklfklsjklfjdkl:{exeption}')
+    return HttpResponse(f'1000:{exeption}')
