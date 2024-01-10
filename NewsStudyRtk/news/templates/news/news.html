@@ -174,7 +174,7 @@
                                 </div>
                                 <div class="col input-group">
                                     <select class="form-select" name="category_filter" style="width:40%">
-                                        <!--option value="0">Все категории</option-->
+                                        <option value="0">Все категории</option>
                                         {% for c in categories %}
                                             <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }} </option>
                                         {% endfor %}
@@ -208,6 +208,7 @@
                                                     <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.author.username %} {{ n }} {% endfor %}</a>
                                                 </p>
                                                 <p><small>Просмотры: {{ article.get_views }}</small></p>
+                                                <!--кнопка в избранное-->
                                                 {% block favoritebtn %}
                                                     {% include 'news/favorite_btn.html' %}
                                                 {% endblock %}

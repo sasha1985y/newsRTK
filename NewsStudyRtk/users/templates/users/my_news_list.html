@@ -30,7 +30,7 @@
                             {% csrf_token %}
                             <div class="form-group col-4">
                                 <select class="form-select" name="category_filter" style="width:40%">
-                                    <!--option value="0">Все категории</option-->
+                                    <option value="0">Все категории</option>
                                     {% for c in categories %}
                                         <option value="{{ forloop.counter }}" {% if selected_category == forloop.counter %} selected {% endif %}> {{ c.1 }}</option>
                                     {% endfor %}
@@ -43,18 +43,19 @@
                 <br>
                 <div class="row">
                     {% for article in articles %}
-                        <div class="single_news">
-                            <div class="p-4 p-md-5 rounded " style="background: #00000050">
-                                <div class="row">
+                        <div style="position: fixed;">
+                            <div class="p-4 p-md-5 rounded " style="background: #00000050;">
+                                <div class="row" style="position: inherit;">
                                     <div class="col-md-{% if article.image_set.all %}6{% else %}12 {% endif %} px-0">
                                         <h1 class="display-6" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"> {{ article.title }}</h1>
                                         <p class="lead my-3">{{ article.anouncement }}</p>
                                         <p class="lead mb-0"><a href="{% url 'news_detail' article.pk %}" class="text-white fw-bold">Полный текст..</a></p>
                                         <p><small>Просмотры: {{ article.get_views }}</small></p>
+                                        <!--кнопка в избранное-->
                                         {% block favoritebtn %}
                                             {% include 'news/favorite_btn.html' %}
                                         {% endblock %}
-                                        <button type="button" class="btn btn-info" id="liveToastBtn{{ article.pk }}"><img src="{% static 'main/img/ico/question-solid.svg' %}" title="Важно" style="cursor: help;" width="20" height="20"></button>
+                                        <!--button type="button" class="btn btn-info" id="liveToastBtn{{ article.pk }}"><img src="{% static 'main/img/ico/question-solid.svg' %}" title="Важно" style="cursor: help;" width="20" height="20"></button>
                                         <div class="toast-container position-fixed bottom-0 end-0 p-3">
                                           <div id="liveToast{{ article.pk }}" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
                                             <div class="toast-header">
@@ -72,11 +73,11 @@
                                               </p>
                                             </div>
                                           </div>
-                                        </div>
+                                        </div-->
                                     </div>
                                     {% if article.image_set.all %}
                                         <div class="col-md-6 px-0">
-                                            <img src="{{ article.image_set.all.0.image.url }}" style="width:100%; height:auto; border-radius:5px;">
+                                            <img src="{{ article.image_set.all.0.image.url }}" style="width:auto; height:200px; border-radius:5px;">
                                         </div>
                                     {% endif %}
                                 </div>
@@ -85,7 +86,7 @@
                     {% endfor %}
                      <!--    ниже пагинатор -->
                     {% if total > 1 %}
-                        <div class="row">
+                        <div class="row" style="position: fixed;">
                             <nav aria-label="Page navigation example">
                                   <ul class="pagination">
                                       {% if articles.has_previous %}
@@ -163,7 +164,7 @@
           currentElem = null;
         };
     </script>
-   <script>
+   <!--script>
         const toastTriggers = document.querySelectorAll('[id^="liveToastBtn"]')
         if (toastTriggers.length > 0) {
             toastTriggers.forEach((toastTrigger) => {
@@ -175,6 +176,6 @@
                 })
             })
         }
-    </script>
+    </script-->
 {% endblock %}
 

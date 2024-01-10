@@ -140,7 +140,7 @@ def my_news_list(request):
     else: #если страница открывется впервые
         selected_category = 0
     total = len(articles)
-    p = Paginator(articles,2)
+    p = Paginator(articles,1)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
     context = {'articles': page_obj, 'total':total,
@@ -148,12 +148,10 @@ def my_news_list(request):
 
     return render(request,'users/my_news_list.html',context)
 
-def article_detail(request, id):
+def article_favorite_btn(request, id):
     article = Article.objects.get(id=id)
-    user = User.objects.get(id=id)
     context = {
-        'article': article,
-        'user': user,
+        'article': article
     }
-    return render(request, 'news/favorite_btn.html', context)
+    return render(request, 'users/my_news_favorite_btn.html', context)
 
