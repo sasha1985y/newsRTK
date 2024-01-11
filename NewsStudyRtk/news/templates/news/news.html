@@ -224,7 +224,7 @@
                         </div>
                         <div class="rs-main-slide">
                             {% if articles|length  != 0 %}
-                                {% for article in articles %}
+                                {% for article in articles reversed %}
                                     {% if article.image_set.all %}
                                         <div>
                                             <img src="{{ article.image_set.all.0.image.url }}" width="100%" height="100%" alt="фото">

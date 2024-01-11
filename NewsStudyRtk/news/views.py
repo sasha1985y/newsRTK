@@ -70,7 +70,7 @@ def index(request):
         articles = Article.objects.all()
 
     total = len(articles)
-    p = Paginator(articles, 1)
+    p = Paginator(articles, 5)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
     context = {'articles': page_obj, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category, 'total':total}
