@@ -68,7 +68,12 @@ def index(request):
     else:
         selected_category = 0
         articles = Article.objects.all()
-    context = {'articles': articles, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category}
+
+    total = len(articles)
+    p = Paginator(articles, 1)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    context = {'articles': page_obj, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category, 'total':total}
     return render(request, 'news/news.html', context)
 
 class ArticleDetailView(ViewCountMixin, DetailView):

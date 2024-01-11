@@ -195,57 +195,65 @@
                 <div class="rs-body">
                     <div class="rs-container">
                         <div class="rs-sidebar">
-                            {% for article in articles %}
-                                <div class="single_news" style="margin-left: 10%;">
-                                    <div class="p-4 p-md-5 text-white rounded bg-grey" >
-                                        <div class="col-md-6 px-2">
-                                            <h1 class="display-4 fst-italic" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{article.title}}</h1>
-                                            <p class="lead my-3">{{ article.anouncement }}</p>
-                                            <p style="width: 20vw; text-center; word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></p>
-                                            <p class="text-center">
-                                                <p class="lead my-3">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
-                                                <p class="lead my-3">Автор:
-                                                    <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.author.username %} {{ n }} {% endfor %}</a>
+                            {% if articles|length  != 0 %}
+                                {% for article in articles %}
+                                    <div class="single_news" style="margin-left: 10%;">
+                                        <div class="p-4 p-md-5 text-white rounded bg-grey" >
+                                            <div class="col-md-6 px-2">
+                                                <h1 class="display-4 fst-italic" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{article.title}}</h1>
+                                                <p class="lead my-3">{{ article.anouncement }}</p>
+                                                <p style="width: 20vw; text-center; word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></p>
+                                                <p class="text-center">
+                                                    <p class="lead my-3">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
+                                                    <p class="lead my-3">Автор:
+                                                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.author.username %} {{ n }} {% endfor %}</a>
+                                                    </p>
+                                                    <p><small>Просмотры: {{ article.get_views }}</small></p>
+                                                    <!--кнопка в избранное-->
+                                                    {% block favoritebtn %}
+                                                        {% include 'news/favorite_btn.html' %}
+                                                    {% endblock %}
                                                 </p>
-                                                <p><small>Просмотры: {{ article.get_views }}</small></p>
-                                                <!--кнопка в избранное-->
-                                                {% block favoritebtn %}
-                                                    {% include 'news/favorite_btn.html' %}
-                                                {% endblock %}
-                                                <button type="button" class="btn btn-info" id="liveToastBtn{{ article.pk }}"><img src="{% static 'main/img/ico/question-solid.svg' %}" title="Важно" style="cursor: help;" width="20" height="20"></button>
-                                            </p>
-                                            <div class="toast-container position-fixed bottom-0 end-0 p-3 top-0 start-0">
-                                              <div id="liveToast{{ article.pk }}" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                                                <div class="toast-header">
-                                                  <strong class="me-auto">Admin</strong>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                                                </div>
-                                                <div class="toast-body">
-                                                  <p style="color: grey;">
-                                                      Уважаемый пользователь, этот функционал сейчас в на стадии разработки.
-                                                      Перед тем как добавить новость в закладки подтвердите категорию новости,<strong style="color: green;">выбрав категорию
-                                                          из вариантов и  нажав "Применить".</strong>Если добавить или убрать из закладок новость не
-                                                      удаётся, попробуйте это сделать со страницы новостей автора, если вы им являетесь, тоже сначала
-                                                      подтвердив категорию новости. Если же всё-таки и такой вариант не работает, то заранее приносим
-                                                      свои извинения, мы уже работаем над решением этой проблемы.
-                                                  </p>
-                                                </div>
-                                              </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% else %}
+                                <h1> Отсутствие<br> новостей<br>хорошая <br>новость </h1>
+                            {% endif %}
                         </div>
                         <div class="rs-main-slide">
-                            {% for article in articles.reverse %}
-                                {% if article.image_set.all %}
-                                    <div>
-                                        <img src="{{ article.image_set.all.0.image.url }}" width="100%" height="100%" alt="фото">
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                            {% if articles|length  != 0 %}
+                                {% for article in articles %}
+                                    {% if article.image_set.all %}
+                                        <div>
+                                            <img src="{{ article.image_set.all.0.image.url }}" width="100%" height="100%" alt="фото">
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
+                        {% if total > 1 %}
+                            <div>
+                                <nav aria-label="Page navigation example">
+                                      <ul class="pagination">
+                                          {% if articles.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Previous</a></li>
+                                          {% endif %}
+                                          {% for p in articles.paginator.page_range %}
+                                            {% if articles.number == p %}
+                                                <li class="page-item"><p class="page-link" style="color:black;"> {{ p }}</p></li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ p }}"> {{ p }}</a></li>
+                                            {% endif %}
+                                          {% endfor %}
+                                          {% if articles.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ articles.next_page_number }}">Next</a></li>
+                                          {% endif %}
+                                      </ul>
+                                </nav>
+                            </div>
+                        {% endif %}
                         <div class="rs-controls">
                             <button class="rs-down-button">
                                 <i class="fa-solid fa-arrow-down"></i>
@@ -339,18 +347,5 @@
           currentElem.style.transition = 'all 0.5s';
           currentElem = null;
         };
-    </script>
-    <script>
-        const toastTriggers = document.querySelectorAll('[id^="liveToastBtn"]')
-        if (toastTriggers.length > 0) {
-            toastTriggers.forEach((toastTrigger) => {
-                const articleId = toastTrigger.id.replace('liveToastBtn', '')
-                const toastLiveExample = document.getElementById(`liveToast${articleId}`)
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-                toastTrigger.addEventListener('click', () => {
-                    toastBootstrap.show()
-                })
-            })
-        }
     </script>
 {% endblock %}
