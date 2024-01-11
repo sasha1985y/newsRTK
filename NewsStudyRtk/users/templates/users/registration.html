@@ -34,12 +34,12 @@
                                     <div class="col form-check">
                                         <h5>Тип аккаунта:</h5>
                                         <div>
-                                            <input class="form-check-input" type="radio" id="author" name="account_type" value="author"/>
+                                            <input class="form-check-input" type="radio" id="author" name="account_type" value="author" required />
                                             <label class="form-check-label" for="author">Автор</label>
                                             <img src="{% static 'main/img/ico/question-solid.svg' %}" title="Авторы могут создавать статьи" style="cursor: help;" width="20" height="20">
                                         </div>
                                         <div>
-                                            <input class="form-check-input" type="radio" id="reader" name="account_type" value="reader"/>
+                                            <input class="form-check-input" type="radio" id="reader" name="account_type" value="reader" required />
                                             <label class="form-check-label" for="reader">Читатель</label>
                                             <img src="{% static 'main/img/ico/question-solid.svg' %}" title="Читатели могут только читать" style="cursor: help;" width="20" height="20">
                                         </div>
