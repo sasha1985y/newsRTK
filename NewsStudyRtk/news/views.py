@@ -53,7 +53,16 @@ def create_article(request):
 def index(request):
     categories = Article.categories
     author_list = User.objects.all()
+    articles = Article.objects.all()
     selected = 0
+
+    total = len(articles)
+    remainder = total % 5
+    if remainder in (0, 1, 3):
+        p = Paginator(articles, 5)
+    elif remainder in (2, 4):
+        p = Paginator(articles, 3)
+
     if request.method == "POST":
         selected = int(request.POST.get('author_filter'))
         selected_category = int(request.POST.get('category_filter'))
@@ -63,18 +72,14 @@ def index(request):
             articles = Article.published.all()
         else:
             articles = Article.objects.filter(author=selected)
+            p = Paginator(articles, 1)
         if selected_category != 0:  # фильтруем найденные по авторам результаты по категориям
             articles = articles.filter(category__icontains=categories[selected_category - 1][0])
+            p = Paginator(articles, 1)
     else:
         selected_category = 0
         articles = Article.objects.all()
 
-    total = len(articles)
-    remainder = total % 5
-    if remainder in (0, 1, 3):
-        p = Paginator(articles, 5)
-    elif remainder in (2, 4):
-        p = Paginator(articles, 3)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
     context = {'articles': page_obj, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category, 'total':total}
