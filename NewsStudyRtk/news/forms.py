@@ -1,6 +1,5 @@
 from django import forms
 from django.forms import inlineformset_factory
-from django.core.validators import MinLengthValidator
 from django.core.validators import ValidationError
 from django.forms import ModelForm, Textarea, CheckboxSelectMultiple,Select
 from .models import *
@@ -77,10 +76,38 @@ class ArticleForm(ModelForm):
     image_field = MultipleFileField()
     class Meta:
         model = Article
-        fields = ['title','anouncement','text','tags','category']
+        fields = ['title',
+                  'anouncement',
+                  'text',
+                  'tags',
+                  'category',
+                  'source',
+                  'sourcename',
+                  ]
         widgets = {
-            'anouncement': Textarea(attrs={'cols':80,'rows':2}),
-            'text': Textarea(attrs={'cols': 80, 'rows': 2}),
-            'tags': CheckboxSelectMultiple(),
             'category': Select(choices=[(x[0], x[1]) for x in Article.categories]),
+            'title': Textarea(attrs={'cols': 80, 'rows': 1}),
+            'anouncement': Textarea(attrs={'cols': 87, 'rows': 7}),
+            'source': Textarea(attrs={'cols': 88, 'rows': 1}),
+            'sourcename': Textarea(attrs={'cols': 78, 'rows': 1}),
+            'tags': CheckboxSelectMultiple(),
+        }
+
+class ArticleRequestForm(ModelForm):
+    image_field = MultipleFileField()
+    class Meta:
+        model = Article
+        fields = ['title',
+                  'anouncement',
+                  'text',
+                  'category',
+                  'source',
+                  'sourcename',
+                  ]
+        widgets = {
+            'category': Select(choices=[(x[0], x[1]) for x in Article.categories]),
+            'title': Textarea(attrs={'cols': 80, 'rows': 1}),
+            'anouncement': Textarea(attrs={'cols': 87, 'rows': 7}),
+            'source': Textarea(attrs={'cols': 88, 'rows': 1}),
+            'sourcename': Textarea(attrs={'cols': 78, 'rows': 1}),
         }

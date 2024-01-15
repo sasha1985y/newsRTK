@@ -14,6 +14,7 @@ import os
 from users.utils import check_group
 from .utils import ViewCountMixin
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
@@ -84,6 +85,17 @@ def index(request):
     page_obj = p.get_page(page_number)
     context = {'articles': page_obj, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category, 'total':total}
     return render(request, 'news/news.html', context)
+
+def news_subscribe(request):
+    if request.method == 'POST':
+        form = SubscribeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Ваш запрос на рассылку новостей успешно отправлен!')
+            return redirect('home')
+    else:
+        form = SubscribeForm()
+    return render(request,'news/news_subscribe.html', {'form': form})
 
 class ArticleDetailView(ViewCountMixin, DetailView):
     model = Article
