@@ -8,7 +8,8 @@ urlpatterns = [
     path('update/<int:pk>', views.ArticleUpdateView.as_view(), name='news_update'),
     path('delete/<int:pk>', views.ArticleDeleteView.as_view(), name='news_delete'),
     path('show/public/<int:id>', views.individual, name='user_detail'),
-    path('create', views.create_article, name='create_article'),
+    #path('create', views.create_article, name='create_article'),
+    path('news_request/', views.news_request, name='news_request'),
     path('show/readers', views.readers, name='news_readers'),
     path('readers/public/<int:id>', views.individual, name='user_detail'),
 ]

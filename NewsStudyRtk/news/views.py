@@ -33,23 +33,43 @@ def search_auto(request):
 
 @login_required(login_url=settings.LOGIN_URL)
 @check_group('Authors')
-def create_article(request):
+def news_request(request):
     if request.method == 'POST':
-        form = ArticleForm(request.POST, request.FILES)
+        form = ArticleRequestForm(request.POST, request.FILES)
         if form.is_valid():
             current_user = request.user
-            if current_user.id != None: #проверили что не аноним
-                new_article = form.save(commit=False)
-                new_article.author = current_user
-                new_article.account_id = current_user.id
-                new_article.save() #сохраняем в БД
-                form.save_m2m()
-                for img in request.FILES.getlist('image_field'):
-                    Image.objects.create(article=new_article, image=img, title=img.name)
-                return redirect('news_index')
+            if current_user.is_staff == False:
+                if current_user.id != None:
+                    new_article = form.save(commit=False)
+                    new_article.author = current_user
+                    new_article.date = datetime.date.today()
+                    new_article.save()
+                    form.save_m2m()
+                    for img in request.FILES.getlist('image_field'):
+                        Image.objects.create(article=new_article, image=img, title=img.name)
+                    return redirect('news_index')
     else:
-        form = ArticleForm()
-    return render(request,'news/create_article.html', {'form':form})
+        form = ArticleRequestForm()
+    return render(request, 'news/news_request.html', {'form': form})
+
+# def create_article(request):
+#     if request.method == 'POST':
+#         form = ArticleForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             current_user = request.user
+#             if current_user.is_staff == False:
+#                 if current_user.id != None: #проверили что не аноним
+#                     new_article = form.save(commit=False)
+#                     new_article.author = current_user
+#                     new_article.account_id = current_user.id
+#                     new_article.save() #сохраняем в БД
+#                     form.save_m2m()
+#                     for img in request.FILES.getlist('image_field'):
+#                         Image.objects.create(article=new_article, image=img, title=img.name)
+#                     return redirect('news_index')
+#     else:
+#         form = ArticleForm()
+#     return render(request,'news/create_article.html', {'form':form})
 
 def index(request):
     categories = Article.categories
