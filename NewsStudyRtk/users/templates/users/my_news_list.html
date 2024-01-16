@@ -109,8 +109,13 @@
                         </label>
                     </div>
                     <div class="row">
-                        <h1> Вы еще не написали ни одной новости. </h1>
-                        <a class="ml-2" href="{% url 'create_article' %}"><h1> Хотите создать первую?</h1></a>
+                        {% if request.user.is_superuser %}
+                            <h1> Вы еще не написали ни одной новости. </h1>
+                            <li><a class="ml-2" href="{% url 'news_input' %}"><h1> Хотите создать первую?</h1></a></li>
+                        {% else %}
+                            <h1> Вы еще не подали ни одной заявки. </h1>
+                            <li><a class="ml-2" href="{% url 'news_request' %}"><h1> Хотите создать первую?</h1></a></li>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}

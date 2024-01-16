@@ -20,9 +20,13 @@
             </button>
             <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="background:#5B5561; border-color: #FDCE4B;">
                 {% if request.user|has_group:"Authors" %}
-                        <li><a class="dropdown-item" href="{% url 'news_request' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>
-                        <li><a class="dropdown-item" href="{% url 'my_news_list' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-layer-group"></i>&nbspМои статьи</a></li>
-                        <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
+                    {% if request.user.is_superuser %}
+                        <li><a class="dropdown-item" href="{% url 'news_input' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>
+                    {% else %}
+                        <li><a class="dropdown-item" href="{% url 'news_request' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать заявку</a></li>
+                    {% endif %}
+                    <li><a class="dropdown-item" href="{% url 'my_news_list' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-layer-group"></i>&nbspМои статьи</a></li>
+                    <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
                 {% else %}
                     <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
                 {% endif %}

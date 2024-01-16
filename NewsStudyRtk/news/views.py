@@ -33,6 +33,28 @@ def search_auto(request):
 
 @login_required(login_url=settings.LOGIN_URL)
 @check_group('Authors')
+def news_input(request):
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            current_user = request.user
+            if current_user.is_staff == True:
+                if current_user.id != None:
+                    new_article = form.save(commit=False)
+                    new_article.author = current_user
+                    new_article.date = datetime.date.today()
+                    new_article.status = True
+                    new_article.save()
+                    form.save_m2m()
+                    for img in request.FILES.getlist('image_field'):
+                        Image.objects.create(article=new_article, image=img, title=img.name)
+                    return redirect('news_index')
+    else:
+        form = ArticleForm()
+    return render(request, 'news/news_input.html', {'form': form})
+
+@login_required(login_url=settings.LOGIN_URL)
+@check_group('Authors')
 def news_request(request):
     if request.method == 'POST':
         form = ArticleRequestForm(request.POST, request.FILES)

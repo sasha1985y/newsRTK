@@ -6,11 +6,10 @@
 {% block title %} Редактирование статьи {% endblock %}
 {% block main %}
     <main style="background: url({% static 'main/img/Volgograd.gif' %}) no-repeat;  background-size: cover;">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col center" style="margin: 0; padding: 0;">
+        <div class="body_wrapper">
+            <div class="center">
                 <div class="content_area">
-                        <h2 class="title">ПОДАТЬ ЗАЯВКУ НА СОЗДАНИЕ НОВОСТИ</h2>
+                    <h2 class="title">СОЗДАТЬ/РЕДАКТИРОВАТЬ НОВОСТЬ</h2>
                     <div class="content_area">
                         <div class="inner_footer_top">
                             <div class="single_sidebar">
@@ -22,7 +21,7 @@
                                             {{ form|crispy }}<br><br>
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <p><input class="btn btn-danger" type="submit" value="Отправить"></p>
+                                                    <p><input class="btn btn-danger" type="submit" value="Сохранить"></p>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <a class="btn btn-danger" href="{% url 'news_index' %}">К списку новостей</a>
@@ -40,7 +39,6 @@
                     <h6 class="title"></h6>
                 </div>
             </div>
-            <div class="col-md-2"></div>
             <script type="text/javascript" src="{% static 'main/' %}assets/js/jquery-min.js"></script>
             <script type="text/javascript" src="{% static 'main/' %}assets/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="{% static 'main/' %}assets/js/jquery.bxslider.js"></script>
@@ -69,20 +67,20 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         <script>
-            $(function() {
-                $("#search_input").autocomplete({
-                    source: "search_auto/",
-                    select: function (event, ui) { //item selected
-                        AutoCompleteSelectHandler(event, ui)
-                    },
-                    minLength: 2,
+                $(function() {
+                    $("#search_input").autocomplete({
+                        source: "search_auto/",
+                        select: function (event, ui) { //item selected
+                            AutoCompleteSelectHandler(event, ui)
+                        },
+                        minLength: 2,
+                    });
                 });
-            });
 
-            function AutoCompleteSelectHandler(event, ui)
-            {
-              var selectedObj = ui.item;
-            }
+              function AutoCompleteSelectHandler(event, ui)
+              {
+                var selectedObj = ui.item;
+              }
         </script>
     </main>
 {% endblock %}
