@@ -38,7 +38,7 @@ def news_input(request):
         form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             current_user = request.user
-            if current_user.is_staff == True:
+            if current_user.is_superuser == True:
                 if current_user.id != None:
                     new_article = form.save(commit=False)
                     new_article.author = current_user
@@ -60,7 +60,7 @@ def news_request(request):
         form = ArticleRequestForm(request.POST, request.FILES)
         if form.is_valid():
             current_user = request.user
-            if current_user.is_staff == False:
+            if current_user.is_superuser == False:
                 if current_user.id != None:
                     new_article = form.save(commit=False)
                     new_article.author = current_user

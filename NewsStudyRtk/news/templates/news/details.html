@@ -50,9 +50,23 @@
                 <div class="col-md-6" style="z-index: 0;  padding-left: 0;"></div>
             </div>
             <div class="col-md-6" style="z-index: 1; padding-left: 0;">
-                <p class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
-                    {{ article.text }}
-                </p>
+                <h1 class="text-center">{{ article.title }}</h1>
+                <div class="col-lg-8">
+                    <p class="readmore" style="color:black">{% if article.status == True %}<i class="fa-solid fa-user"> Автор: {{ article.author.account.nickname }}{% else %}{% endif %}</i></p>
+                    <p class="readmore">
+                        {% if article.status == True %}<i class="fa-solid fa-check"> Дата публикации: {{ article.date.date }}</i></p>
+                        {% else %}<p class="readmore" style="color:black"><i class="fa-solid fa-xmark"> Не опубликовано
+                        {% endif %}</i></p>
+                    <p class="readmore" style="color:black"><i class="fa-solid fa-eye"> {{ article.get_views }}</i></p>
+                </div>
+                <h6 class="title"></h6>
+                <blockquote class="text-center blockquote" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
+                    <p align="justify">{{ article.text|safe }}</p>
+                </blockquote>
+                <br>
+                <h6 class="title"></h6>
+                <p class="readmore" style="color:black"><i class="fa-solid fa-globe"> Источник: <a href="{{ article.source }}" style="color:red" target="_blank"> {{ article.sourcename }}</a></i></p><br>
+                <h6 class="title"></h6>
                 {% if request.user|has_group:"Authors" and article.author_id == request.user.id %}
                     <div class="text-center">
                         <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
