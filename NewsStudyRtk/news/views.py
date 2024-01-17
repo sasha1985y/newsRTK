@@ -97,7 +97,8 @@ def index(request):
     categories = Article.categories
     #author_list = User.objects.all()
     author_list = User.objects.filter(article__isnull=False).filter(article__status=True).distinct()
-    articles = Article.objects.all()
+    # articles = Article.objects.all()
+    articles = Article.published.all()
     selected = 0
 
     total = len(articles)
@@ -111,18 +112,21 @@ def index(request):
         selected = int(request.POST.get('author_filter'))
         selected_category = int(request.POST.get('category_filter'))
         if selected == 0:
-            articles = Article.objects.all()
+            #articles = Article.objects.all()
+            articles = Article.published.all()
         elif selected == 1000:
             articles = Article.published.all()
         else:
-            articles = Article.objects.filter(author=selected)
+            #articles = Article.objects.filter(author=selected)
+            articles = Article.published.filter(author=selected)
             p = Paginator(articles, 1)
         if selected_category != 0:  # фильтруем найденные по авторам результаты по категориям
             articles = articles.filter(category__icontains=categories[selected_category - 1][0])
             p = Paginator(articles, 1)
     else:
         selected_category = 0
-        articles = Article.objects.all()
+        #articles = Article.objects.all()
+        articles = Article.published.all()
 
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
