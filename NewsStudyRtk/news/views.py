@@ -95,7 +95,8 @@ def news_request(request):
 
 def index(request):
     categories = Article.categories
-    author_list = User.objects.all()
+    #author_list = User.objects.all()
+    author_list = User.objects.filter(article__isnull=False).filter(article__status=True).distinct()
     articles = Article.objects.all()
     selected = 0
 
