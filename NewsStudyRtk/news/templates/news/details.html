@@ -69,6 +69,7 @@
                 <h6 class="title"></h6>
                 {% if request.user.is_superuser or request.user|has_group:"Authors" and article.author_id == request.user.id %}
                     <div class="text-center">
+                        <a class="btn btn-outline-info" href="{% url 'news_update_cover' article.pk %}"><i class="fa-solid fa-image"></i></a>
                         <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a class="btn btn-outline-secondary" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a>
                     </div>
