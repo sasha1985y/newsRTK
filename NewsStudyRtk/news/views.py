@@ -224,7 +224,6 @@ def readers(request):
             if author[0] == photo[0]:
                 readers.append((author[0], author[1], photo[1]))
                 break
-    #account, article, date_joined, email, favoritearticle, first_name, groups, id, is_active, is_staff, is_superuser, last_login, last_name, logentry, password, user_permissions, username
 
     # Создаем список кортежей из трех элементов: username, id и ссылка на изображение
     # readers = list(zip(readers_username, readers_id, readers_image))
