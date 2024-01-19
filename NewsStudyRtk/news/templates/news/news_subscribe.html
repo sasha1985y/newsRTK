@@ -1,0 +1,125 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+{% load users_extras %}
+{% block title %} Новость {% endblock %}
+{% block main %}
+    <main class="row">
+        <div class="col-md-2" style="background: #5B5561;">
+            <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
+            {% block sidebar %}
+                <ul id="main" class="vstack gap-2" style="list-style: none;">
+                    {% block home %}<li class="p-1"><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block contacts %}<li class="p-1"><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li class="p-1"><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    {% block readers %}<li class="p-1"><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %}
+                    <li><a href="javascript:window.history.back();" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-reply"> Назад</i></a></li>
+                    {% block user %}
+                        {% include 'users/user-actions.html' %}
+                    {% endblock %}
+                    <li>
+                </ul>
+            {% endblock %}
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col">
+            <div class="center">
+                <div class="content_area">
+                    <h2 class="title"></h2>
+                    <div class="content_area">
+                        <div class="inner_footer_top">
+                            <div class="single_sidebar">
+                                <div class="news-letter">
+                                    <h2 class="text-center"><i class="fa-solid fa-envelope"> Подписаться на рассылку новостей</i></h2><br>
+                                    <div class="container-fluid>">
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            {{ form|crispy }}
+                                            <p class="text-center"><input class="btn btn-success" type="submit" value="Подписаться"></p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="title"></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <script type="text/javascript" src="{% static 'main/' %}assets/js/jquery-min.js"></script>
+        <script type="text/javascript" src="{% static 'main/' %}assets/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{% static 'main/' %}assets/js/jquery.bxslider.js"></script>
+        <script type="text/javascript" src="{% static 'main/' %}assets/js/selectnav.min.js"></script>
+        <script type="text/javascript">
+            selectnav('nav', {
+                label: 'Меню',
+                nested: true,
+                indent: ''
+            });
+            selectnav('f_menu', {
+                label: 'Меню',
+                nested: true,
+                indent: ''
+            });
+            $('.bxslider').bxSlider({
+                mode: 'fade',
+                captions: true
+            });
+        </script>
+        <script src="https://kit.fontawesome.com/b91fb3443a.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/b91fb3443a.js" crossorigin="anonymous"></script>
+        <!-- jQuery !-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+        <!-- jQuery UI !-->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script>
+                $(function() {
+                    $("#search_input").autocomplete({
+                        source: "search_auto/",
+                        select: function (event, ui) { //item selected
+                            AutoCompleteSelectHandler(event, ui)
+                        },
+                        minLength: 2,
+                    });
+                });
+
+              function AutoCompleteSelectHandler(event, ui)
+              {
+                var selectedObj = ui.item;
+              }
+        </script>
+        <script>
+            let currentElem = null;
+            main.onmouseover = function(event) {
+              if (currentElem) return;
+              let target = event.target.closest('li');
+              if (!target) return;
+              if (!main.contains(target)) return;
+              currentElem = target;
+              target.style.background = '#212529';
+              target.style.color = '#FEDE00';
+              target.style.boxShadow = "5px -5px 5px #212529, -5px 5px 5px #212529, -5px -5px 5px #212529, 5px 5px 5px #212529";
+              target.style.fontWeight = '600';
+              currentElem.style.transition = 'all 0.5s';
+            };
+            main.onmouseout = function(event) {
+              if (!currentElem) return;
+              let relatedTarget = event.relatedTarget;
+              while (relatedTarget) {
+                if (relatedTarget == currentElem) return;
+                relatedTarget = relatedTarget.parentNode;
+              }
+              currentElem.style.background = '#5B5561';
+              currentElem.style.color = '#E8C24D';
+              currentElem.style.border = '';
+              currentElem.style.boxShadow = '';
+              currentElem.style.fontWeight = '400';
+              currentElem.style.transition = 'all 0.5s';
+              currentElem = null;
+            };
+        </script>
+    </main>
+{% endblock %}

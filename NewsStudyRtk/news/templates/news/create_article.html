@@ -3,7 +3,7 @@
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
 {% load users_extras %}
-{% block title %} Редактирование статьи {% endblock %}
+{% block title %} Редактирование обложки {% endblock %}
 {% block main %}
     <main class="row" style="background: url({% static 'main/img/Volgograd.gif' %}) no-repeat;  background-size: cover;">
         <div class="col-md-2 side_menu">
@@ -14,12 +14,12 @@
             <div class="col-md-2"></div>
             <div class="col">
                 <div class="text-center" style="margin-top:30px;">
-                    <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Редактирование статьи</h1>
+                    <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Редактирование обложки</h1>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy }}
                         {{ image_form|crispy }}
-                        {% if request.user|has_group:"Authors" and article.author_id == request.user.id or request.user|has_group:"Authors" and article.author_id == article.user.id %}
+                        {% if request.user.is_superuser or request.user|has_group:"Authors" and article.author_id == request.user.id or request.user|has_group:"Authors" and article.author_id == article.user.id %}
                             <input type="submit" class="btn btn-success" value = "Сохранить">
                         {% else %}
                             <a href="{% url 'logout' %}" id="not_author" class="btn btn-success">&nbspСохранить</a>

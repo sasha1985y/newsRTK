@@ -66,7 +66,7 @@ class SubscribeForm(forms.ModelForm):
             raise ValidationError('Имя не может быть меньше 2 знаков')
         return first_name
 
-ImagesFormSet = inlineformset_factory(Article, Image, fields=("image",),extra=1,max_num=4,
+ImagesFormSet = inlineformset_factory(Article, Image, fields=("image",),extra=1,max_num=1,
     widgets={
         "image_field": MultipleFileField(),
     })

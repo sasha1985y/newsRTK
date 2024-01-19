@@ -21,14 +21,17 @@
                                             {{ form.media }}
                                             {{ form|crispy }}<br><br>
                                             <div class="row">
-                                                <div class="col-lg-6">
-                                                    <p><input class="btn btn-danger" type="submit" value="Сохранить"></p>
+                                                <div class="col-lg-3">
+                                                    <p class="text-center"><input class="btn btn-success" type="submit" value="Сохранить"></p>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <a class="btn btn-danger" href="{% url 'news_index' %}">К списку новостей</a>
+                                                    <p class="text-center"><a class="btn btn-success" href="{% url 'news_index' %}">К списку новостей</a></p>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <p><a class="btn btn-danger" href="{% url 'user_index' %}">В профиль</a></p>
+                                                    <p class="text-center"><a class="btn btn-success" href="{% url 'user_index' %}">В профиль</a></p>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <p class="text-center"><a class="btn btn-secondary" href="javascript:window.history.back();" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-reply"> Назад</i></a></p>
                                                 </div>
                                             </div>
                                         </form>

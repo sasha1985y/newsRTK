@@ -40,6 +40,7 @@
                         {% else %}
                             <li class="p-1"><i class="fa-solid fa-heart"></i><a href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;">&nbspИзбранное</a></li>
                         {% endif %}
+                        <li><a href="javascript:window.history.back();" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-reply"> Назад</i></a></li>
                     {% endblock %}
                 </ul>
             {% endblock %}
