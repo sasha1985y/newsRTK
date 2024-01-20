@@ -5,8 +5,8 @@
 {% block title %} Новость {% endblock %}
 {% block main %}
     <main style="position: relative;">
-        <div class="row" style="background: #9D8D8E; min-height: 75vh; background-color: #5B5561;">
-            <div class="col-md-2 side_menu" style="list-style: none; z-index: 1">
+        <div class="row" style="background: url({% static 'main/img/sky.jpg' %}) no-repeat;  background-size: cover; min-height: 75vh; background-color: #5B5561;">
+            <div class="col-md-2 side_menu" style="list-style: none; z-index: 1;background: linear-gradient(145deg, #5B5561 30%,#aef9ce00 70%) center fixed, url({% static 'main/img/sky.jpg' %});">
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
                 {% block sidebar %}
                     <ul class="vstack gap-2" id="main">

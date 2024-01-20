@@ -108,13 +108,15 @@ class Image(models.Model):
             return '(no image)'
 
 class ViewCount(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE,
-                                related_name='views')
-    ip_address = models.GenericIPAddressField()
-    view_date = models.DateTimeField(auto_now_add=True)
+    article = models.ForeignKey(Article,on_delete=models.CASCADE,
+                                related_name='views', verbose_name='Новость')
+    ip_address = models.GenericIPAddressField(verbose_name='ip-адрес')
+    view_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата просмотра')
 
     class Meta:
-        ordering = ('-view_date',)
+        verbose_name = 'Счетчик просмотров'
+        verbose_name_plural = 'Счетчики просмотров'
+        ordering=('-view_date',)
         indexes = [models.Index(fields=['-view_date'])]
 
     def __str__(self):

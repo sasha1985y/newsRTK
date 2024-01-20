@@ -96,6 +96,7 @@ class SubscriberAdmin(admin.ModelAdmin):
     list_display = ['last_name', 'first_name', 'email']
     list_filter = ['last_name', 'first_name', 'email']
 
+admin.site.register(Subscriber, SubscriberAdmin)
 
 @admin.register(Tag)#второй способ
 class TagAdmin(admin.ModelAdmin):
