@@ -1,3 +1,6 @@
+from ckeditor.fields import RichTextField
+from .validators import russian_email
+from django.core.validators import MinLengthValidator
 from django.db import models
 from django.contrib.auth.models import User
 from news.models import Article
@@ -44,3 +47,14 @@ class FavoriteArticle(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     article = models.ForeignKey(Article,on_delete=models.SET_NULL,null=True)
     create_at=models.DateTimeField(auto_now_add=True)
+
+class ContactForm(models.Model):
+    status = models.BooleanField(default=False, verbose_name='Исправлено')
+    name = models.CharField(verbose_name='Имя',max_length=100, validators = [MinLengthValidator(2)], null=False)
+    email = models.EmailField(verbose_name='Адрес электронной почты',validators=[russian_email], null=False)
+    message = RichTextField(verbose_name='Сообщение', null=False)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Форма обратной связи'
+        verbose_name_plural = 'Форма обратной связи'

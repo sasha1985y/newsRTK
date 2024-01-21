@@ -4,7 +4,7 @@ from django.db.models import Count, Avg, Max
 from .models import *
 from django.db import connection, reset_queries
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, DeleteView, UpdateView
+from django.views.generic import DetailView, DeleteView, UpdateView, ListView
 from users.models import Account
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -30,6 +30,17 @@ def search_auto(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data,mimetype)
+
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'article_list.html'
+    context_object_name = "articles"
+    paginate_by = 5
+
+    def get_queryset(self):
+        query = self.request.GET.get('search_input')
+        articles = Article.objects.filter(title__icontains=query)
+        return articles
 
 @login_required(login_url=settings.LOGIN_URL)
 @check_group('Authors')

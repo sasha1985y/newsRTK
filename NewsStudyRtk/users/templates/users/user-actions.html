@@ -24,11 +24,13 @@
                         <li><a class="dropdown-item" href="{% url 'news_input' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать статью</a></li>
                     {% else %}
                         <li><a class="dropdown-item" href="{% url 'news_request' %}" style="color: #FDCE4B;"><i class="fa-solid fa-square-plus"></i> Создать заявку</a></li>
+                        <li><a class="dropdown-item" href="{% url 'contact_page' %}" style="color: #FDCE4B;"><i class="fa-solid fa-message"></i> Обратная связь</a></li>
                     {% endif %}
                     <li><a class="dropdown-item" href="{% url 'my_news_list' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-layer-group"></i>&nbspМои статьи</a></li>
                     <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
                 {% else %}
                     <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
+                    <li><a class="dropdown-item" href="{% url 'contact_page' %}" style="color: #FDCE4B;"><i class="fa-solid fa-message"></i> Обратная связь</a></li>
                 {% endif %}
                 <li><a class="dropdown-item" href="{% url 'user_index' %}" style="color: #FDCE4B;"><i class="fa-solid fa-address-card"></i> Мой профиль</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}" style="color: #FDCE4B;"><i class="fa-solid fa-door-open"></i> Выход</a></li>

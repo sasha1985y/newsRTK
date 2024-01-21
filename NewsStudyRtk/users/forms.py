@@ -1,7 +1,7 @@
 from django import forms
 from .validators import russian_email
 from django.core.validators import MinLengthValidator
-
+from .models import *
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.forms import TextInput, EmailInput, FileInput, DateInput
@@ -87,16 +87,21 @@ class AccountUpdateForm(forms.ModelForm):
                    'birthdate': DateInput(attrs={'type': 'date'}),
                    }
 
-class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100,
-                           validators = [MinLengthValidator(2)],
-                           initial='Имя')
-    email = forms.EmailField(validators=[russian_email])
-    message = forms.CharField(widget=forms.TextInput, disabled=False)
-    demo = forms.BooleanField(required = False, help_text='Текст-подсказка',
-                              label='Вам нравится?',
-                              initial=True)
+# class ContactForm(forms.Form):
+#     name = forms.CharField(max_length=100,
+#                            validators = [MinLengthValidator(2)],
+#                            initial='Имя')
+#     email = forms.EmailField(validators=[russian_email])
+#     message = forms.CharField(widget=forms.TextInput, disabled=False)
+#     demo = forms.BooleanField(required = False, help_text='Текст-подсказка',
+#                               label='Вам нравится?',
+#                               initial=True)
 
-    # name = forms.CharField(max_length=100)
-    # email = forms.EmailField()
-    # message = forms.CharField(widget=forms.Textarea)
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactForm
+        fields = ['name', 'email', 'message']
+
+# name = forms.CharField(max_length=100)
+# email = forms.EmailField()
+# message = forms.CharField(widget=forms.Textarea)

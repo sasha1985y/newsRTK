@@ -9,3 +9,9 @@ def russian_email(email):
         raise ValidationError(
             _("%(email) has not allowed domain"),params={'email':email}
         )
+
+def clean_username(username):
+    username = username.cleaned_data['username']
+    if len(username) < 2:
+        raise ValidationError('Имя пользователя не может быть меньше 2 знаков')
+    return username

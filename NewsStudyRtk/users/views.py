@@ -13,6 +13,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+import json
 
 # def profile(request):
 #     context = dict()
@@ -116,18 +117,42 @@ def registration(request):
     context = {'form':form}
     return render(request,'users/registration.html',context)
 
+# def contact_page(request):
+#     if request.method == "POST":
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             print('Сообщение отправлено', form.cleaned_data)
+#         else:
+#             print(form.errors)
+#     else:
+#         form = ContactForm()
+#         form.name='Любимый клиент'
+#     context = {'form': form}
+#     return render(request,'users/contact_page.html',context)
+
+def search_auto(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        q = request.GET.get('term','')
+        articles = Article.objects.filter(title__icontains=q)
+        results =[]
+        for a in articles:
+            results.append(a.title)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data,mimetype)
+
 def contact_page(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            print('Сообщение отправлено', form.cleaned_data)
-        else:
-            print(form.errors)
+            form.save()
+            messages.success(request, 'Ваше сообщение успешно отправлено разработчикам сайта! Благодарим Вас за обратную связь!')
+            return redirect('home')
     else:
         form = ContactForm()
-        form.name='Любимый клиент'
-    context = {'form': form}
-    return render(request,'users/contact_page.html',context)
+    return render(request, 'users/contact_page.html', {'form': form})
 
 def my_news_list(request):
     categories = Article.categories #создали перечень категорий
