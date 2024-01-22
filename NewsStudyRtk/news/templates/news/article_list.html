@@ -1,0 +1,89 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+{% load users_extras %}
+{% block title %} Результаты поиска {% endblock %}
+{% block main %}
+    <main class="row">
+        <div class="col-md-2 side_menu">
+            {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
+        </div>
+        <div class="col container-fluid"  style="margin: 0; padding: 0;">
+            <h2 class="title text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">РЕЗУЛЬТАТЫ ПОИСКА: {{ articles.count }}</h2>
+            {% if articles|length != 0 %}
+                {% for article in articles %}
+                    {% if article.status == True %}
+                        {% if article.image_set.all %}
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <!--carousel-->
+                                    <div id="carouselControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                                        <div class="carousel-inner">
+                                            {% for image in article.image_set.all %}
+                                                <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
+                                                    <a href="{{ article.get_absolute_url }}">
+                                                        <img src="{{ image.image.url }}" class="d-block w-100"
+                                                             style="margin:auto; height: 50vh; width:auto; border-radius:5px;" alt=""/>
+                                                    </a>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% if article.image_set.all|length > 1 %}
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                    <!--end carousel-->
+                                    <hr>
+                                    <p class="readmore" style="color:black"><i class="fa-solid fa-user"> {{ article.author.account.nickname }}</i></p>
+                                    {% if article.status == True %}
+                                        <p class="readmore"><i class="fa-solid fa-check"> {{ article.date.date }}</i></p>
+                                    {% endif %}
+                                    <p class="readmore" style="color:black"><i class="fa-solid fa-eye"> {{ article.get_views }}</i></p>
+                                    {% if user.is_active == True %}
+                                        {% block favoritebtn %}
+                                            {% include 'news/favorite_btn.html' %}
+                                        {% endblock %}
+                                    {% endif %}
+                                </div>
+                                <div class="col">
+                                    <a href="{{ article.get_absolute_url }}"><h4><strong>{{ article.title }}</strong></h4></a>
+                                    <h5><p align="justify">{{ article.anouncement }}</p></h5>
+                                    <br>
+                                    <div class="col">
+                                        {% if request.user|has_group:"Authors" and article.author_id == request.user.id or request.user|has_group:"Authors" and article.author_id == article.user.id %}
+                                            {% if request.user.is_superuser %}
+                                                <a class="readmore" href="/admin/news/article/{{ article.id }}/change/" target="_blank">Редактировать новость в панели администратора...</a>
+                                            {% endif %}
+                                            <p><a class="readmore" href="{% url 'news_update' article.pk %}">Редактировать новость на сайте...</a></p>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <hr>
+                        {% endif %}
+                    {% else %}
+                        <div style="background: url({% static 'main/img/mode.jpg' %}) no-repeat;  background-size: cover; height: 160vh;">
+                            <div style="background: #00000054;"><h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Новость сейчас в очереди на модерацию</h1></div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div style="background: url({% static 'main/img/crazy.jpg' %}) no-repeat;  background-size: cover; height: 160vh;">
+                    <div style="background: #00000054;"><h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">По вашему запросу ничего не найдено</h1></div>
+                </div>
+            {% endif %}
+            <br>
+        </div>
+    </main>
+{% endblock %}
