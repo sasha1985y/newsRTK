@@ -21,9 +21,15 @@
                                             {{ form.media }}
                                             {{ form|crispy }}<br><br>
                                             <div class="row">
-                                                <div class="col-lg-3">
-                                                    <p class="text-center"><input class="btn btn-success" type="submit" value="Сохранить"></p>
-                                                </div>
+                                                {% if request.user.is_superuser or request.user|has_group:"Authors" and article.author_id == request.user.id or request.user|has_group:"Authors" and article.author_id == article.user.id %}
+                                                    <div class="col-lg-3">
+                                                        <p class="text-center"><input class="btn btn-success" type="submit" value="Сохранить"></p>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="col-lg-3">
+                                                        <a href="{% url 'logout' %}" id="not_author" class="btn btn-success">&nbspСохранить</a>
+                                                    </div>
+                                                {% endif %}
                                                 <div class="col-lg-3">
                                                     <p class="text-center"><a class="btn btn-success" href="{% url 'news_index' %}">К списку новостей</a></p>
                                                 </div>
@@ -65,26 +71,36 @@
                 });
             </script>
             <script src="https://kit.fontawesome.com/b91fb3443a.js" crossorigin="anonymous"></script>
-        <!-- jQuery !-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
-        <!-- jQuery UI !-->
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-        <script>
-                $(function() {
-                    $("#search_input").autocomplete({
-                        source: "search_auto/",
-                        select: function (event, ui) { //item selected
-                            AutoCompleteSelectHandler(event, ui)
-                        },
-                        minLength: 2,
+            <!-- jQuery !-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+            <!-- jQuery UI !-->
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+            <script>
+                    $(function() {
+                        $("#search_input").autocomplete({
+                            source: "search_auto/",
+                            select: function (event, ui) { //item selected
+                                AutoCompleteSelectHandler(event, ui)
+                            },
+                            minLength: 2,
+                        });
                     });
-                });
 
-              function AutoCompleteSelectHandler(event, ui)
-              {
-                var selectedObj = ui.item;
-              }
-        </script>
+                  function AutoCompleteSelectHandler(event, ui)
+                  {
+                    var selectedObj = ui.item;
+                  }
+            </script>
+            <script>
+                not_author.onmouseover = handler;
+                function handler(event) {
+
+                    if (event.type == 'mouseover') {
+                        alert('Уважаемый пользователь, Вы не являетесь автором Этой новости, Вы не можете изменять или сохранять её состояние.');
+                    }
+                }
+            </script>
+        </div>
     </main>
 {% endblock %}

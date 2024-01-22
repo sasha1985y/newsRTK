@@ -59,11 +59,14 @@
                                     <h5><p align="justify">{{ article.anouncement }}</p></h5>
                                     <br>
                                     <div class="col">
+                                        {% if request.user.is_superuser %}
+                                            <p><a class="readmore" href="/admin/news/article/{{ article.id }}/change/" target="_blank">Редактировать новость в панели администратора...</a></p>
+                                            <p><a class="readmore" href="{% url 'news_update' article.pk %}">Редактировать новость на сайте</a></p>
+                                        {% endif %}
+
                                         {% if request.user|has_group:"Authors" and article.author_id == request.user.id or request.user|has_group:"Authors" and article.author_id == article.user.id %}
-                                            {% if request.user.is_superuser %}
-                                                <a class="readmore" href="/admin/news/article/{{ article.id }}/change/" target="_blank">Редактировать новость в панели администратора...</a>
-                                            {% endif %}
-                                            <p><a class="readmore" href="{% url 'news_update' article.pk %}">Редактировать новость на сайте...</a></p>
+                                            <p><a class="readmore" href="{% url 'news_update' article.pk %}">Редактировать новость</a></p>
+                                        {% else %}
                                         {% endif %}
                                     </div>
 
