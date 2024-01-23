@@ -69,10 +69,21 @@
                 <p class="readmore" style="color:black"><i class="fa-solid fa-globe"> Источник: <a href="{{ article.source }}" style="color:red" target="_blank"> {{ article.sourcename }}</a></i></p><br>
                 <h6 class="title"></h6>
                 {% if request.user.is_superuser or request.user|has_group:"Authors" and article.author_id == request.user.id %}
-                    <div class="text-center" style="background: #00000054;">
-                        <a class="btn btn-outline-info" href="{% url 'news_update_cover' article.pk %}"><i class="fa-solid fa-image"></i></a>
-                        <a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a class="btn btn-outline-secondary" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a>
+                    <div class="row text-center" style="background: #00000054;">
+                        <span class="col-md-2"><a class="btn btn-outline-info" href="{% url 'news_update_cover' article.pk %}"><i class="fa-solid fa-image"></i></a></span>
+                        <span class="col-md-2"><a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a></span>
+                        <span class="col-md-2"><a class="btn btn-outline-warning" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a></span>
+                        <span class="col-md-6">
+                            {% block favoritebtn %}
+                                {% include 'news/favorite_btn.html' %}
+                            {% endblock %}
+                        </span>
+                    </div>
+                {% else %}
+                    <div class="row text-center" style="background: #00000054;">
+                        <span class="col text-center">
+                            {% include 'news/favorite_btn.html' %}
+                        </span>
                     </div>
                 {% endif %}
             </div>
