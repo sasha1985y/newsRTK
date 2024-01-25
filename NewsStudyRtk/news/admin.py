@@ -37,9 +37,10 @@ class ArticleImageInline(admin.TabularInline):
     readonly_fields = ('id','image_tag')
 
 class ArticleAdmin(admin.ModelAdmin):
-    ordering = ['-date','categories','author','title']
+    #ordering = ['-date','categories','author','title']
     list_display = ['id','date','status','categories','author','image_tag','title','source','symbols_count']
-    list_filter = [ArticleFilter,'title','author','date','categories','source']
+    #list_filter = [ArticleFilter,'title','author','date','categories','source']
+    list_filter = ['date', ArticleFilter]
     list_display_links = ['date']
     search_fields = ['title__startswith','tags__title']
     filter_horizontal = ['tags']
@@ -47,7 +48,7 @@ class ArticleAdmin(admin.ModelAdmin):
     # list_editable = ['status'] #Возможность редактирования содержимого из списка
     # readonly_fields = ['author'] #Закрытие редактирования
     # prepopulated_fields = {"author":("title")} #Предзаполненные поля
-    # list_per_page = 5 # Количество записей на странице (пагинация)
+    list_per_page = 5 # Количество записей на странице (пагинация)
     inlines = [ArticleImageInline,]
     actions = ['set_true','set_false']
 
@@ -71,26 +72,26 @@ class ArticleAdmin(admin.ModelAdmin):
         self.message_user(request, f'Деактивировано {amount} новостей')
 
 
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title','author','date', 'symbols_count','image_tag']
-    list_filter = ['date', ArticleFilter]
-    # ordering = ['-date', 'title', 'author'] сортировка
-    # list_display_links = ('date',) ссылки
-    # list_editable = ['author'] редактировать поле автор или что-то ещё
-    # readonly_fields = ['author','title'] нельзя редактировать
-    list_per_page = 5
-    inlines = [ArticleImageInline, ]
-    # search_fields = ['title__startswith', 'tags__title']
-    filter_horizontal = ['tags']
-
-    @admin.display(description='Длина', ordering='_symbols')
-    def symbols_count(self, article: Article):
-        return f"Символы: {len(article.text)}"
-
-    def get_queryset(self, request):
-        queryset = super().get_queryset(request)
-        queryset = queryset.annotate(_symbols=Length('text'))
-        return queryset
+# class ArticleAdmin(admin.ModelAdmin):
+#     list_display = ['title','author','date', 'symbols_count','image_tag']
+#     list_filter = ['date', ArticleFilter]
+#     # ordering = ['-date', 'title', 'author'] сортировка
+#     # list_display_links = ('date',) ссылки
+#     # list_editable = ['author'] редактировать поле автор или что-то ещё
+#     # readonly_fields = ['author','title'] нельзя редактировать
+#     list_per_page = 5
+#     inlines = [ArticleImageInline, ]
+#     # search_fields = ['title__startswith', 'tags__title']
+#     filter_horizontal = ['tags']
+#
+#     @admin.display(description='Длина', ordering='_symbols')
+#     def symbols_count(self, article: Article):
+#         return f"Символы: {len(article.text)}"
+#
+#     def get_queryset(self, request):
+#         queryset = super().get_queryset(request)
+#         queryset = queryset.annotate(_symbols=Length('text'))
+#         return queryset
 
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = ['last_name', 'first_name', 'email']

@@ -172,6 +172,11 @@ class ArticleUpdateView(UpdateView):
     template_name = 'news/news_input.html'
     fields = ['title','anouncement','text','tags','source','sourcename','category']
 
+    def form_valid(self, form):
+        form.instance.status = False  # Установка статуса на False
+        messages.success(self.request, 'Новость отправлена на модерацию')  # Отображение сообщения пользователю
+        return super().form_valid(form)
+
 class ArticleUpdateCover(UpdateView):
     model = Article
     template_name = 'news/create_article.html'
@@ -218,6 +223,11 @@ class ArticleUpdateCover(UpdateView):
                     Image.objects.create(article=current_object, image=img, title=img.name)
 
         return super(ArticleUpdateCover, self).post(request, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.status = False  # Установка статуса на False
+        messages.success(self.request, 'Новость отправлена на модерацию')  # Отображение сообщения пользователю
+        return super().form_valid(form)
 
 class ArticleDeleteView(DeleteView):
     model = Article
