@@ -77,7 +77,7 @@
                         {% endif %}
                     {% else %}
                         <div style="background: url({% static 'main/img/mode.jpg' %}) no-repeat;  background-size: cover; height: 160vh;">
-                            <div style="background: #00000054;"><h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Новость сейчас в очереди на модерацию</h1></div>
+                            <div style="background: #00000054;"><p class="text-center fs-1" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Новость <i class="fs-1" style="color: #DC0520;">{{ article.title }}</i> сейчас в очереди на модерацию</p></div>
                         </div>
                     {% endif %}
                 {% endfor %}
