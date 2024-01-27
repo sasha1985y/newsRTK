@@ -37,10 +37,10 @@ class ArticleImageInline(admin.TabularInline):
     readonly_fields = ('id','image_tag')
 
 class ArticleAdmin(admin.ModelAdmin):
-    #ordering = ['-date','categories','author','title']
-    list_display = ['id','date','status','categories','author','image_tag','title','source','symbols_count']
-    #list_filter = [ArticleFilter,'title','author','date','categories','source']
-    list_filter = ['date', ArticleFilter]
+    ordering = ['-date','category','author','title']
+    list_display = ['id','date','status','category','author','image_tag','title','source','symbols_count']
+    list_filter = [ArticleFilter,'title','author','date','category','source']
+    #list_filter = ['date', ArticleFilter]
     list_display_links = ['date']
     search_fields = ['title__startswith','tags__title']
     filter_horizontal = ['tags']
