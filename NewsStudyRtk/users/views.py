@@ -14,6 +14,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 import json
+import os
 
 # def profile(request):
 #     context = dict()
@@ -58,16 +59,39 @@ def remove_favorite(request, id):
     favorite.delete()
     return redirect('favorites')
 
+# def profile_update(request):
+#     user = request.user
+#     account = Account.objects.get(user=user)
+#     if request.method == "POST":
+#         user_form = UserUpdateForm(request.POST, instance=user)
+#         account_form = AccountUpdateForm(request.POST, request.FILES, instance=account)
+#         if user_form.is_valid() and account_form.is_valid():
+#             user_form.save()
+#             account_form.save()
+#             messages.success(request,"Профиль успешно обновлен")
+#             return redirect('user_index')
+#     else:
+#         context = {'account_form':AccountUpdateForm(instance=account),
+#                    'user_form':UserUpdateForm(instance=user)}
+#     return render(request,'users/edit_profile.html',context)
+
 def profile_update(request):
     user = request.user
     account = Account.objects.get(user=user)
+    print(user.account.account_image)
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST, instance=user)
         account_form = AccountUpdateForm(request.POST, request.FILES, instance=account)
+        existing = account.account_image
         if user_form.is_valid() and account_form.is_valid():
             user_form.save()
             account_form.save()
-            messages.success(request,"Профиль успешно обновлен")
+            # Проверяем, является ли текущее изображение равным 'default.jpg'
+            if os.path.exists(existing.path) and existing.name != 'default.jpg':
+                # Удаляем старое изображение
+                os.remove(existing.path)
+
+            messages.success(request, "Профиль успешно обновлен")
             return redirect('user_index')
     else:
         context = {'account_form':AccountUpdateForm(instance=account),
