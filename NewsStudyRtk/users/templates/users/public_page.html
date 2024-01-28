@@ -43,6 +43,14 @@
                     {% block user %}
                         {% include 'users/user-actions.html' %}
                     {% endblock %}
+                    {% if author.user.username == 'ietvoes' %}
+                        <li>
+                            <div id="vk_post_178644073_3567"></div>
+                        </li>
+                        <li>
+                            <div id="vk_post_178644073_3566"></div>
+                        </li>
+                    {% endif %}
                 </ul>
             {% endblock %}
         </div>
@@ -161,12 +169,35 @@
             </li>
         </ul>
         <ul class="row" style="list-style: none;">
+            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.7;">
+                {% if author.user.username == 'ietvoes' %}
+                    <div id="vk_post_178644073_3565"></div>
+                {% endif %}
+            </li>
             <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.7;"></li>
-            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.6;"></li>
-            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.5;"></li>
-            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.4;"></li>
-            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.3;"></li>
-            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.2;"></li>
+            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.7;"></li>
+            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.7;"></li>
+            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.7;">
+                {% if author.user.username == 'ietvoes' %}
+                    <div id="vk_post_178644073_3564"></div>
+                {% endif %}
+            </li>
+            <li class="col-md-2" style="background: #5B5561; padding: 4% 0 0 4%; opacity: 0.7;">
+                {% if author.user.username == 'ietvoes' %}
+                    <div id="vk_post_178644073_3609"></div>
+                {% endif %}
+            </li>
         </ul>
     </main>
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+    <script type="text/javascript">
+      (function() {
+        //ietvoes
+        VK.Widgets.Post("vk_post_178644073_3567", 178644073, 3567, 'XllqL3qrzkjMou9j7qoUIwutq7zf');
+        VK.Widgets.Post("vk_post_178644073_3566", 178644073, 3566, 'IoVkXdwI66DbWfBh1_IG_9GOLv3A');
+        VK.Widgets.Post("vk_post_178644073_3565", 178644073, 3565, 'Fq39LgWbE0jz0e6YxCc1x3spxUVU');
+        VK.Widgets.Post("vk_post_178644073_3564", 178644073, 3564, 'CKfo8jlASY9fDEiP2tY2fie5A2l1');
+        VK.Widgets.Post("vk_post_178644073_3609", 178644073, 3609, '1PITt0zi9JnBRKo-pbT9b55uJo9R');
+      }());
+    </script>
 {% endblock %}
