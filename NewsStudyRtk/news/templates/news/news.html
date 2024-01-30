@@ -3,7 +3,7 @@
 {% load users_extras %}
 {% block title %} Новости {% endblock %}
 {% block main %}
-    <main>
+    <main id="main">
         <style>
             .single_news {
                 margin-left: 30%;
@@ -106,7 +106,7 @@
             <div class="col-md-2 side_menu" style="list-style: none;">
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
                 {% block sidebar %}
-                    <ul id="main" class="vstack gap-2">
+                    <ul class="vstack gap-2">
                         {% block home %}<li class="p-1"><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
                         {% block contacts %}<li class="p-1"><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
                         {% block about %}<li class="p-1"><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
@@ -161,7 +161,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                     <label>
                         <form method="post">
                             <div class="row">
@@ -197,31 +197,45 @@
                     </label>
                 </div>
             </div>
-            <div class="row" style="background: #9D8D8E">
+            <div class="row" style="background: #5B5561">
                 <div class="rs-body">
                     <div class="rs-container">
                         <div class="rs-sidebar">
                             {% if articles|length  != 0 %}
                                 {% for article in articles %}
-                                    <div class="single_news" style="margin-left: 10%;">
-                                        <div class="p-4 p-md-5 text-white rounded bg-grey" >
-                                            <div class="col-md-6 px-2">
-                                                <h1 class="display-4 fst-italic" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{article.title}}</h1>
-                                                <p class="lead my-3">{{ article.anouncement }}</p>
-                                                <p style="width: 20vw; text-center; word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></p>
-                                                <p class="text-center">
-                                                    <p class="lead my-3">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
-                                                    <p class="lead my-3">Автор:
-                                                        <a class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.author.username %} {{ n }} {% endfor %}</a>
-                                                    </p>
-                                                    <p><small>Просмотры: {{ article.get_views }}</small></p>
-                                                    <!--кнопка в избранное-->
-                                                    {% block favoritebtn %}
-                                                        {% include 'news/favorite_btn.html' %}
-                                                    {% endblock %}
-                                                </p>
-                                            </div>
-                                        </div>
+                                    <div class="single_news" style="margin: 0; padding: 0;">
+                                        <ul class="col-md-6 gap-6" style="list-style: none; color: #FDCE4B;">
+                                            <li class="text-center fs-6 p-2" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
+                                                  {% for i in article.title|striptags|slice:":20" %}
+                                                    {{ i }}
+                                                    {% if forloop.counter|divisibleby:10 and not forloop.last %}
+                                                      -<br>
+                                                    {% endif %}
+                                                  {% endfor %}
+                                                  {% if article.title|striptags|length > 20 %}
+                                                    ...
+                                                  {% endif %}
+                                            </li>
+                                            <li class="text-center fs-5 p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
+                                                  {% for i in article.anouncement|striptags|slice:":50" %}
+                                                    {{ i }}
+                                                    {% if forloop.counter|divisibleby:10 and not forloop.last %}
+                                                      -<br>
+                                                    {% endif %}
+                                                  {% endfor %}
+                                                  {% if article.anouncement|striptags|length > 20 %}
+                                                    ...
+                                                  {% endif %}
+                                            </li>
+                                            <!--li class="text-center fs-5">{{ article.anouncement|striptags|slice:":50"|join:" " }}{% if article.anouncement|striptags|length > 50 %}...{% endif %}</li-->
+                                            <li class="text-center fs-5 p-2"><a href="{% url 'news_detail' article.pk %}" style="text-decoration: none;"> Читать полностью</a></li>
+                                            <!--li class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></li-->
+                                            <li class="text-center p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</li>
+                                            <li class="text-center p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Автор:
+                                                <a class="fs-4" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;">{% for n in article.author.username %} {{ n }} {% endfor %}</a>
+                                            </li>
+                                            <li class="text-center p-2"><small>Просмотры: {{ article.get_views }}</small></li>
+                                        </ul>
                                     </div>
                                 {% endfor %}
                             {% else %}
@@ -242,7 +256,7 @@
                         {% if total > 1 %}
                             <div>
                                 <nav aria-label="Page navigation example">
-                                      <ul class="pagination">
+                                      <ul class="pagination gap-1" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                                           {% if articles.has_previous %}
                                             <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Previous</a></li>
                                           {% endif %}
