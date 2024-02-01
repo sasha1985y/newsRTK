@@ -13,9 +13,17 @@ def get_commit_count(username, repository):
     headers = {
         "Authorization": "Token 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"
     }
-    response = requests.get(url, headers=headers)
-    commits = response.json()
-    return len(commits)
+    commit_count = 0
+    page = 1
+    while True:
+        params = {"page": page, "per_page": 100}
+        response = requests.get(url, headers=headers, params=params)
+        commits = response.json()
+        commit_count += len(commits)
+        if len(commits) < 100:
+            break
+        page += 1
+    return commit_count
 
 def index(request):
     username = "sasha1985y"
