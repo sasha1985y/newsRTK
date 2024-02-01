@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import DemoForm, Demo
@@ -7,8 +8,23 @@ from .forms import DemoForm, Demo
 def about(request):
     return render(request,'main/about.html')
 
+def get_commit_count(username, repository):
+    url = f"https://api.github.com/repos/{username}/{repository}/commits"
+    headers = {
+        "Authorization": "Token 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"
+    }
+    response = requests.get(url, headers=headers)
+    commits = response.json()
+    return len(commits)
+
 def index(request):
-    return render(request,'main/index.html')
+    username = "sasha1985y"
+    repository = "newsRTK"
+    commit_count = get_commit_count(username, repository)
+    return render(request, 'main/index.html', {'commit_count': commit_count})
+
+# def index(request):
+#     return render(request,'main/index.html')
 
 def contacts(request):
     return render(request,'main/contacts.html')
