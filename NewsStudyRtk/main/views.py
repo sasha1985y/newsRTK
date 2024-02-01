@@ -11,7 +11,7 @@ def about(request):
 def get_commit_count(username, repository):
     url = f"https://api.github.com/repos/{username}/{repository}/commits"
     headers = {
-        "Authorization": "Token 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"
+        "Authorization": "Token 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"
     }
     commit_count = 0
     page = 1
