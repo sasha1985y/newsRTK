@@ -51,14 +51,15 @@
                 <div class="col-md-6" style="z-index: 0;  padding-left: 0;"></div>
             </div>
             <div class="col-md-6" style="z-index: 1; padding-left: 0;">
-                <h1 class="text-center">
+                <h1 class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap; font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{ article.title }}</h1>
+                <!--h1 class="text-center">
                     {% for i in article.title|striptags|slice:"0:" %}
                         {{ i }}
                         {% if forloop.counter|divisibleby:18 and not forloop.last %}
                           -<br>
                         {% endif %}
                     {% endfor %}
-                </h1>
+                </h1-->
                 <div class="row" style="background: #00000054;">
                     <!--p class="col-md-3" style="color:black">{% if article.status == True %}<i class="fa-solid fa-user"> Автор: {{ article.author.account.nickname }}{% else %}{% endif %}</i></p-->
                     {% if article.status == True %}
@@ -70,8 +71,8 @@
                         <span class="col-md-3" style="color: #FDCE4B; font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"><i class="fa-solid fa-user"> Автор:</i><a class="fs-4" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;"> {{ article.author.username }}</a></span>
                     {% endif %}
                 </div>
-                <blockquote class="text-center blockquote" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
-                    <p align="justify">{{ article.text|safe }}</p>
+                <blockquote class="blockquote" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
+                    <p class="text-center">{{ article.text|safe }}</p>
                 </blockquote>
                 <br>
                 <p class="readmore" style="color:black"><i class="fa-solid fa-globe"> Источник: <a href="{{ article.source }}" style="color:red" target="_blank"> {{ article.sourcename }}</a></i></p><br>

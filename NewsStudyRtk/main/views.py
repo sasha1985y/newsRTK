@@ -8,31 +8,31 @@ from .forms import DemoForm, Demo
 def about(request):
     return render(request,'main/about.html')
 
-def get_commit_count(username, repository):
-    url = f"https://api.github.com/repos/{username}/{repository}/commits"
-    headers = {
-        "Authorization": "Token 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"
-    }
-    commit_count = 0
-    page = 1
-    while True:
-        params = {"page": page, "per_page": 100}
-        response = requests.get(url, headers=headers, params=params)
-        commits = response.json()
-        commit_count += len(commits)
-        if len(commits) < 100:
-            break
-        page += 1
-    return commit_count
+# def get_commit_count(username, repository):
+#     url = f"https://api.github.com/repos/{username}/{repository}/commits"
+#     headers = {
+#         "Authorization": "Token ..."
+#     }
+#     commit_count = 0
+#     page = 1
+#     while True:
+#         params = {"page": page, "per_page": 100}
+#         response = requests.get(url, headers=headers, params=params)
+#         commits = response.json()
+#         commit_count += len(commits)
+#         if len(commits) < 100:
+#             break
+#         page += 1
+#     return commit_count
+#
+# def index(request):
+#     username = "..."
+#     repository = "..."
+#     commit_count = get_commit_count(username, repository)
+#     return render(request, 'main/index.html', {'commit_count': commit_count})
 
 def index(request):
-    username = "sasha1985y"
-    repository = "newsRTK"
-    commit_count = get_commit_count(username, repository)
-    return render(request, 'main/index.html', {'commit_count': commit_count})
-
-# def index(request):
-#     return render(request,'main/index.html')
+    return render(request,'main/index.html')
 
 def contacts(request):
     return render(request,'main/contacts.html')

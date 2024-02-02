@@ -206,24 +206,24 @@
                                     <div class="single_news" style="margin: 0; padding: 0;">
                                         <ul class="col-md-6 gap-6" style="list-style: none; color: #FDCE4B;">
                                             <li class="text-center fs-6 p-2" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
-                                                  {% for i in article.title|striptags|slice:":20" %}
+                                                  {% for i in article.title|striptags|slice:":30" %}
                                                     {{ i }}
-                                                    {% if forloop.counter|divisibleby:10 and not forloop.last %}
+                                                    {% if forloop.counter|divisibleby:15 and not forloop.last %}
                                                       -<br>
                                                     {% endif %}
                                                   {% endfor %}
-                                                  {% if article.title|striptags|length > 20 %}
+                                                  {% if article.title|striptags|length > 50 %}
                                                     ...
                                                   {% endif %}
                                             </li>
                                             <li class="text-center fs-5 p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                                                   {% for i in article.anouncement|striptags|slice:":50" %}
                                                     {{ i }}
-                                                    {% if forloop.counter|divisibleby:10 and not forloop.last %}
+                                                    {% if forloop.counter|divisibleby:25 and not forloop.last %}
                                                       -<br>
                                                     {% endif %}
                                                   {% endfor %}
-                                                  {% if article.anouncement|striptags|length > 20 %}
+                                                  {% if article.anouncement|striptags|length > 50 %}
                                                     ...
                                                   {% endif %}
                                             </li>
