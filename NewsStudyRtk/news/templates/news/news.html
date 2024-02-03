@@ -200,7 +200,7 @@
             <div class="row" style="background: #5B5561">
                 <div class="rs-body">
                     <div class="rs-container">
-                        <div class="rs-sidebar">
+                        <div class="rs-sidebar" {% if articles|length  == 0 %} style="background: url({% static 'main/img/clouds.gif' %}) no-repeat;  background-size: cover;" {% endif %}>
                             {% if articles|length  != 0 %}
                                 {% for article in articles %}
                                     <div class="single_news" style="margin: 0; padding: 0;">
@@ -241,12 +241,12 @@
                                     </div>
                                 {% endfor %}
                             {% else %}
-                                <div class="position-relative" style="background: url({% static 'main/img/panic.jpg' %}) no-repeat;  background-size: cover;">
+                                <div class="position-relative" style="background: url({% static 'main/img/panic.jpg' %}) no-repeat;  background-size: cover; opacity: 0.4;">
                                     <h1 class="position-absolute bottom-0 start-0"> "Отсутствие новостей -</h1>
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="rs-main-slide">
+                        <div class="rs-main-slide" {% if articles|length  == 0 %} style="background: url({% static 'main/img/clouds.gif' %}) no-repeat;  background-size: cover;" {% endif %}>
                             {% if articles|length  != 0 %}
                                 {% for article in articles reversed %}
                                     {% if article.image_set.all %}
@@ -256,7 +256,7 @@
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
-                                <div class="position-relative" style="background: url({% static 'main/img/panic_2.png' %}) no-repeat;  background-size: cover;">
+                                <div class="position-relative" style="background: url({% static 'main/img/panic_2.png' %}) no-repeat;  background-size: cover; opacity: 0.4;">
                                     <h1 class="position-absolute bottom-0 start-50" style="color: white;"> хорошая новость" </h1>
                                 </div>
                             {% endif %}
