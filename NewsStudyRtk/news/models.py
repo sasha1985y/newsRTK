@@ -36,7 +36,7 @@ class Article(models.Model):
     anouncement = models.TextField('Аннотация',max_length=50)
     #text = models.TextField('Текст новости')
     source = models.URLField('Источник', null=True)
-    sourcename = models.CharField('Название источника', max_length=20, validators=[MinLengthValidator(2)], null=False)
+    sourcename = models.CharField('Название источника', max_length=15, validators=[MinLengthValidator(2)], null=False)
     text = RichTextField('Текст новости', validators=[MinLengthValidator(50)], null=False)
     date = models.DateTimeField('Дата публикации',auto_now=True)
     category = models.CharField(choices=categories, max_length=20,verbose_name='Категории')

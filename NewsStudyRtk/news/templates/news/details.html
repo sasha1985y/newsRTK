@@ -5,95 +5,96 @@
 {% block title %} Новость {% endblock %}
 {% block main %}
     <main class="position-relative">
-        <div class="row" style="background: url({% static 'main/img/sky.jpg' %}) no-repeat;  background-size: cover; min-height: 75vh; background-color: #5B5561;">
-            <div class="col-md-2 side_menu" style="list-style: none; z-index: 1;background: linear-gradient(145deg, #5B5561 30%,#aef9ce00 70%) center fixed, url({% static 'main/img/sky.jpg' %});">
-                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
-                {% block sidebar %}
-                    <ul class="vstack gap-2" id="main">
-                        {% block home %}<li class="p-1"><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
-                        {% block news %}<li class="p-1"><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
-                        {% block about %}<li class="p-1"><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
-                        {% block readers %}<li class="p-1"><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %}
-                        <li><a href="javascript:window.history.back();" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-reply"> Назад</i></a></li>
-                        {% block user %}
-                            {% include 'users/user-actions.html' %}
-                        {% endblock %}
-                    </ul>
-                {% endblock %}
-            </div>
-            <div class="col-md-4" style="z-index: 0;"></div>
-            <div class="row" style="position: fixed;">
-                <div class="col-md-2"></div>
-                <div class="col-md-4" style="z-index: 1; padding-right: 0;">
-                    {% block slider %}
-                        {% if article.image_set.all %}
-                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="false">
-                                <div class="carousel-inner">
-                                    {% for image in article.image_set.all %}
-                                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
-                                            <img src="{{ image.image.url }}" width="500px" height="500px" alt="фото">
-                                            <div class="carousel-caption d-none d-md-block"></div>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Предыдущий</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Следующий</span>
-                                </button>
-                            </div>
-                        {% endif%}
+        <div style="background: url({% static 'main/img/window.gif' %}) no-repeat;  background-size: cover; min-height: 75vh; background-color: #5B5561;">
+            <div class="row" style="background: url({% static 'main/img/sky.jpg' %}) no-repeat;  background-size: cover; min-height: 75vh; background-color: #5B5561; opacity: 0.9;">
+                <div class="col-md-2 side_menu" style="list-style: none; z-index: 1;background: linear-gradient(145deg, #5B5561 30%,#aef9ce00 70%) center fixed, url({% static 'main/img/sky.jpg' %});">
+                    <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
+                    {% block sidebar %}
+                        <ul class="vstack gap-2" id="main">
+                            {% block home %}<li class="p-1"><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                            {% block news %}<li class="p-1"><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                            {% block about %}<li class="p-1"><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                            {% block readers %}<li class="p-1"><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %}
+                            <li><a href="javascript:window.history.back();" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-reply"> Назад</i></a></li>
+                            {% block user %}
+                                {% include 'users/user-actions.html' %}
+                            {% endblock %}
+                        </ul>
                     {% endblock %}
                 </div>
-                <div class="col-md-6" style="z-index: 0;  padding-left: 0;"></div>
-            </div>
-            <div class="col-md-6" style="z-index: 1; padding-left: 0;">
-                <h1 class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap; font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{ article.title }}</h1>
-                <!--h1 class="text-center">
-                    {% for i in article.title|striptags|slice:"0:" %}
-                        {{ i }}
-                        {% if forloop.counter|divisibleby:18 and not forloop.last %}
-                          -<br>
+                <div class="col-md-4" style="z-index: 0;"></div>
+                <div class="row" style="position: fixed;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="z-index: 1; padding-right: 0;">
+                        {% block slider %}
+                            {% if article.image_set.all %}
+                                <div id="carouselExampleCaptions" class="carousel slide" data-bs-interval="false">
+                                    <div class="carousel-inner">
+                                        {% for image in article.image_set.all %}
+                                            <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
+                                                <img src="{{ image.image.url }}" width="500px" height="500px" alt="фото">
+                                                <div class="carousel-caption d-none d-md-block"></div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Предыдущий</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Следующий</span>
+                                    </button>
+                                </div>
+                            {% endif%}
+                        {% endblock %}
+                    </div>
+                    <div class="col-md-6" style="z-index: 0;  padding-left: 0;"></div>
+                </div>
+                <div class="col-md-6" style="z-index: 1; padding-left: 0;">
+                    <h1 class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap; font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{ article.title }}</h1>
+                    <!--h1 class="text-center">
+                        {% for i in article.title|striptags|slice:"0:" %}
+                            {{ i }}
+                            {% if forloop.counter|divisibleby:18 and not forloop.last %}
+                              -<br>
+                            {% endif %}
+                        {% endfor %}
+                    </h1-->
+                    <div class="row" style="background: #00000054;">
+                        <!--p class="col-md-3" style="color:black">{% if article.status == True %}<i class="fa-solid fa-user"> Автор: {{ article.author.account.nickname }}{% else %}{% endif %}</i></p-->
+                        {% if article.status == True %}
+                            <span class="col-md-7"><i class="fa-solid fa-check"> Дата публикации: {{ article.date.date }}</i></span>
+                            <span class="col-md-3" style="color: #FDCE4B; font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"><i class="fs-6 fa-solid fa-user"> Автор:</i><a class="link-info" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;"> {{ article.author.username }}</a></span>
+                            <span class="col-md-2" style="color: #FDCE4B"><i class="fa-solid fa-eye"> {{ article.get_views }}</i></span>
+                        {% else %}
+                            <span class="col fs-4" style="color: #FDCE4B"><i class="fa-solid fa-xmark"> Не опубликовано</i></span>
+                            <span class="col fs-4" style="color: #FDCE4B; font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"><i class="fa-solid fa-user"> Автор:</i><a class="fs-4 link-info" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;"> {{ article.author.username }}</a></span>
                         {% endif %}
-                    {% endfor %}
-                </h1-->
-                <div class="row" style="background: #00000054;">
-                    <!--p class="col-md-3" style="color:black">{% if article.status == True %}<i class="fa-solid fa-user"> Автор: {{ article.author.account.nickname }}{% else %}{% endif %}</i></p-->
-                    {% if article.status == True %}
-                        <span class="col-md-7"><i class="fa-solid fa-check"> Дата публикации: {{ article.date.date }}</i></span>
-                        <span class="col-md-3" style="color: #FDCE4B; font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"><i class="fs-6 fa-solid fa-user"> Автор:</i><a class="link-info" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;"> {{ article.author.username }}</a></span>
-                        <span class="col-md-2" style="color: #FDCE4B"><i class="fa-solid fa-eye"> {{ article.get_views }}</i></span>
+                    </div>
+                    <blockquote class="blockquote" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
+                        <p class="text-center">{{ article.text|safe }}</p>
+                    </blockquote>
+                    <span class="text-center position-absolute bottom-0 end-60" style="color: #FDCE4B; background: #00000054;"><i class="fa-solid fa-globe"> Источник: <a href="{{ article.source }}" style="color: #FDCE4B; text-decoration: none;" target="_blank"> {{ article.sourcename }}</a></i></span>
+                    {% if request.user.is_superuser or request.user|has_group:"Authors" and article.author_id == request.user.id %}
+                        <div class="row text-center position-absolute bottom-0 end-0" style="background: #00000054;">
+                            <span class="col-md-2"><a class="btn btn-outline-info" href="{% url 'news_update_cover' article.pk %}"><i class="fa-solid fa-image"></i></a></span>
+                            <span class="col-md-2"><a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a></span>
+                            <span class="col-md-2"><a class="btn btn-outline-warning" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a></span>
+                            <span class="col-md-6">
+                                {% block favoritebtn %}
+                                    {% include 'news/favorite_btn.html' %}
+                                {% endblock %}
+                            </span>
+                        </div>
                     {% else %}
-                        <span class="col-md-3" style="color: #FDCE4B"><i class="fa-solid fa-xmark"> Не опубликовано</i></span>
-                        <span class="col-md-3" style="color: #FDCE4B; font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;"><i class="fa-solid fa-user"> Автор:</i><a class="fs-4" href="{{ article.get_absolute_url_public }}" style="text-decoration: none;"> {{ article.author.username }}</a></span>
+                        <div class="row text-center" style="background: #00000054;">
+                            <span class="col text-center">
+                                {% include 'news/favorite_btn.html' %}
+                            </span>
+                        </div>
                     {% endif %}
                 </div>
-                <blockquote class="blockquote" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;">
-                    <p class="text-center">{{ article.text|safe }}</p>
-                </blockquote>
-                <br>
-                <p class="readmore" style="color:black"><i class="fa-solid fa-globe"> Источник: <a href="{{ article.source }}" style="color:red" target="_blank"> {{ article.sourcename }}</a></i></p><br>
-                {% if request.user.is_superuser or request.user|has_group:"Authors" and article.author_id == request.user.id %}
-                    <div class="row text-center position-absolute bottom-0 end-0" style="background: #00000054;">
-                        <span class="col-md-2"><a class="btn btn-outline-info" href="{% url 'news_update_cover' article.pk %}"><i class="fa-solid fa-image"></i></a></span>
-                        <span class="col-md-2"><a class="btn btn-outline-info" href="{% url 'news_update' article.pk %}"><i class="fa-solid fa-pen-to-square"></i></a></span>
-                        <span class="col-md-2"><a class="btn btn-outline-warning" href="{% url 'news_delete' article.pk %}"><i class="fa-solid fa-trash"></i></a></span>
-                        <span class="col-md-6">
-                            {% block favoritebtn %}
-                                {% include 'news/favorite_btn.html' %}
-                            {% endblock %}
-                        </span>
-                    </div>
-                {% else %}
-                    <div class="row text-center" style="background: #00000054;">
-                        <span class="col text-center">
-                            {% include 'news/favorite_btn.html' %}
-                        </span>
-                    </div>
-                {% endif %}
             </div>
         </div>
     </main>

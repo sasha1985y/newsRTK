@@ -205,7 +205,8 @@
                                 {% for article in articles %}
                                     <div class="single_news" style="margin: 0; padding: 0;">
                                         <ul class="col-md-6 gap-6" style="list-style: none; color: #FDCE4B;">
-                                            <li class="text-center fs-6 p-2" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
+                                            <li class="text-center fs-6 p-2" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap; font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{ article.title }}</li>
+                                            <!--li class="text-center fs-6 p-2" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                                                   {% for i in article.title|striptags|slice:":30" %}
                                                     {{ i }}
                                                     {% if forloop.counter|divisibleby:15 and not forloop.last %}
@@ -215,8 +216,9 @@
                                                   {% if article.title|striptags|length > 50 %}
                                                     ...
                                                   {% endif %}
-                                            </li>
-                                            <li class="text-center fs-5 p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
+                                            </li-->
+                                            <li class="text-center fs-5 p-2" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap; font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">{{ article.anouncement }}</li>
+                                            <!--li class="text-center fs-5 p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                                                   {% for i in article.anouncement|striptags|slice:":50" %}
                                                     {{ i }}
                                                     {% if forloop.counter|divisibleby:25 and not forloop.last %}
@@ -226,7 +228,7 @@
                                                   {% if article.anouncement|striptags|length > 50 %}
                                                     ...
                                                   {% endif %}
-                                            </li>
+                                            </li-->
                                             <!--li class="text-center fs-5">{{ article.anouncement|striptags|slice:":50"|join:" " }}{% if article.anouncement|striptags|length > 50 %}...{% endif %}</li-->
                                             <li class="text-center fs-5 p-2"><a href="{% url 'news_detail' article.pk %}" style="text-decoration: none;"> Читать полностью</a></li>
                                             <!--li class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></li-->
@@ -239,7 +241,9 @@
                                     </div>
                                 {% endfor %}
                             {% else %}
-                                <h1> Отсутствие<br> новостей<br>хорошая <br>новость </h1>
+                                <div class="position-relative" style="background: url({% static 'main/img/panic.jpg' %}) no-repeat;  background-size: cover;">
+                                    <h1 class="position-absolute bottom-0 start-0"> "Отсутствие новостей -</h1>
+                                </div>
                             {% endif %}
                         </div>
                         <div class="rs-main-slide">
@@ -251,6 +255,10 @@
                                         </div>
                                     {% endif %}
                                 {% endfor %}
+                            {% else %}
+                                <div class="position-relative" style="background: url({% static 'main/img/panic_2.png' %}) no-repeat;  background-size: cover;">
+                                    <h1 class="position-absolute bottom-0 start-50" style="color: white;"> хорошая новость" </h1>
+                                </div>
                             {% endif %}
                         </div>
                         {% if total > 1 %}
