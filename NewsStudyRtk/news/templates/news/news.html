@@ -262,8 +262,10 @@
                             {% endif %}
                         </div>
                         {% if total > 1 %}
-                            <div>
-                                <nav aria-label="Page navigation example">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col">
+                                    <nav aria-label="Page navigation example">
                                       <ul class="pagination gap-1" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
                                           {% if articles.has_previous %}
                                             <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}">Previous</a></li>
@@ -279,7 +281,8 @@
                                             <li class="page-item"><a class="page-link" href="?page={{ articles.next_page_number }}">Next</a></li>
                                           {% endif %}
                                       </ul>
-                                </nav>
+                                    </nav>
+                                </div>
                             </div>
                         {% endif %}
                         <div class="rs-controls">

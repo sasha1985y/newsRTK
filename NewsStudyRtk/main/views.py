@@ -51,7 +51,10 @@ def showlastmodel(request):
     context = {'model':model }
     return render(request,'main/image_Form.html',context)
 
-def custom_404(request, exeption):
-    # context = {'exeption': exeption}
-    # return render(request, 'main/page_404.html', context)
-    return HttpResponse(f'1000:{exeption}')
+# def custom_404(request, exeption):
+#     # context = {'exeption': exeption}
+#     # return render(request, 'main/page_404.html', context)
+#     return HttpResponse(f'1000:{exeption}')
+
+def custom_404(request, exception):
+    return render(request, 'main/page_404.html')
