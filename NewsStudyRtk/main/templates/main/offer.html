@@ -1,0 +1,80 @@
+{% extends 'main/homebase.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+{% block title %} Акция {% endblock %}
+
+{% block main %}
+    <main class="row" style="background: url({% static 'main/img/city.png' %}) no-repeat center;  background-size: 92vw; position: relative; height: auto;">
+        <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
+            {% block sidebar %}
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
+                <ul class="vstack gap-2" id="main">
+                    {% block home %}<li class="p-1"><i class="fa-solid fa-house"></i><a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;">&nbspДомой</a></li>{% endblock %}
+                    {% block news %}<li class="p-1"><i class="fa-solid fa-radio"></i><a href="{% url 'news_index' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНовости</a></li>{% endblock %}
+                    {% block contacts %}<li class="p-1"><i class="fa-solid fa-address-book"></i><a href="{% url 'contact' %}" style="text-decoration: none; color: #FDCE4B;">&nbspКонтакты</a></li>{% endblock %}
+                    {% block about %}<li class="p-1"><i class="fa-solid fa-people-group"></i><a href="{% url 'of' %}" style="text-decoration: none; color: #FDCE4B;">&nbspО нас</a></li>{% endblock %}
+                    {% block readers %}<li class="p-1"><i class="fa-solid fa-user-group"></i><a href="{% url 'news_readers' %}" style="text-decoration: none; color: #FDCE4B;">&nbspНаши гости</a></li>{% endblock %}
+                    <li><a href="javascript:window.history.back();" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-reply"> Назад</i></a></li>
+                    {% block user %}
+                            {% include 'users/user-actions.html' %}
+                    {% endblock %}
+                </ul>
+            {% endblock %}
+            <div style="height: 100vh;"></div>
+        </div>
+        {% block content %}
+            <div class="col text-center" style="background: linear-gradient(90deg, #8f8f8f60 40%, #000000bd 70%);">
+                <div class="row">
+                    <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+                    <div class="col" style="position: fixed;">
+                        <h1 style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; color: #fede00;">Начни свой путь<br> WEB-разработчика</h1>
+                        <ul style="list-style: none;">
+                            <li><a class="fs-2" href="https://htmlacademy.ru/profession/frontender" style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; color: #EB51E8;"> Фронтенд-разработчик</a><br><span style="color: #46344E;"><i style="color: #6EDE06;">— 109 000₽</i><i style="color: red;">(полная стоимость 169 000₽)</i></span></li>
+                            <li><span style="color: #05DAC3;">Ссылка-приглашение</span></li>
+                            <li><span>https://htmlacademy.ru/invite/1881433-c56a5c936ef97befed68178760d102b8</span></li>
+                            <li><a class="fs-2" href="https://htmlacademy.ru/profession/react" style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; color: coral;"> JavaScript-разработчик</a><br><span style="color: #46344E;"><i style="color: #6EDE06;">— 119 000₽</i><i style="color: red;">(полная стоимость 169 000₽)</i></span></li>
+                            <li><span style="color: #05DAC3;">Ссылка-приглашение</span></li>
+                            <li><span>https://htmlacademy.ru/invite/1881433-c134a27cfff1e8e59a83ead70e415d74</span></li>
+                            <li><a class="fs-2" href="https://htmlacademy.ru/profession/fullstack" style="font-family: Bellota, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; color: dodgerblue;">Фулстек-разработчик</a><br><span style="color: #46344E;"><i style="color: #6EDE06;">— 159 000₽</i><i style="color: red;">(полная стоимость 219 000₽)</i></span></li>
+                            <li><span style="color: #05DAC3;">Ссылка-приглашение</span></li>
+                            <li><span>https://htmlacademy.ru/invite/1881433-c83d6a5d77778c7898cab660370479ed</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3" style="margin: 0; padding: 0;"></div>
+                </div>
+            </div>
+        {% endblock %}
+        <div class="col-md-1" style="background-color: #070F17;"></div>
+    </main>
+    <script>
+        let currentElem = null;
+        main.onmouseover = function(event) {
+          if (currentElem) return;
+          let target = event.target.closest('li');
+          if (!target) return;
+          if (!main.contains(target)) return;
+          currentElem = target;
+          target.style.background = '#212529';
+          target.style.color = '#FEDE00';
+          target.style.boxShadow = "5px -5px 5px #212529, -5px 5px 5px #212529, -5px -5px 5px #212529, 5px 5px 5px #212529";
+          target.style.fontWeight = '600';
+          currentElem.style.transition = 'all 0.5s';
+        };
+        main.onmouseout = function(event) {
+          if (!currentElem) return;
+          let relatedTarget = event.relatedTarget;
+          while (relatedTarget) {
+            if (relatedTarget == currentElem) return;
+            relatedTarget = relatedTarget.parentNode;
+          }
+          currentElem.style.background = '';
+          currentElem.style.color = '#E8C24D';
+          currentElem.style.border = '';
+          currentElem.style.boxShadow = '';
+          currentElem.style.fontWeight = '400';
+          currentElem.style.transition = 'all 0.5s';
+          currentElem = null;
+        };
+    </script>
+{% endblock %}
