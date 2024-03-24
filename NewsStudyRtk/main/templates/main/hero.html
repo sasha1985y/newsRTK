@@ -1,2 +1,7 @@
 {% load static %}
-    <div style="background: url({% static 'main/img/blaze.gif' %}) no-repeat;  background-size: cover"><img src="{% static 'main/img/sancho.png' %}" width="100%" height="605" alt="sancho"></div>
+    <!--div style="background: url('https://i.gifer.com/GEBR.gif') no-repeat;  background-size: cover"><img src="{% static 'main/img/sancho.png' %}" width="100%" height="605" alt="sancho"></div-->
+    {% if "https://i.gifer.com/GEBR.gif" not in request.META.HTTP_REFERER|default_if_none:'' %}
+        <div style="background: url('https://i.gifer.com/GEBR.gif') no-repeat;  background-size: cover"><img src="{% static 'main/img/sancho.png' %}" width="100%" height="605" alt="sancho"></div>
+    {% else %}
+        <div style="background: url({% static 'main/img/blaze.gif' %}) no-repeat;  background-size: cover"><img src="{% static 'main/img/sancho.png' %}" width="100%" height="605" alt="sancho"></div>
+    {% endif %}
