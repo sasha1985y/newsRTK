@@ -5,7 +5,7 @@
 {% block title %} Акция {% endblock %}
 
 {% block main %}
-    <main class="row" style="background: url({% static 'main/img/city.png' %}) no-repeat center;  background-size: 92vw; position: relative; height: auto;">
+    <main class="row" {% if "https://99px.ru/sstorage/86/2015/07/image_86210715080425356106.gif" not in request.META.HTTP_REFERER|default_if_none:'' %} style=" background: url('https://99px.ru/sstorage/86/2015/07/image_86210715080425356106.gif') no-repeat center;  background-size: 42vw; position: relative; height: auto;"{% else %} style=" background: url({% static 'main/img/blaze.gif' %}) no-repeat center;  background-size: 42vw; position: relative; height: auto;"{% endif %}>
         <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
@@ -24,7 +24,7 @@
             <div style="height: 100vh;"></div>
         </div>
         {% block content %}
-            <div class="col text-center" style="background: linear-gradient(90deg, #8f8f8f60 40%, #000000bd 70%);">
+            <div class="col text-center" style="background: linear-gradient(90deg, #8f8f8f60 40%, #000000bd 70%) center fixed, url({% static 'main/img/city.png' %}); background-size: cover;">
                 <div class="row">
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                     <div class="col" style="position: fixed;">
@@ -47,6 +47,7 @@
         {% endblock %}
         <div class="col-md-1" style="background-color: #070F17;"></div>
     </main>
+
     <script>
         let currentElem = null;
         main.onmouseover = function(event) {

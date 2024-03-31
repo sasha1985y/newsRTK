@@ -10,18 +10,20 @@
                 {% include 'main/header.html' %}
             {% endblock %}
             {% block main %}
-                <main class="position-relative" style="background: url({% static 'main/img/page_404.jpg' %}) no-repeat;  background-size: cover; height: 190vh; margin: 0; padding: 0;">
-                    {% block content %}
-                        <div class="position-absolute top-0 end-0">
-                            <h1 class="text-center">Комфортно? - оставайтесь</h1>
-                        </div>
-                        <div class="position-absolute top-0 start-0">
-                            <h1 class="text-center">Это был поворот "не туда"</h1>
-                        </div>
-                        <div class="position-absolute top-0 start-50">
-                            <a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fs-1 fa-solid fa-house"></i><br>Домой</a>
-                        </div>
-                    {% endblock %}
+                <main class="position-relative" {% if "https://i.gifer.com/76zk.gif" not in request.META.HTTP_REFERER|default_if_none:'' %} style=" background: url('https://i.gifer.com/76zk.gif') no-repeat center;  background-size: cover; height: 190vh; margin: 0; padding: 0;"{% else %} style=" background: url({% static 'main/img/stars.gif' %}) no-repeat center;  background-size: cover; height: 190vh; margin: 0; padding: 0;"{% endif %}>
+                	<div class="position-relative" style="background: url({% static 'main/img/page_404.png' %}) no-repeat center;  background-size: cover; height: 190vh; margin: 0; padding: 0;">
+	                    {% block content %}
+	                        <div class="position-absolute top-0 end-0">
+	                            <h1 class="text-center">Комфортно? - оставайтесь</h1>
+	                        </div>
+	                        <div class="position-absolute top-0 start-0">
+	                            <h1 class="text-center">Это был поворот "не туда"</h1>
+	                        </div>
+	                        <div class="position-absolute top-0 start-50">
+	                            <a href="{% url 'home' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fs-1 fa-solid fa-house"></i><br>Домой</a>
+	                        </div>
+	                    {% endblock %}
+                    </div>
                 </main>
             {% endblock %}
             {% block foot %}{% include 'main/footer.html' %} {% endblock %}

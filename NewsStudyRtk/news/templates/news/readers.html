@@ -17,7 +17,7 @@
             transition: all 2s;
         }
     </style>
-    <main class="row" style="background: url({% static 'main/img/зима.gif' %}) no-repeat;  background-size: cover; position: relative; height: auto;" id="main">
+    <main class="row" {% if "https://i.gifer.com/8T1x.gif" not in request.META.HTTP_REFERER|default_if_none:'' %} style=" background: url('https://i.gifer.com/8T1x.gif') no-repeat;  background-size: cover; position: relative; height: auto;"{% else %} style=" background: url({% static 'main/img/зима.gif' %}) no-repeat;  background-size: cover; position: relative; height: auto;"{% endif %} id="main">
         <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
@@ -32,13 +32,14 @@
                     {% block user %}
                             {% include 'users/user-actions.html' %}
                     {% endblock %}
+                    <div id="vk_post_178644073_3611"></div>
                 </ul>
             {% endblock %}
             <div style="height: 13vh;"></div>
         </div>
         {% block content %}
             <div class="col text-center">
-                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; color: #46344E;">Гости сайта</h1>
+                <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif; color: #FDCE4B;">Гости сайта</h1>
                 <div class="row text-center">
                     <div class="col-md-3" style="margin: 0; padding: 0;"></div>
                     <div class="row" style="font-family: Iceberg , cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">
@@ -47,7 +48,7 @@
                             <a href="{% url 'user_detail' reader.0 %}">
                               <img src="{{ '/media/'|add:reader.2 }}" alt="{{ reader.1 }}" width="150" height="150">
                             </a>
-                            <p class="fs-3"><a href="{% url 'user_detail' reader.0 %}" style="color: #46344E; text-decoration: none;">{{ reader.1 }}</a></p>
+                            <p class="fs-3"><a href="{% url 'user_detail' reader.0 %}" style="color: #FDCE4B; text-decoration: none;">{{ reader.1 }}</a></p>
                           </div>
                         {% endfor %}
                     </div>
@@ -91,5 +92,11 @@
             const photos = document.querySelectorAll('.fadeable');
             Array.from(photos).map((item) => item.classList.toggle('fade'));
         });
+    </script>
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+    <script type="text/javascript">
+      (function() {
+        VK.Widgets.Post("vk_post_178644073_3611", 178644073, 3611, 'DvC01MpCFgYf2TRa2FckjqW4i4-e');
+      }());
     </script>
 {% endblock %}

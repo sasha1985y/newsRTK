@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" style="background: linear-gradient(164deg, #2F649E 30%,#aef9ce00 70%) center fixed, url({% static 'main/img/stars.gif' %});"></div>
+            <div class="col-md-2" style="background: linear-gradient(164deg, #2F649E 30%,#aef9ce00 70%) center fixed, url({% static 'main/img/stars.gif' %});"><div id="vk_post_178644073_3612"></div></div>
             <div class="col">
                 {% block gallery %}
                     {% include 'main/gallery.html' %}
@@ -50,4 +50,10 @@
             </div>
         </div>
     </main>
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+    <script type="text/javascript">
+      (function() {
+        VK.Widgets.Post("vk_post_178644073_3612", 178644073, 3612, 'LC3s5sQ3lGZw_xAnICctIWsot9QI');
+      }());
+    </script>
 {% endblock %}
