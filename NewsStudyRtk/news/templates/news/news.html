@@ -246,7 +246,7 @@
                                                   {% endif %}
                                             </li-->
                                             <!--li class="text-center fs-5">{{ article.anouncement|striptags|slice:":50"|join:" " }}{% if article.anouncement|striptags|length > 50 %}...{% endif %}</li-->
-                                            <li class="text-center fs-5 p-2"><a href="{% url 'news_detail' article.pk %}" style="text-decoration: none;"> Читать полностью</a></li>
+                                            <li class="text-center fs-5 p-2"><a href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">Читать полностью</a></li>
                                             <!--li class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></li-->
                                             <li class="text-center p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</li>
                                             <li class="text-center p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Автор:
