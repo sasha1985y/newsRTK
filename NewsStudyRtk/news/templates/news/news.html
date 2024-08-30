@@ -144,9 +144,13 @@
                         .filter(title => title.length > 0); // Убираем пустые строки
 
                     $("#search_input").autocomplete({
-                        source: "search_auto/",
-                        select: function (event, ui) { //item selected
-                            AutoCompleteSelectHandler(event, ui)
+                        source: function(request, response) {
+                            // Фильтруем массив articles по введенному тексту
+                            var results = $.ui.autocomplete.filter(articles, request.term);
+                            response(results); // Возвращаем отфильтрованные результаты
+                        },
+                        select: function(event, ui) { //item selected
+                            AutoCompleteSelectHandler(event, ui);
                         },
                         minLength: 2,
                     });
