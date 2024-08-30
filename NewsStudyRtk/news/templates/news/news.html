@@ -395,4 +395,27 @@
           currentElem = null;
         };
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.read-all').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var userSearcherNews = document.querySelector(".read-a").value.trim(); // Получаем значение из поля ввода
+                var articles = document.querySelector(".get-articles").innerHTML.split(', ').map(title => title.trim()); // Получаем все article.title в массив
+                var ajaxUrl = "https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage?chat_id=YOUR_CHAT_ID&text=" + " Пользователя заинетересовала новость: " + userSearcherNews;
+
+                // Проверяем, есть ли совпадение
+                if (articles.includes(userSearcherNews)) {
+                    //alert("Совпадение найдено: " + userSearcherNews);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", ajaxUrl, true);
+                    xhr.send();
+                    window.location.href = "{% url 'search_news' %}?search_input=" + encodeURIComponent(userSearcherNews);
+                } else {
+                    console.log(articles);
+                    console.log("Совпадений не найдено");
+                }
+            });
+        });
+    </script>
 {% endblock %}
