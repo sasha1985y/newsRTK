@@ -135,6 +135,14 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
             <script>
                 $(function() {
+                                    // Получаем все article.title в массив
+                    var rawArticles = document.querySelector(".get-articles").innerHTML.split(', ');
+
+                    // Очищаем массив от лишних символов и пробелов
+                    var articles = rawArticles
+                        .map(title => title.replace(/[\(\)\n]/g, '').trim()) // Удаляем скобки и переносы строк
+                        .filter(title => title.length > 0); // Убираем пустые строки
+
                     $("#search_input").autocomplete({
                         source: "search_auto/",
                         select: function (event, ui) { //item selected
