@@ -176,6 +176,8 @@
                                         {% endfor %}
                                     )
                                 </span>
+                                <span class="d-none get-token">{{ bot_token }}</span>
+                                <span class="d-none get-yourid">{{ your_id }}</span>
                                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>
@@ -210,7 +212,7 @@
                                         <input type="submit" class="btn btn-success" value="&#10003;" style="margin: 0 15px">
                                 </span>
                                 <div class="col-md-1"></div>
-                                <span class="get-articles col-md-1">(Всего :{{articles|length}})</span>
+                                <span class="col-md-1">(Всего :{{articles|length}})</span>
                             </div>
                             {% csrf_token %}
                         </form>
@@ -250,7 +252,7 @@
                                                   {% endif %}
                                             </li-->
                                             <!--li class="text-center fs-5">{{ article.anouncement|striptags|slice:":50"|join:" " }}{% if article.anouncement|striptags|length > 50 %}...{% endif %}</li-->
-                                            <li class="text-center fs-5 p-2"><a href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">Читать полностью</a></li>
+                                            <li class="text-center fs-5 p-2"><a href="{% url 'news_detail' article.pk %}" style="text-decoration: none;"> Читать полностью</a></li>
                                             <!--li class="text-center" style="word-wrap: break-word; text-align: justify; white-space: pre-wrap;"><a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'news_detail' article.pk %}" style="text-decoration: none;">{{ article.text|striptags|slice:":50"|join:" " }}{% if article.text|striptags|length > 50 %}...{% endif %}</a></li-->
                                             <li class="text-center p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Теги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</li>
                                             <li class="text-center p-2" style="font-family: Iceberg, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Автор:
@@ -270,8 +272,8 @@
                             {% if articles|length  != 0 %}
                                 {% for article in articles reversed %}
                                     {% if article.image_set.all %}
-                                        <div>
-                                            <img src="{{ article.image_set.all.0.image.url }}" width="100%" height="100%" alt="фото">
+                                        <div class="text-center">
+                                            <img src="{{ article.image_set.all.0.image.url }}"  height="100%" width="auto" alt="фото">
                                         </div>
                                     {% endif %}
                                 {% endfor %}
@@ -400,26 +402,29 @@
         };
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.read-all').addEventListener('submit', function(event) {
-                event.preventDefault();
-                var userSearcherNews = document.querySelector(".read-a").value.trim(); // Получаем значение из поля ввода
-                var articles = document.querySelector(".get-articles").innerHTML.split(', ').map(title => title.trim()); // Получаем все article.title в массив
-                var ajaxUrl = "https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage?chat_id=YOUR_CHAT_ID&text=" + " Пользователя заинетересовала новость: " + userSearcherNews;
+    	document.addEventListener('DOMContentLoaded', function() {
+		    document.querySelector('.read-all').addEventListener('submit', function(event) {
+		        event.preventDefault();
+		        var bot_token = document.querySelector(".get-token").innerHTML;
+		        var your_id = document.querySelector(".get-yourid").innerHTML;
+		        //var bot_token = {{ bot_token }}; не рабочий вариант
+		        //var your_id = {{ your_id }}; не рабочий вариант
+		        var userSearcherNews = document.querySelector(".read-a").value.trim(); // Получаем значение из поля ввода
+		        var articles = document.querySelector(".get-articles").innerHTML.split(', ').map(title => title.trim()); // Получаем все article.title в массив
+		        var ajaxUrl = "https:\/\/api.telegram.org\/bot" + bot_token + "\/sendMessage?chat_id=" + your_id + "&text=" + " Пользователя заинетересовала новость: " + userSearcherNews;
 
-                // Проверяем, есть ли совпадение
-                if (articles.includes(userSearcherNews)) {
-                    //alert("Совпадение найдено: " + userSearcherNews);
+		        // Проверяем, есть ли совпадение
 
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", ajaxUrl, true);
-                    xhr.send();
-                    window.location.href = "{% url 'search_news' %}?search_input=" + encodeURIComponent(userSearcherNews);
-                } else {
-                    console.log(articles);
-                    console.log("Совпадений не найдено");
-                }
-            });
-        });
+		        if (articles.includes(userSearcherNews)) {
+		            var xhr = new XMLHttpRequest();
+		            xhr.open("GET", ajaxUrl, true);
+		            xhr.send();
+		        	//alert(ajaxUrl, bot_token, your_id);
+		            window.location.href = "{% url 'search_news' %}?search_input=" + encodeURIComponent(userSearcherNews);
+		        } else {
+		            console.log("Непредвиденная ошибка. Приносим извинения");
+		        }
+		    });
+		});
     </script>
 {% endblock %}
