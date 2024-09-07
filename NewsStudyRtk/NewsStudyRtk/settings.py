@@ -4,6 +4,9 @@ env = environ.Env()
 environ.Env.read_env()
 from dotenv import load_dotenv
 load_dotenv()
+
+BOT_TOKEN = env('BOT_TOKEN')
+YOUR_ID = env('YOUR_ID')
 """
 Django settings for NewsStudyRtk project.
 
