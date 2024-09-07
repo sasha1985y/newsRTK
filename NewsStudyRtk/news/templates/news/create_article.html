@@ -8,7 +8,6 @@
     <main class="row" style="background: url({% static 'main/img/Volgograd.gif' %}) no-repeat;  background-size: cover;">
         <div class="col-md-2 side_menu">
             {% block sidebar %} {% include 'main/sidebar.html' %} {% endblock %}
-            <div id="vk_post_178644073_3589"></div>
         </div>
         {% block content %}
             <div class="col-md-2"></div>
@@ -21,6 +20,7 @@
                         {{ image_form|crispy }}
                         {% if request.user.is_superuser or request.user|has_group:"Authors" and article.author_id == request.user.id or request.user|has_group:"Authors" and article.author_id == article.user.id %}
                             <input type="submit" class="btn btn-success" value = "Сохранить">
+                            <p>ВАЖНО: ПЕРЕД СОХРАНЕНИЕМ ПЕРЕИМЕНУЙТЕ ИМЯ КАРТИНКИ, КОТОРУЮ ВЫ СОБИРАЕТЕСЬ ЗАГРУЗИТЬ С ЛОКАЛЬНОЙ МАШИНЫ НА ЛАТИНИЦУ ВО ИЗБЕЖАНИИ СИСТЕМНОГО СБОЯ. ЭТО-ВРЕМЕННОЕ РЕШЕНИЕ. МЫ ИСПРАВИМ ЭТОТ БАГ КАК ТОЛЬКО СМОЖЕМ.</p>
                         {% else %}
                             <a href="{% url 'logout' %}" id="not_author" class="btn btn-success">&nbspСохранить</a>
                         {% endif %}
@@ -35,12 +35,6 @@
                         alert('Уважаемый пользователь, Вы не являетесь автором Этой новости, Вы не можете изменять или сохранять её состояние.');
                     }
                 }
-            </script>
-            <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
-            <script type="text/javascript">
-              (function() {
-                VK.Widgets.Post("vk_post_178644073_3589", 178644073, 3589, 'l4GGFj7QxOiOPGsCtX73iYnGgzl3');
-              }());
             </script>
         {% endblock %}
     </main>
