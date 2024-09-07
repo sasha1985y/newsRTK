@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Marker+Hatch&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bellota:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
+
+header {
+  font-family: "Rubik Glitch", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #FDCE4B;
+}
+
+/* main */
+
+main {
+  font-family: "Bellota:ital", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #FDCE4B;
+  background-color: #9D8D8E;
+}
+
+.side_menu {
+  background-color: #5B5561;
+}
+
+.side_menu ul {
+  list-style: none;
+}
+
+footer {
+  font-family: "Rubik Iso", cursive, "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #FDCE4B;
+  background-color: #46344E;
+}
