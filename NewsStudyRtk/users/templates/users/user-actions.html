@@ -32,8 +32,7 @@
                     <li><a class="dropdown-item" href="{% url 'favorites' %}" style="text-decoration: none; color: #FDCE4B;"><i class="fa-solid fa-heart"></i>&nbspИзбранное</a></li>
                     <li><a class="dropdown-item" href="{% url 'contact_page' %}" style="color: #FDCE4B;"><i class="fa-solid fa-message"></i> Обратная связь</a></li>
                 {% endif %}
-                <li><a class="dropdown-item colorFDCE4B" href="{% url 'user_index' %}"><i class="fa-solid fa-address-card"></i> Мой профиль</a></li>
-                <!--li><a class="dropdown-item colorFDCE4B" href="{% url 'logout' %}"><i class="fa-solid fa-door-open"></i> Выход</a></li-->
+                <li><a class="dropdown-item" href="{% url 'user_index' %}" style="color: #FDCE4B;"><i class="fa-solid fa-address-card"></i> Мой профиль</a></li>
                 <li>
                     <form method="POST" action="{% url 'logout' %}">
                         {% csrf_token %}

@@ -15,7 +15,7 @@ from users.utils import check_group
 from .utils import ViewCountMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
-
+#from decouple import config
 
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
 def search_auto(request):
@@ -141,7 +141,7 @@ def index(request):
 
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
-    context = {'articles': page_obj, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category, 'total':total}
+    context = {'articles': page_obj, 'author_list': author_list, 'selected': selected, 'categories':categories,'selected_category': selected_category, 'total':total, 'bot_token':settings.BOT_TOKEN, 'your_id':settings.YOUR_ID }
     return render(request, 'news/news.html', context)
 
 def news_subscribe(request):
