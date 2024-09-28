@@ -1,4 +1,25 @@
 {% load static %}
-    <div style="background: url({% static 'main/img/rain.gif' %}) no-repeat;  background-size: cover">
-        <img src="{% static 'main/img/sasha-matrix.png' %}" width="100%" height="600" alt="team">
-    </div>
+<style>
+    .hover-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0; /* Начальная прозрачность */
+        transition: opacity 0.3s; /* Плавный переход */
+    }
+
+    .hover-image:hover {
+        opacity: 1; /* Прозрачность при наведении */
+    }
+
+    .main-image:hover {
+        opacity: 0; /* Скрытие основного изображения при наведении */
+    }
+</style>
+
+<div style="background: url({% static 'main/img/rain.gif' %}) no-repeat; background-size: cover; position: relative; width: 100%; height: 600px;">
+    <img src="{% static 'main/img/sasha-matrix.png' %}" width="100%" height="600" alt="team" class="main-image">
+    <img src="{% static 'main/img/sashamatrix3.gif' %}" width="100%" height="600" alt="team" class="hover-image">
+</div>
