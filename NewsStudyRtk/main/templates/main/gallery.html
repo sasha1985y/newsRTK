@@ -35,6 +35,30 @@
           background-size: cover;
         }
 
+        .gallery-iframe {
+          height: 80vh;
+          border-radius: 20px;
+          margin: 10px;
+          cursor: pointer;
+          color: #fff;
+          flex: 1;
+          block-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          position: relative;
+          background-size: cover;
+        }
+
+        .gallery-iframe:hover {
+          flex: 10;
+          transition: all 1s;
+        }
+
+        .gallery-back {
+          flex: 1;
+          transition: all 1s;
+        }
+
         .gallery-slide h3 {
           position: absolute;
           font-size: 24px;
@@ -45,7 +69,7 @@
 
         .gallery-slide.gallery-active {
           flex: 10;
-          transition: 1s;
+          transition: all 1s;
         }
 
         .gallery-slide.active h3 {
@@ -59,21 +83,27 @@
     </style>
     <div class="gallery-body">
         <div class="gallery-container">
-            <div class="gallery-slide lead" style="background-image: url({% static 'main/img/team-lead.jpg' %}); ">
-                <h3>Team-lead</h3>
-            </div>
-            <div class="gallery-slide" style="background-image: url('https://i.pravatar.cc/128')">
-                <h3>Senior</h3>
-            </div>
-            <div class="gallery-slide" style="background-image: url('https://i.pravatar.cc/127')">
-                <h3>Middle</h3>
-            </div>
-            <div class="gallery-slide" style="background-image: url('https://i.pravatar.cc/126')">
-                <h3>Junior</h3>
-            </div>
-            <div class="gallery-slide" style="background-image: url({% static 'main/img/tl.png' %})">
-                <h3>Tech-lead</h3>
-            </div>
+<!--            <div class="gallery-slide lead" style="background-image: url({% static 'main/img/team-lead.jpg' %}); "></div>-->
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239189&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239190&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239193&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239195&hd=1" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+        </div>
+    </div>
+    <div class="gallery-body">
+        <div class="gallery-container">
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239204&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239202&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239198&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239197&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+        </div>
+    </div>
+    <div class="gallery-body">
+        <div class="gallery-container">
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239197&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239196&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239191&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
+            <iframe src="https://vk.com/video_ext.php?oid=178644073&id=456239188&hd=2" width="150" height="500" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen class="gallery-iframe gallery-back"></iframe>
         </div>
     </div>
     <script>
@@ -89,6 +119,12 @@
             slide.addEventListener("click", () => {
                 clearActiveClasses();
                 slide.classList.add("gallery-active");
+            });
+
+            slide.addEventListener("mouseout", () => {
+                clearActiveClasses();
+                slide.classList.remove("gallery-active");
+                slide.classList.add("gallery-back");
             });
         }
     </script>
