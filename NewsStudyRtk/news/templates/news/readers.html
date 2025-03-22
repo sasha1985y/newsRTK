@@ -17,7 +17,7 @@
             transition: all 2s;
         }
     </style>
-    <main class="row" {% if "https://i.gifer.com/8T1x.gif" not in request.META.HTTP_REFERER|default_if_none:'' %} style=" background: url('https://i.gifer.com/8T1x.gif') no-repeat;  background-size: cover; position: relative; height: auto;"{% else %} style=" background: url({% static 'main/img/зима.gif' %}) no-repeat;  background-size: cover; position: relative; height: auto;"{% endif %} id="main">
+    <main class="row" style=" background: url({% static 'main/img/city.gif' %}) no-repeat;  background-size: cover; position: relative; height: auto;" id="main">
         <div class="col-md-2 side_menu" style="list-style: none; position: relative; height: auto;">
             {% block sidebar %}
                 <h1 class="text-center" style="font-family: Rubik Marker Hatch, cursive, Arial, Helvetica Neue, Helvetica, sans-serif;">Меню</h1>
